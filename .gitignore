@@ -11,3 +11,8 @@ web/bundles/*
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
+
+# Mac OS X
+.DS_store
+
+composer.phar
