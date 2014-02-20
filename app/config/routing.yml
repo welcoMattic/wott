@@ -1,0 +1,10 @@
+wott_front:
+    resource: "@wottFrontBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+wott_back:
+    resource: "@wottBackBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
