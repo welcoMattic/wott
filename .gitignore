@@ -14,3 +14,5 @@ app/config/parameters.yml
 
 # Mac OS X
 .DS_store
+
+composer.phar
