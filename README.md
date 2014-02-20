@@ -16,7 +16,12 @@ Minimum configuration required :
 ## Installation
 
 config webseveur local (hosts + vhost)
-git pull
+
+Clone the repo 
+```git clone https://github.com/welcoMattic/wott```
+Install symfony2 components and vendors
+```composer install```
+
 fixtures
 goto wott.dev/
 
