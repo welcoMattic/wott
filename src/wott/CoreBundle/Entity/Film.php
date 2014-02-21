@@ -104,17 +104,17 @@ class Film
     }
 
     /**
-      * @param Sdz\BlogBundle\Entity\Genre $genres
+      * @param wott\CoreBundle\Entity\Genre $genres
       */
-    public function addGenre(\Sdz\BlogBundle\Entity\Genre $genre)
+    public function addGenre(\wott\CoreBundle\Entity\Genre $genre)
     {
       $this->genres[] = $genre;
     }
   
     /**
-      * @param Sdz\BlogBundle\Entity\Genre $genres
+      * @param wott\CoreBundle\Entity\Genre $genres
       */
-    public function removeGenre(\Sdz\BlogBundle\Entity\Genre $genre)
+    public function removeGenre(\wott\CoreBundle\Entity\Genre $genre)
     {
       $this->genres->removeElement($genre);
     }
