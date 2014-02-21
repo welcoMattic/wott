@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new wott\BackBundle\wottBackBundle(),
             new wott\FrontBundle\wottFrontBundle(),
             new wott\CoreBundle\wottCoreBundle(),
+            new Bazinga\Bundle\FakerBundle\BazingaFakerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

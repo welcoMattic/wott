@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Films
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="wott\CoreBundle\Entity\FilmsRepository")
+ * @ORM\Entity(repositoryClass="wott\CoreBundle\Entity\FilmRepository")
  */
 class Film
 {
@@ -66,7 +66,7 @@ class Film
     /**
      * @var array
      *
-     * @ORM\Column(name="nationalities", type="json_array")
+     * @ORM\Column(name="nationalities", type="json_array", nullable=true)
      */
     private $nationalities;
 
@@ -74,6 +74,7 @@ class Film
      * @var integer
      *
      * @ORM\Column(name="runtime", type="integer")
+     *
      */
     private $runtime;
 
@@ -97,6 +98,34 @@ class Film
      */
     private $genres;
 
+    public function __construct()
+    {
+      $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+      * @param Sdz\BlogBundle\Entity\Genre $genres
+      */
+    public function addGenre(\Sdz\BlogBundle\Entity\Genre $genre)
+    {
+      $this->genres[] = $genre;
+    }
+  
+    /**
+      * @param Sdz\BlogBundle\Entity\Genre $genres
+      */
+    public function removeGenre(\Sdz\BlogBundle\Entity\Genre $genre)
+    {
+      $this->genres->removeElement($genre);
+    }
+  
+    /**
+      * @return Doctrine\Common\Collections\Collection
+      */
+    public function getGenres() 
+    {
+      return $this->genres;
+    }
 
 
 
