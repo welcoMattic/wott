@@ -25,6 +25,7 @@ config webseveur local (hosts + vhost)
 
 ```composer update```
 
-fixtures
-goto wott.dev/
+Faker (create 5 entries in People, Film and Genre)
+
+```php app/console faker:populate```
 

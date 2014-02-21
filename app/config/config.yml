@@ -73,12 +73,13 @@ bazinga_faker:
     orm: doctrine
     entities:
        wott\CoreBundle\Entity\Film:
-         number: 5
-         custom_formatters:
-          nationalities: {method: null}
+            number: 5
 
        wott\CoreBundle\Entity\Genre:
-         number: 5
+            number: 5
+
+       wott\CoreBundle\Entity\People:
+            number: 5
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb'

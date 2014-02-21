@@ -5,7 +5,7 @@ namespace wott\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Films
+ * Film
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="wott\CoreBundle\Entity\FilmRepository")
@@ -104,17 +104,17 @@ class Film
     }
 
     /**
-      * @param Sdz\BlogBundle\Entity\Genre $genres
+      * @param wott\CoreBundle\Entity\Genre $genres
       */
-    public function addGenre(\Sdz\BlogBundle\Entity\Genre $genre)
+    public function addGenre(\wott\CoreBundle\Entity\Genre $genre)
     {
       $this->genres[] = $genre;
     }
   
     /**
-      * @param Sdz\BlogBundle\Entity\Genre $genres
+      * @param wott\CoreBundle\Entity\Genre $genres
       */
-    public function removeGenre(\Sdz\BlogBundle\Entity\Genre $genre)
+    public function removeGenre(\wott\CoreBundle\Entity\Genre $genre)
     {
       $this->genres->removeElement($genre);
     }
@@ -143,7 +143,7 @@ class Film
      * Set title
      *
      * @param string $title
-     * @return Films
+     * @return Film
      */
     public function setTitle($title)
     {
@@ -166,7 +166,7 @@ class Film
      * Set originalTitle
      *
      * @param string $originalTitle
-     * @return Films
+     * @return Film
      */
     public function setOriginalTitle($originalTitle)
     {
@@ -189,7 +189,7 @@ class Film
      * Set dateDvd
      *
      * @param \DateTime $dateDvd
-     * @return Films
+     * @return Film
      */
     public function setDateDvd($dateDvd)
     {
@@ -212,7 +212,7 @@ class Film
      * Set dateCinema
      *
      * @param \DateTime $dateCinema
-     * @return Films
+     * @return Film
      */
     public function setDateCinema($dateCinema)
     {
@@ -235,7 +235,7 @@ class Film
      * Set synopsis
      *
      * @param string $synopsis
-     * @return Films
+     * @return Film
      */
     public function setSynopsis($synopsis)
     {
@@ -258,7 +258,7 @@ class Film
      * Set urlTrailer
      *
      * @param string $urlTrailer
-     * @return Films
+     * @return Film
      */
     public function setUrlTrailer($urlTrailer)
     {
@@ -281,7 +281,7 @@ class Film
      * Set nationalities
      *
      * @param array $nationalities
-     * @return Films
+     * @return Film
      */
     public function setNationalities($nationalities)
     {
@@ -304,7 +304,7 @@ class Film
      * Set runtime
      *
      * @param integer $runtime
-     * @return Films
+     * @return Film
      */
     public function setRuntime($runtime)
     {
@@ -327,7 +327,7 @@ class Film
      * Set popularity
      *
      * @param float $popularity
-     * @return Films
+     * @return Film
      */
     public function setPopularity($popularity)
     {
@@ -350,7 +350,7 @@ class Film
      * Set urlPoster
      *
      * @param string $urlPoster
-     * @return Films
+     * @return Film
      */
     public function setUrlPoster($urlPoster)
     {

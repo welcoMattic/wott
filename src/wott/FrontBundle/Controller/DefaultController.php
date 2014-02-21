@@ -7,6 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use wott\CoreBundle\Entity\Film;
 use wott\CoreBundle\Entity\Genre;
+use wott\CoreBundle\Entity\People;
+use wott\CoreBundle\Entity\FilmPeople;
+use wott\CoreBundle\Entity\FilmUser;
 
 class DefaultController extends Controller
 {
@@ -25,13 +28,27 @@ class DefaultController extends Controller
      */
     public function testAction()
     {
-        $film = $this->getDoctrine()->getRepository('wottCoreBundle:Film')->find(1);
-        $genre = $this->getDoctrine()->getRepository('wottCoreBundle:Genre')->find(1);
+        
+        $em = $this->getDoctrine()->getManager();
+        /*$film=$em->getRepository('wottCoreBundle:Film')->find(1);
+        $user=$em->getRepository('wottCoreBundle:User')->find(1);
+        $filmUser=new FilmUser();
 
-        var_dump($film);
-        echo "<hr>";
-        var_dump($genre);
+        $filmUser->setFilm($film);
+        $filmUser->setUser($user);
+        $filmUser->setNote(5);
+        $filmUser->setDateLike();
+        $filmUser->setDateSeen();
+        $filmUser->setIsLike(1);
+        $filmUser->setIsSeen(1);
+        $em->persist($filmUser);
+        $em->flush();*/
+        $filmUser=$em->getRepository('wottCoreBundle:FilmUser')->findAll();
 
-        return array();
+
+        var_dump($filmUser);
+
+    	return array();
+
     }
 }
