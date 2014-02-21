@@ -84,3 +84,10 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb'
     firewall_name: main
     user_class: wott\CoreBundle\Entity\User
+
+fos_facebook:
+    alias:  facebook
+    app_id: %api_facebook_id%
+    secret: %api_facebook_secret%
+    cookie: true
+    permissions: [email, user_birthday, user_location]

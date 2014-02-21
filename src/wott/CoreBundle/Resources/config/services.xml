@@ -4,17 +4,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="wott_core.example.class">wott\CoreBundle\Example</parameter>
+        <parameter key="my_user.facebook_provider.class">wott\CoreBundle\Security\User\Provider\FacebookProvider</parameter>
     </parameters>
 
     <services>
-        <service id="wott_core.example" class="%wott_core.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <!-- Facebook provider -->
+        <service id="my_user.facebook_provider" class="%my_user.facebook_provider.class%">
+            <argument type="service" id="fos_facebook.api" />
+            <argument type="service" id="fos_user.user_manager" />
+            <argument type="service" id="validator" />
+            <argument type="service" id="service_container" />
+            <argument>%fos_user.model.user.class%</argument>
         </service>
     </services>
-    -->
 </container>
