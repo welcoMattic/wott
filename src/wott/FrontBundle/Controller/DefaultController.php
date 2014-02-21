@@ -28,7 +28,7 @@ class DefaultController extends Controller
      */
     public function testAction()
     {
-        
+
         $em = $this->getDoctrine()->getManager();
         /*$film=$em->getRepository('wottCoreBundle:Film')->find(1);
         $user=$em->getRepository('wottCoreBundle:User')->find(1);
