@@ -19,13 +19,14 @@ class AppKernel extends Kernel
             new wott\BackBundle\wottBackBundle(),
             new wott\FrontBundle\wottFrontBundle(),
             new wott\CoreBundle\wottCoreBundle(),
-            new Bazinga\Bundle\FakerBundle\BazingaFakerBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Bazinga\Bundle\FakerBundle\BazingaFakerBundle();
         }
 
         return $bundles;

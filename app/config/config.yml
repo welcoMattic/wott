@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:       ~
     secret:          "%secret%"
     router:
        resource: "%kernel.root_dir%/config/routing.yml"
@@ -81,3 +81,7 @@ bazinga_faker:
        wott\CoreBundle\Entity\People:
             number: 5
 
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb'
+    firewall_name: main
+    user_class: wott\CoreBundle\Entity\User

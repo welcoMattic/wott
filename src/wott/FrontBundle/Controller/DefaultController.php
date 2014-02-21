@@ -9,6 +9,7 @@ use wott\CoreBundle\Entity\Film;
 use wott\CoreBundle\Entity\Genre;
 use wott\CoreBundle\Entity\People;
 use wott\CoreBundle\Entity\FilmPeople;
+use wott\CoreBundle\Entity\FilmUser;
 
 class DefaultController extends Controller
 {
@@ -25,25 +26,27 @@ class DefaultController extends Controller
      * @Route("test/")
      * @Template()
      */
-
     public function testAction()
     {
         
         $em = $this->getDoctrine()->getManager();
-        $film=$em->getRepository('wottCoreBundle:Film')->find(1);
-        $people=$em->getRepository('wottCoreBundle:People')->find(1);
-        /*$filmPeople=new FilmPeople();
+        /*$film=$em->getRepository('wottCoreBundle:Film')->find(1);
+        $user=$em->getRepository('wottCoreBundle:User')->find(1);
+        $filmUser=new FilmUser();
 
-        $filmPeople->setFilm($film);
-        $filmPeople->setPeople($people);
-        $filmPeople->setJob('Director');
-        $filmPeople->setRole('batman');
-        $em->persist($filmPeople);
+        $filmUser->setFilm($film);
+        $filmUser->setUser($user);
+        $filmUser->setNote(5);
+        $filmUser->setDateLike();
+        $filmUser->setDateSeen();
+        $filmUser->setIsLike(1);
+        $filmUser->setIsSeen(1);
+        $em->persist($filmUser);
         $em->flush();*/
-        $filmPeople=$em->getRepository('wottCoreBundle:FilmPeople')->findAll();
+        $filmUser=$em->getRepository('wottCoreBundle:FilmUser')->findAll();
 
 
-        var_dump($filmPeople);
+        var_dump($filmUser);
 
     	return array();
 

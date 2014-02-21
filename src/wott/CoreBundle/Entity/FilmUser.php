@@ -20,9 +20,16 @@ class FilmUser
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\FOS_User")
+     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\User")
      */
     private $user;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note", type="integer")
+     */
+    private $note;
 
     /**
      * @var \DateTime
@@ -30,6 +37,7 @@ class FilmUser
      * @ORM\Column(name="date_like", type="datetime")
      */
     private $dateLike;
+
 
     /**
      * @var \DateTime
@@ -53,6 +61,24 @@ class FilmUser
     private $isSeen;
 
 
+    public function setFilm(\wott\CoreBundle\Entity\Film $film)
+    {
+      $this->film = $film;
+    }
+    public function getFilm()
+    {
+      return $this->film;
+    }
+
+    public function setUser(\wott\CoreBundle\Entity\User $user)
+    {
+      $this->user = $user;
+    }
+    public function getUser()
+    {
+      return $this->user;
+    }
+
     /**
      * Get id
      *
@@ -64,14 +90,36 @@ class FilmUser
     }
 
     /**
-     * Set dateLike
+     * Get note
      *
-     * @param \DateTime $dateLike
+     * @return integer
+     */
+    public function getNote()
+     {
+        return $this->note;
+     }
+
+    /**
+     * Set note
+     *
+     * @param integer $note
      * @return FilmUser
      */
-    public function setDateLike($dateLike)
+    public function setNote($note)
     {
-        $this->dateLike = $dateLike;
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Set dateLike
+     *
+     * @return FilmUser
+     */
+    public function setDateLike()
+    {
+        $this->dateLike = new \Datetime('now');
 
         return $this;
     }
@@ -89,12 +137,11 @@ class FilmUser
     /**
      * Set dateSeen
      *
-     * @param \DateTime $dateSeen
      * @return FilmUser
      */
-    public function setDateSeen($dateSeen)
+    public function setDateSeen()
     {
-        $this->dateSeen = $dateSeen;
+        $this->dateSeen = new \Datetime('now');
 
         return $this;
     }
