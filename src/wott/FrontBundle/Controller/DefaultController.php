@@ -23,23 +23,15 @@ class DefaultController extends Controller
      * @Route("test/")
      * @Template()
      */
-
     public function testAction()
     {
+        $film = $this->getDoctrine()->getRepository('wottCoreBundle:Film')->find(1);
+        $genre = $this->getDoctrine()->getRepository('wottCoreBundle:Genre')->find(1);
 
-    	$film = $this->getDoctrine()->getRepository('wottCoreBundle:Film')->find(1);
-    	$genre = $this->getDoctrine()->getRepository('wottCoreBundle:Genre')->find(1);
+        var_dump($film);
+        echo "<hr>";
+        var_dump($genre);
 
-    	var_dump($film);
-    	echo "<hr>";
-    	var_dump($genre);
-
-    	
-
-
-    	return array();
-
-
-
+        return array();
     }
 }
