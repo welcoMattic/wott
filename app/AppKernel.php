@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new wott\CoreBundle\wottCoreBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\FacebookBundle\FOSFacebookBundle(),
+            new SP\AllocineBundle\SPAllocineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

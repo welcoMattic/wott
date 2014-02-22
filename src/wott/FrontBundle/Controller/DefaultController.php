@@ -51,4 +51,17 @@ class DefaultController extends Controller
     	return array();
 
     }
+
+    /**
+     * @Route("allocine/")
+     * @Template()
+     */
+    public function allocineAction()
+    {
+        $allocineApi = $this->container->get('allocine.api');
+        $movie = $allocineApi->findMovie('Pulp Fiction');
+
+        return array("movie" => $movie['movie']);
+    }
+
 }

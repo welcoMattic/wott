@@ -4,17 +4,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="wott_front.example.class">wott\FrontBundle\Example</parameter>
-    </parameters>
-
     <services>
-        <service id="wott_front.example" class="%wott_front.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
+    <service id="wott.twig.front_extension" class="wott\FrontBundle\Twig\FrontExtension">
+        <tag name="twig.extension" />
+    </service>
+
+</services>
 </container>
