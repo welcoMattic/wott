@@ -1,10 +1,12 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: sonata_core.yml }
+    - { resource: @wottBackBundle/Resources/config/admin.xml }
 
 framework:
     #esi:             ~
-    translator:       ~
+    translator:       { fallback: %locale% }
     secret:          "%secret%"
     router:
        resource: "%kernel.root_dir%/config/routing.yml"
@@ -52,6 +54,8 @@ doctrine:
        user:     "%database_user%"
        password: "%database_password%"
        charset:  UTF8
+       types:
+            json: Sonata\Doctrine\Types\JsonType
        # if using pdo_sqlite as your database driver, add the path in parameters.yml
        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
        # path:     "%database_path%"
@@ -59,6 +63,7 @@ doctrine:
     orm:
        auto_generate_proxy_classes: "%kernel.debug%"
        auto_mapping: true
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -68,23 +73,12 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-
-bazinga_faker:
-    orm: doctrine
-    entities:
-       wott\CoreBundle\Entity\Film:
-            number: 5
-
-       wott\CoreBundle\Entity\Genre:
-            number: 5
-
-       wott\CoreBundle\Entity\People:
-            number: 5
-
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: wott\CoreBundle\Entity\User
+    group:
+        group_class: wott\CoreBundle\Entity\Group
 
 fos_facebook:
     alias:  facebook
@@ -92,3 +86,21 @@ fos_facebook:
     secret: %api_facebook_secret%
     cookie: true
     permissions: [email, user_birthday, user_location]
+
+sonata_user:
+    manager_type: orm
+    class:
+        user: wott\CoreBundle\Entity\User
+        group: wott\CoreBundle\Entity\Group
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+        sonata.block.service.action:
+        sonata.user.block.menu:    
+        sonata.user.block.account:

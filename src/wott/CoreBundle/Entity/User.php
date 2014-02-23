@@ -2,7 +2,7 @@
 
 namespace wott\CoreBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
+use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,20 +21,6 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
-     */
-    protected $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
-     */
-    protected $lastname;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="facebookId", type="string", length=255, nullable=true)
      */
     protected $facebookId;
@@ -45,47 +31,6 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * @param string $firstname
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * @param string $lastname
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-    }
-
-    /**
-     * Get the full name of the user (first + last name)
-     * @return string
-     */
-    public function getFullName()
-    {
-        return $this->getFirstName() . ' ' . $this->getLastname();
     }
 
     /**

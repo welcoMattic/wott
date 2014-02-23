@@ -21,6 +21,14 @@ class AppKernel extends Kernel
             new wott\CoreBundle\wottCoreBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\FacebookBundle\FOSFacebookBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new SP\AllocineBundle\SPAllocineBundle(),
         );
 
@@ -38,4 +46,6 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
+
+    
 }
