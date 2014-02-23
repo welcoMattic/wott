@@ -28,7 +28,7 @@ class DefaultController extends Controller
      */
     public function testAction()
     {
-        
+
         $em = $this->getDoctrine()->getManager();
         /*$film=$em->getRepository('wottCoreBundle:Film')->find(1);
         $user=$em->getRepository('wottCoreBundle:User')->find(1);
@@ -51,4 +51,17 @@ class DefaultController extends Controller
     	return array();
 
     }
+
+    /**
+     * @Route("allocine/")
+     * @Template()
+     */
+    public function allocineAction()
+    {
+        $allocineApi = $this->container->get('allocine.api');
+        $movie = $allocineApi->findMovie('Pulp Fiction');
+
+        return array("movie" => $movie['movie']);
+    }
+
 }

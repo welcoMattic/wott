@@ -34,15 +34,6 @@ class User extends BaseUser
     }
 
     /**
-     * Get the full name of the user (first + last name)
-     * @return string
-     */
-    public function getFullName()
-    {
-        return $this->getFirstName() . ' ' . $this->getLastname();
-    }
-
-    /**
      * @param string $facebookId
      * @return void
      */

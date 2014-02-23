@@ -30,7 +30,9 @@
         "sonata-project/easy-extends-bundle": "2.1.*@dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
         "knplabs/knp-menu": "2.0.*@dev",
-        "knplabs/knp-menu-bundle": "2.0.*@dev"
+        "knplabs/knp-menu-bundle": "2.0.*@dev",
+        "guzzle/guzzle": "dev-master",
+        "sp/allocine-api-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
