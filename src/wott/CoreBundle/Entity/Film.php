@@ -47,7 +47,7 @@ class Film
      *
      * @ORM\Column(name="date_cinema", type="datetime")
      */
-    private $dateCinema;
+    private $date_cinema;
 
     /**
      * @var string
@@ -209,26 +209,26 @@ class Film
     }
 
     /**
-     * Set dateCinema
+     * Set date_cinema
      *
-     * @param \DateTime $dateCinema
+     * @param \DateTime $date_cinema
      * @return Film
      */
     public function setDateCinema($dateCinema)
     {
-        $this->dateCinema = $dateCinema;
+        $this->dateCinema = $date_cinema;
 
         return $this;
     }
 
     /**
-     * Get dateCinema
+     * Get date_cinema
      *
      * @return \DateTime 
      */
     public function getDateCinema()
     {
-        return $this->dateCinema;
+        return $this->date_cinema;
     }
 
     /**

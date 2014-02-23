@@ -5,26 +5,34 @@ namespace wott\BackBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class PostAdmin extends Admin
+class FilmAdmin extends Admin
 {
-    // Fields to be shown on create/edit forms
+
+  /*  // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text', array('label' => 'Post Title'))
-            ->add('original_title', 'entity', array('class' => 'Acme\DemoBundle\Entity\User'))
-            ->add('body') //if no type is specified, SonataAdminBundle tries to guess it
-        ;
+            ->add('title', 'text', array('label' => 'Title'))
+            ->add('original_title', 'text', array('label' => 'Original Title'))
+            ->add('date_dvd', 'datetime')
+            ->add('date_cinema', 'datetime')
+            ->add('synopsis', 'text', array('label' => 'Synopsis'))
+            ;
+        
     }
 
-    /*// Fields to be shown on filter forms
+    // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
             ->add('title')
-            ->add('author')
+            ->add('original_title')
+            ->add('date_dvd')
+            ->add('date_cinema')
+            ->add('synopsis')
         ;
     }
 
@@ -33,8 +41,7 @@ class PostAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('title')
-            ->add('slug')
-            ->add('author')
         ;
     }*/
+
 }

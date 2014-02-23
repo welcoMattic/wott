@@ -2,10 +2,11 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: sonata_core.yml }
+    - { resource: @wottBackBundle/Resources/config/admin.xml }
 
 framework:
     #esi:             ~
-    translator:       ~
+    translator:       { fallback: %locale% }
     secret:          "%secret%"
     router:
        resource: "%kernel.root_dir%/config/routing.yml"
@@ -100,5 +101,6 @@ sonata_block:
 
         sonata.block.service.text:
         sonata.block.service.rss:
-        sonata.user.block.menu:    # used to display the menu in profile pages
-        sonata.user.block.account: # used to display menu option (login option)
+        sonata.block.service.action:
+        sonata.user.block.menu:    
+        sonata.user.block.account:
