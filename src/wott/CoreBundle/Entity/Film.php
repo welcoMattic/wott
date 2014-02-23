@@ -163,49 +163,49 @@ class Film
     }
 
     /**
-     * Set originalTitle
+     * Set original_title
      *
-     * @param string $originalTitle
+     * @param string $original_title
      * @return Film
      */
-    public function setOriginalTitle($originalTitle)
+    public function setOriginalTitle($original_title)
     {
-        $this->originalTitle = $originalTitle;
+        $this->originalTitle = $original_title;
 
         return $this;
     }
 
     /**
-     * Get originalTitle
+     * Get original_title
      *
      * @return string 
      */
     public function getOriginalTitle()
     {
-        return $this->originalTitle;
+        return $this->original_title;
     }
 
     /**
      * Set dateDvd
      *
-     * @param \DateTime $dateDvd
+     * @param \DateTime $date_dvd
      * @return Film
      */
-    public function setDateDvd($dateDvd)
+    public function setDateDvd($date_dvd)
     {
-        $this->dateDvd = $dateDvd;
+        $this->date_dvd = $date_dvd;
 
         return $this;
     }
 
     /**
-     * Get dateDvd
+     * Get date_dvd
      *
      * @return \DateTime 
      */
     public function getDateDvd()
     {
-        return $this->dateDvd;
+        return $this->date_dvd;
     }
 
     /**
@@ -214,9 +214,9 @@ class Film
      * @param \DateTime $date_cinema
      * @return Film
      */
-    public function setDateCinema($dateCinema)
+    public function setDateCinema($date_cinema)
     {
-        $this->dateCinema = $date_cinema;
+        $this->date_cinema = $date_cinema;
 
         return $this;
     }
@@ -260,9 +260,9 @@ class Film
      * @param string $urlTrailer
      * @return Film
      */
-    public function setUrlTrailer($urlTrailer)
+    public function setUrlTrailer($url_trailer)
     {
-        $this->urlTrailer = $urlTrailer;
+        $this->url_trailer = $url_trailer;
 
         return $this;
     }
@@ -274,7 +274,7 @@ class Film
      */
     public function getUrlTrailer()
     {
-        return $this->urlTrailer;
+        return $this->url_trailer;
     }
 
     /**
@@ -352,9 +352,9 @@ class Film
      * @param string $urlPoster
      * @return Film
      */
-    public function setUrlPoster($urlPoster)
+    public function setUrlPoster($url_poster)
     {
-        $this->urlPoster = $urlPoster;
+        $this->url_poster = $url_poster;
 
         return $this;
     }
@@ -366,6 +366,6 @@ class Film
      */
     public function getUrlPoster()
     {
-        return $this->urlPoster;
+        return $this->url_poster;
     }
 }

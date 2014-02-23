@@ -36,18 +36,18 @@ class People
     private $nationality;
 
     /**
-     * @var integer
+     * @var date
      *
-     * @ORM\Column(name="age", type="integer")
+     * @ORM\Column(name="birthday", type="date")
      */
-    private $age;
+    private $birthday;
 
     /**
      * @var string
      *
      * @ORM\Column(name="url_profile_image", type="string", length=255)
      */
-    private $urlProfileImage;
+    private $url_profile_image;
 
 
     /**
@@ -109,46 +109,46 @@ class People
     /**
      * Set age
      *
-     * @param integer $age
+     * @param date $birthday
      * @return People
      */
-    public function setAge($age)
+    public function setBirthday($birthday)
     {
-        $this->age = $age;
+        $this->birthday = $birthday;
 
         return $this;
     }
 
     /**
-     * Get age
+     * Get birthday
      *
-     * @return integer 
+     * @return date 
      */
-    public function getAge()
+    public function getBirthday()
     {
-        return $this->age;
+        return $this->birthday;
     }
 
     /**
-     * Set urlProfileImage
+     * Set url_profile_image
      *
-     * @param string $urlProfileImage
+     * @param string $url_profile_image
      * @return People
      */
-    public function setUrlProfileImage($urlProfileImage)
+    public function setUrlProfileImage($url_profile_image)
     {
-        $this->urlProfileImage = $urlProfileImage;
+        $this->url_profile_image = $url_profile_image;
 
         return $this;
     }
 
     /**
-     * Get urlProfileImage
+     * Get url_profile_image
      *
      * @return string 
      */
     public function getUrlProfileImage()
     {
-        return $this->urlProfileImage;
+        return $this->url_profile_image;
     }
 }

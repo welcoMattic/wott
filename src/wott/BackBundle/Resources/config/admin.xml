@@ -7,14 +7,34 @@
     
     <parameters>
         <parameter key="wott_back.filmadmin.class">wott\BackBundle\Admin\FilmAdmin</parameter>
+        <parameter key="wott_back.genreadmin.class">wott\BackBundle\Admin\GenreAdmin</parameter>
+        <parameter key="wott_back.peopleadmin.class">wott\BackBundle\Admin\PeopleAdmin</parameter>
     </parameters>
 
     <services>
         <service id="wott.admin.film" class="%wott_back.filmadmin.class%">
-           <tag name="sonata.admin" manager_type="orm" group="Content" label="Post"/>
+           <tag name="sonata.admin" manager_type="orm" group="Content" label="Film"/>
             <argument />
           <argument>wott\CoreBundle\Entity\Film</argument>
           <argument />
+        </service>
+
+        <service id="wott.admin.genre" class="%wott_back.genreadmin.class%">
+           <tag name="sonata.admin" manager_type="orm" group="Content" label="Genre"/>
+            <argument />
+          <argument>wott\CoreBundle\Entity\Genre</argument>
+          <argument />
+        </service>
+
+        <service id="wott.admin.people" class="%wott_back.peopleadmin.class%">
+           <tag name="sonata.admin" manager_type="orm" group="Content" label="People"/>
+            <argument />
+          <argument>wott\CoreBundle\Entity\People</argument>
+          <argument />
+          <call method="setTemplate">
+            <argument>view</argument>
+            <argument>wottBackBundle:PeopleAdmin:view.html.twig</argument>
+          </call>
         </service>
     </services>
     

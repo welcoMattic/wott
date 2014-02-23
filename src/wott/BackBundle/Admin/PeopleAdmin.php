@@ -8,24 +8,17 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class FilmAdmin extends Admin
+class PeopleAdmin extends Admin
 {
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text')
-            ->add('original_title', 'text')
-            ->add('date_dvd', 'date', array('years' => range( date('Y'), '1900')))
-            ->add('date_cinema', 'date', array('years' => range( date('Y'), '1900')))
-            ->add('synopsis', 'text')
-            ->add('nationalities', 'text')
-            ->add('url_trailer', 'url')
-            ->add('runtime', 'integer')
-            ->add('popularity', 'number')
-            ->add('url_poster', 'url')
-            ->add('genres', 'entity', array('class' => 'wott\CoreBundle\Entity\Genre', 'property' => 'name'))
+            ->add('name', 'text')
+            ->add('nationality', 'country')
+            ->add('birthday', 'date', array('years' => range( date('Y'), '1900')))
+            ->add('url_profile_image', 'url')
             ;
         
     }
@@ -34,11 +27,8 @@ class FilmAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('date_dvd')
-            ->add('date_cinema')
-            ->add('popularity')
-            ->add('nationalities')
+            ->add('name')
+            ->add('nationality')
         ;
     }
 
@@ -46,7 +36,8 @@ class FilmAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
+            ->addIdentifier('name')
+            ->add('nationality')
             ->add('_action', 'actions', array(
                 'actions' => array(
                 'view' => array(),
