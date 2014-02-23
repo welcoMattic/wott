@@ -31,10 +31,6 @@
             <argument />
           <argument>wott\CoreBundle\Entity\People</argument>
           <argument />
-          <call method="setTemplate">
-            <argument>view</argument>
-            <argument>wottBackBundle:PeopleAdmin:view.html.twig</argument>
-          </call>
         </service>
     </services>
     

@@ -49,7 +49,7 @@ class FilmAdmin extends Admin
             ->addIdentifier('title')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                'view' => array(),
+                'show' => array(),
                 'edit' => array(),
                 'delete' => array(),
                 )

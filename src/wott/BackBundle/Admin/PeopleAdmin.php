@@ -40,7 +40,7 @@ class PeopleAdmin extends Admin
             ->add('nationality')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                'view' => array(),
+                'show' => array(),
                 'edit' => array(),
                 'delete' => array(),
                 )
