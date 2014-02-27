@@ -5,10 +5,10 @@ namespace wott\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Films
+ * Film
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="wott\CoreBundle\Entity\FilmsRepository")
+ * @ORM\Entity(repositoryClass="wott\CoreBundle\Repository\FilmRepository")
  */
 class Film
 {
@@ -47,7 +47,7 @@ class Film
      *
      * @ORM\Column(name="date_cinema", type="datetime")
      */
-    private $dateCinema;
+    private $date_cinema;
 
     /**
      * @var string
@@ -66,7 +66,7 @@ class Film
     /**
      * @var array
      *
-     * @ORM\Column(name="nationalities", type="json_array")
+     * @ORM\Column(name="nationalities", type="json_array", nullable=true)
      */
     private $nationalities;
 
@@ -74,6 +74,7 @@ class Film
      * @var integer
      *
      * @ORM\Column(name="runtime", type="integer")
+     *
      */
     private $runtime;
 
@@ -91,19 +92,46 @@ class Film
      */
     private $url_poster;
 
-    /*
-     *
-     * @ORM\ManyToMany(targetEntity="Sdz\BlogBundle\Entity\Genre", cascade={"persist"})
+    /**
+     * @ORM\ManyToMany(targetEntity="wott\CoreBundle\Entity\Genre", cascade={"persist"})
      */
     private $genres;
 
+    public function __construct()
+    {
+      $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+      * @param wott\CoreBundle\Entity\Genre $genres
+      */
+    public function addGenre(\wott\CoreBundle\Entity\Genre $genre)
+    {
+      $this->genres[] = $genre;
+    }
+
+    /**
+      * @param wott\CoreBundle\Entity\Genre $genres
+      */
+    public function removeGenre(\wott\CoreBundle\Entity\Genre $genre)
+    {
+      $this->genres->removeElement($genre);
+    }
+
+    /**
+      * @return Doctrine\Common\Collections\Collection
+      */
+    public function getGenres()
+    {
+      return $this->genres;
+    }
 
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -114,7 +142,7 @@ class Film
      * Set title
      *
      * @param string $title
-     * @return Films
+     * @return Film
      */
     public function setTitle($title)
     {
@@ -126,7 +154,7 @@ class Film
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -134,79 +162,79 @@ class Film
     }
 
     /**
-     * Set originalTitle
+     * Set original_title
      *
-     * @param string $originalTitle
-     * @return Films
+     * @param string $original_title
+     * @return Film
      */
-    public function setOriginalTitle($originalTitle)
+    public function setOriginalTitle($original_title)
     {
-        $this->originalTitle = $originalTitle;
+        $this->original_title = $original_title;
 
         return $this;
     }
 
     /**
-     * Get originalTitle
+     * Get original_title
      *
-     * @return string 
+     * @return string
      */
     public function getOriginalTitle()
     {
-        return $this->originalTitle;
+        return $this->original_title;
     }
 
     /**
      * Set dateDvd
      *
-     * @param \DateTime $dateDvd
-     * @return Films
+     * @param \DateTime $date_dvd
+     * @return Film
      */
-    public function setDateDvd($dateDvd)
+    public function setDateDvd($date_dvd)
     {
-        $this->dateDvd = $dateDvd;
+        $this->date_dvd = $date_dvd;
 
         return $this;
     }
 
     /**
-     * Get dateDvd
+     * Get date_dvd
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateDvd()
     {
-        return $this->dateDvd;
+        return $this->date_dvd;
     }
 
     /**
-     * Set dateCinema
+     * Set date_cinema
      *
-     * @param \DateTime $dateCinema
-     * @return Films
+     * @param \DateTime $date_cinema
+     * @return Film
      */
-    public function setDateCinema($dateCinema)
+    public function setDateCinema($date_cinema)
     {
-        $this->dateCinema = $dateCinema;
+        $this->date_cinema = $date_cinema;
 
         return $this;
     }
 
     /**
-     * Get dateCinema
+     * Get date_cinema
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCinema()
     {
-        return $this->dateCinema;
+        return $this->date_cinema;
     }
 
     /**
      * Set synopsis
      *
      * @param string $synopsis
-     * @return Films
+     * @return Film
      */
     public function setSynopsis($synopsis)
     {
@@ -218,7 +246,7 @@ class Film
     /**
      * Get synopsis
      *
-     * @return string 
+     * @return string
      */
     public function getSynopsis()
     {
@@ -229,11 +257,11 @@ class Film
      * Set urlTrailer
      *
      * @param string $urlTrailer
-     * @return Films
+     * @return Film
      */
-    public function setUrlTrailer($urlTrailer)
+    public function setUrlTrailer($url_trailer)
     {
-        $this->urlTrailer = $urlTrailer;
+        $this->url_trailer = $url_trailer;
 
         return $this;
     }
@@ -241,18 +269,18 @@ class Film
     /**
      * Get urlTrailer
      *
-     * @return string 
+     * @return string
      */
     public function getUrlTrailer()
     {
-        return $this->urlTrailer;
+        return $this->url_trailer;
     }
 
     /**
      * Set nationalities
      *
      * @param array $nationalities
-     * @return Films
+     * @return Film
      */
     public function setNationalities($nationalities)
     {
@@ -264,7 +292,7 @@ class Film
     /**
      * Get nationalities
      *
-     * @return array 
+     * @return array
      */
     public function getNationalities()
     {
@@ -275,7 +303,7 @@ class Film
      * Set runtime
      *
      * @param integer $runtime
-     * @return Films
+     * @return Film
      */
     public function setRuntime($runtime)
     {
@@ -287,7 +315,7 @@ class Film
     /**
      * Get runtime
      *
-     * @return integer 
+     * @return integer
      */
     public function getRuntime()
     {
@@ -298,7 +326,7 @@ class Film
      * Set popularity
      *
      * @param float $popularity
-     * @return Films
+     * @return Film
      */
     public function setPopularity($popularity)
     {
@@ -310,7 +338,7 @@ class Film
     /**
      * Get popularity
      *
-     * @return float 
+     * @return float
      */
     public function getPopularity()
     {
@@ -321,11 +349,11 @@ class Film
      * Set urlPoster
      *
      * @param string $urlPoster
-     * @return Films
+     * @return Film
      */
-    public function setUrlPoster($urlPoster)
+    public function setUrlPoster($url_poster)
     {
-        $this->urlPoster = $urlPoster;
+        $this->url_poster = $url_poster;
 
         return $this;
     }
@@ -333,10 +361,10 @@ class Film
     /**
      * Get urlPoster
      *
-     * @return string 
+     * @return string
      */
     public function getUrlPoster()
     {
-        return $this->urlPoster;
+        return $this->url_poster;
     }
 }

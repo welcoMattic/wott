@@ -1,15 +1,18 @@
+# This file is auto-generated during the composer install
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
-
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: 3306
+    database_name: wott
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+    api_facebook_id:      258223864339452 # ID de l’application/Clé de l’API
+    api_facebook_secret:  8dfe6e597365b5974b3cc2d1d9117b53 # Clé secrète
+    api_facebook_name:    http://apps.facebook.com/wottappdev/ # App Namespace
+    api_facebook_server:  http://wott.dev/ # URL du site

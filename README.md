@@ -21,10 +21,19 @@ config webseveur local (hosts + vhost)
 
 ```git clone https://github.com/welcoMattic/wott```
 
-- Install symfony2 components and vendors
+- Install Symfony2 components and vendors
+
+```composer install```
+
+- Or if you already have install WOTT project, do an update
 
 ```composer update```
 
-fixtures
-goto wott.dev/
+- Populate your database from TMDB API
+
+``` php app/console wott:insertGenres ```
+
+Faker (create 5 entries in People, Film and Genre)
+
+```php app/console faker:populate```
 
