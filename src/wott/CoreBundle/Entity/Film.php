@@ -92,9 +92,8 @@ class Film
      */
     private $url_poster;
 
-    /*
-     *
-     * @ORM\ManyToMany(targetEntity="Sdz\BlogBundle\Entity\Genre", cascade={"persist"})
+    /**
+     * @ORM\ManyToMany(targetEntity="wott\CoreBundle\Entity\Genre", cascade={"persist"})
      */
     private $genres;
 
@@ -170,7 +169,7 @@ class Film
      */
     public function setOriginalTitle($original_title)
     {
-        $this->originalTitle = $original_title;
+        $this->original_title = $original_title;
 
         return $this;
     }

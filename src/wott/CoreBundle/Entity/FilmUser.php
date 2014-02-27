@@ -60,6 +60,12 @@ class FilmUser
      */
     private $isSeen;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_wanted", type="boolean")
+     */
+    private $isWanted;
 
     public function setFilm(\wott\CoreBundle\Entity\Film $film)
     {
@@ -200,5 +206,28 @@ class FilmUser
     public function getIsSeen()
     {
         return $this->isSeen;
+    }
+
+    /**
+     * Set isWanted
+     *
+     * @param boolean $isWanted
+     * @return FilmUser
+     */
+    public function setIsWanted($isWanted)
+    {
+        $this->isWanted = $isWanted;
+
+        return $this;
+    }
+
+    /**
+     * Get isWanted
+     *
+     * @return boolean 
+     */
+    public function getIsWanted()
+    {
+        return $this->isWanted;
     }
 }

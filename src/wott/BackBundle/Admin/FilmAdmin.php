@@ -15,7 +15,7 @@ class FilmAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text')
+            ->add('title')
             ->add('original_title', 'text')
             ->add('date_dvd', 'date', array('years' => range( date('Y'), '1900')))
             ->add('date_cinema', 'date', array('years' => range( date('Y'), '1900')))
@@ -25,7 +25,7 @@ class FilmAdmin extends Admin
             ->add('runtime', 'integer')
             ->add('popularity', 'number')
             ->add('url_poster', 'url')
-            ->add('genres', 'entity', array('class' => 'wott\CoreBundle\Entity\Genre', 'property' => 'name'))
+            ->add('genres', 'entity', array('class' => 'wott\CoreBundle\Entity\Genre', 'property' => 'name', 'multiple' => true, 'by_reference' => false))
             ;
         
     }
