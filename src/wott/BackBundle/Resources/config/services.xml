@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="wott_back.example.class">wott\BackBundle\Example</parameter>
+        <parameter key="cypher_blog.example.class">Cypher\BlogBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="wott_back.example" class="%wott_back.example.class%">
+        <service id="cypher_blog.example" class="%cypher_blog.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>
