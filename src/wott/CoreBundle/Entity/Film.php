@@ -97,6 +97,14 @@ class Film
      */
     private $genres;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="api_id", type="integer", nullable=true)
+     *
+     */
+    private $api_id;
+
     public function __construct()
     {
       $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
@@ -366,5 +374,28 @@ class Film
     public function getUrlPoster()
     {
         return $this->url_poster;
+    }
+
+    /**
+     * Set api_id
+     *
+     * @param integer $apiId
+     * @return Film
+     */
+    public function setApiId($apiId)
+    {
+        $this->api_id = $apiId;
+
+        return $this;
+    }
+
+    /**
+     * Get api_id
+     *
+     * @return integer
+     */
+    public function getApiId()
+    {
+        return $this->api_id;
     }
 }
