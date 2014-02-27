@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Genre
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="wott\CoreBundle\Entity\GenreRepository")
+ * @ORM\Entity(repositoryClass="wott\CoreBundle\Repository\GenreRepository")
  */
 class Genre
 {
@@ -31,7 +31,7 @@ class Genre
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,7 +54,7 @@ class Genre
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

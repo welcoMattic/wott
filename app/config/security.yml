@@ -14,8 +14,8 @@ security:
             id: fos_user.user_provider.username
         my_fos_facebook_provider:
             id: my_user.facebook_provider
-    firewalls:
 
+    firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * People
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="wott\CoreBundle\Entity\PeopleRepository")
+ * @ORM\Entity(repositoryClass="wott\CoreBundle\Repository\PeopleRepository")
  */
 class People
 {
@@ -53,7 +53,7 @@ class People
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,7 +76,7 @@ class People
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -99,7 +99,7 @@ class People
     /**
      * Get nationality
      *
-     * @return string 
+     * @return string
      */
     public function getNationality()
     {
@@ -122,7 +122,7 @@ class People
     /**
      * Get birthday
      *
-     * @return date 
+     * @return date
      */
     public function getBirthday()
     {
@@ -145,7 +145,7 @@ class People
     /**
      * Get url_profile_image
      *
-     * @return string 
+     * @return string
      */
     public function getUrlProfileImage()
     {

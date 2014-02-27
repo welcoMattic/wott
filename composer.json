@@ -32,7 +32,8 @@
         "knplabs/knp-menu": "2.0.*@dev",
         "knplabs/knp-menu-bundle": "2.0.*@dev",
         "guzzle/guzzle": "dev-master",
-        "sp/allocine-api-bundle": "dev-master"
+        "wtfzdotnet/wtfz-tmdb-bundle": "dev-master",
+        "wtfzdotnet/php-tmdb-api": "dev-develop"
     },
     "scripts": {
         "post-install-cmd": [

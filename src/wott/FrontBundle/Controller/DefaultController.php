@@ -23,45 +23,21 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("test/")
+     * @Route("movie/")
      * @Template()
      */
-    public function testAction()
+    public function movieAction()
     {
+        $client = $this->get('wtfz_tmdb.client');
+        $res = $client->getGenresApi()->getGenres(array('language' => 'fr'));
+        $genres = $res['genres'];
+        $genres = array_map(
+            function($genre) {
+                return $genre['name'];
+            }, $genres
+        );
 
-        $em = $this->getDoctrine()->getManager();
-        /*$film=$em->getRepository('wottCoreBundle:Film')->find(1);
-        $user=$em->getRepository('wottCoreBundle:User')->find(1);
-        $filmUser=new FilmUser();
-
-        $filmUser->setFilm($film);
-        $filmUser->setUser($user);
-        $filmUser->setNote(5);
-        $filmUser->setDateLike();
-        $filmUser->setDateSeen();
-        $filmUser->setIsLike(1);
-        $filmUser->setIsSeen(1);
-        $em->persist($filmUser);
-        $em->flush();*/
-        $filmUser=$em->getRepository('wottCoreBundle:FilmUser')->findAll();
-
-
-        var_dump($filmUser);
-
-    	return array();
-
-    }
-
-    /**
-     * @Route("allocine/")
-     * @Template()
-     */
-    public function allocineAction()
-    {
-        $allocineApi = $this->container->get('allocine.api');
-        $movie = $allocineApi->findMovie('Pulp Fiction');
-
-        return array("movie" => $movie['movie']);
+        return array('genres' => $genres);
     }
 
 }
