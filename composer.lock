@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6a138c544c43825209e1b9825ffa210c",
+    "hash": "d5aa82dc2b62615ee4f6d8942af017bf",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -982,16 +982,16 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "dev-master",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "edbcaaa5d38267a499289da215d3a9702c65ab1f"
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/edbcaaa5d38267a499289da215d3a9702c65ab1f",
-                "reference": "edbcaaa5d38267a499289da215d3a9702c65ab1f",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
                 "shasum": ""
             },
             "require": {
@@ -1070,7 +1070,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-02-26 01:49:03"
+            "time": "2014-01-28 22:29:15"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2803,21 +2803,20 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.0",
+            "version": "v1.0.0",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72"
+                "reference": "cac3fdfb111adbe590155f491594636d45129783"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
-                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/cac3fdfb111adbe590155f491594636d45129783",
+                "reference": "cac3fdfb111adbe590155f491594636d45129783",
                 "shasum": ""
             },
             "require": {
-                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -2847,7 +2846,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-06-03 18:32:58"
+            "time": "2013-06-03 18:32:07"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -3312,7 +3311,7 @@
             ],
             "authors": [
                 {
-                    "name": "William DURAND",
+                    "name": "William Durand",
                     "email": "william.durand1@gmail.com",
                     "homepage": "http://www.willdurand.fr"
                 }
@@ -3334,12 +3333,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wtfzdotnet/php-tmdb-api.git",
-                "reference": "7a8405d8b3e70285a660cd4520e0913be2a78068"
+                "reference": "2b3a6db87ab8e17fbbe648ee0cb16185c83b749c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/7a8405d8b3e70285a660cd4520e0913be2a78068",
-                "reference": "7a8405d8b3e70285a660cd4520e0913be2a78068",
+                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/2b3a6db87ab8e17fbbe648ee0cb16185c83b749c",
+                "reference": "2b3a6db87ab8e17fbbe648ee0cb16185c83b749c",
                 "shasum": ""
             },
             "require": {
@@ -3379,7 +3378,7 @@
                 "tvdb",
                 "wrapper"
             ],
-            "time": "2014-02-26 22:05:12"
+            "time": "2014-02-27 13:36:12"
         },
         {
             "name": "wtfzdotnet/wtfz-tmdb-bundle",
@@ -3450,7 +3449,6 @@
         "sonata-project/doctrine-orm-admin-bundle": 20,
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
-        "guzzle/guzzle": 20,
         "wtfzdotnet/wtfz-tmdb-bundle": 20,
         "wtfzdotnet/php-tmdb-api": 20
     },

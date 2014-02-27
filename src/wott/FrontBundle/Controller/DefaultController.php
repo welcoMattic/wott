@@ -23,7 +23,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("movie/")
+     * @Route("/movie/")
      * @Template()
      */
     public function movieAction()
