@@ -34,7 +34,7 @@ class InsertFilmsCommand extends ContainerAwareCommand
             $basicFilms = $res['results'];
 
             foreach($basicFilms as $basicFilm) {
-                var_dump($basicFilm);
+                var_dump($basicFilm);die();
                 if ($em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id']))) {
                     $f = new Film();
                     if(!$f->getGenres()->contains($genre)) {
