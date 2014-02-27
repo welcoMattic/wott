@@ -24,17 +24,35 @@ class InsertFilmsCommand extends ContainerAwareCommand
     {
         $client = $this->getContainer()->get('wtfz_tmdb.client');
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-
         $genres = $em->getRepository('wottCoreBundle:Genre')->findAll();
-        $res = array();
+
         foreach($genres as $genre) {
-            $films = $client->getGenresApi()->getMovies(
+            $res = $client->getGenresApi()->getMovies(
                         $genres[0]->getApiId(),
                         array('page' => 1, 'language' => 'fr', 'include_adult' => 'false')
                     );
-            if ($em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $genre['id']))) {
+            $basicFilms = $res['results'];
 
+            foreach($basicFilms as $basicFilm) {
+                var_dump($basicFilm);
+                if ($em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id']))) {
+                    $f = new Film();
+                    if(!$f->getGenres()->contains($genre)) {
+                        $f->addGenre($genre);
+                        $em->persist($f);
+                    }
+                } else {
+                    $film = $client->getMoviesApi()->getMovie(
+                                $basicFilm['id'],
+                                array('language' => 'fr', 'append_to_response' => 'releases,trailers,images,reviews')
+                            );
+                    var_dump($film);
+                    $f = new Film();
+                    $f->setTitle($film['title']);
+                    $f->setOriginalTitle($film['original_title']);
+                }
             }
+
         }
 
         $i = 0;
