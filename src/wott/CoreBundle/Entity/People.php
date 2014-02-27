@@ -49,6 +49,13 @@ class People
      */
     private $url_profile_image;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="api_id", type="string", length=255, nullable=true)
+     */
+    private $api_id;
+
 
     /**
      * Get id
@@ -150,5 +157,28 @@ class People
     public function getUrlProfileImage()
     {
         return $this->url_profile_image;
+    }
+
+    /**
+     * Set api_id
+     *
+     * @param string $apiId
+     * @return People
+     */
+    public function setApiId($apiId)
+    {
+        $this->api_id = $apiId;
+
+        return $this;
+    }
+
+    /**
+     * Get api_id
+     *
+     * @return string 
+     */
+    public function getApiId()
+    {
+        return $this->api_id;
     }
 }
