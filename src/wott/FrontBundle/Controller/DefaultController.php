@@ -28,16 +28,7 @@ class DefaultController extends Controller
      */
     public function movieAction()
     {
-        $client = $this->get('wtfz_tmdb.client');
-        $res = $client->getGenresApi()->getGenres(array('language' => 'fr'));
-        $genres = $res['genres'];
-        $genres = array_map(
-            function($genre) {
-                return $genre['name'];
-            }, $genres
-        );
-
-        return array('genres' => $genres);
+        return array();
     }
 
 }

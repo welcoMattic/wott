@@ -29,6 +29,13 @@ class Genre
     private $name;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="apiId", type="integer")
+     */
+    private $apiId;
+
+    /**
      * Get id
      *
      * @return integer
@@ -59,5 +66,28 @@ class Genre
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set apiId
+     *
+     * @param integer $apiId
+     * @return Genre
+     */
+    public function setApiId($apiId)
+    {
+        $this->apiId = $apiId;
+
+        return $this;
+    }
+
+    /**
+     * Get apiId
+     *
+     * @return integer
+     */
+    public function getApiId()
+    {
+        return $this->apiId;
     }
 }
