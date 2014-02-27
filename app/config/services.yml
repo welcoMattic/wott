@@ -1,0 +1,10 @@
+# Services
+services:
+    wott.command.insertGenres:
+        class: wott\CoreBundle\Command\InsertGenresCommand
+        tags:
+            -  { name: wott.insertGenres }
+    wott.command.insertFilms:
+        class: wott\CoreBundle\Command\InsertFilmsCommand
+        tags:
+            -  { name: wott.insertFilms }

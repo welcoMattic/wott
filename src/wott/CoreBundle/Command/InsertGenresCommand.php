@@ -29,7 +29,7 @@ class InsertGenresCommand extends ContainerAwareCommand
 
         $i = 0;
         foreach ($genres as $genre) {
-            if (!$em->getRepository('wottCoreBundle:Genre')->findOneBy(array('apiId' => $genre['id']))) {
+            if (!$em->getRepository('wottCoreBundle:Genre')->findOneBy(array('api_id' => $genre['id']))) {
                 $g = new Genre();
                 $g->setApiId($genre['id']);
                 $g->setName($genre['name']);

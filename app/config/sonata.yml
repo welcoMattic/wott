@@ -1,0 +1,23 @@
+sonata_user:
+    manager_type: orm
+    class:
+        user:  wott\CoreBundle\Entity\User
+        group: wott\CoreBundle\Entity\Group
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+        sonata.block.service.action:
+        sonata.user.block.menu:
+        sonata.user.block.account:
+
+sonata_admin:
+    title:      What's on TV tonight ?
+    title_logo: bundles/wottback/img/logo.png
