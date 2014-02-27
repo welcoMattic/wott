@@ -19,8 +19,8 @@ class AppKernel extends Kernel
             new wott\BackBundle\wottBackBundle(),
             new wott\FrontBundle\wottFrontBundle(),
             new wott\CoreBundle\wottCoreBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new FOS\FacebookBundle\FOSFacebookBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
@@ -29,7 +29,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            new SP\AllocineBundle\SPAllocineBundle(),
+            new Wtfz\TmdbBundle\WtfzTmdbBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -46,24 +46,4 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
-
-    public function getCacheDir()
-    {
-        if (in_array($this->environment, array('dev', 'test'))) {
-            return '/dev/shm/wott/cache/' .  $this->environment;
-        }
-
-        return parent::getCacheDir();
-    }
-
-    public function getLogDir()
-    {
-        if (in_array($this->environment, array('dev', 'test'))) {
-            return '/dev/shm/wott/logs';
-        }
-
-        return parent::getLogDir();
-    }
-
-    
 }

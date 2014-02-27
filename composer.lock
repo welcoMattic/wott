@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4f4a4a751229d9f2bdc081ed8ba685f5",
+    "hash": "6a138c544c43825209e1b9825ffa210c",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -2688,40 +2688,6 @@
             "time": "2014-02-26 16:13:49"
         },
         {
-            "name": "sp/allocine-api-bundle",
-            "version": "dev-master",
-            "target-dir": "SP/AllocineBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shima5/SPAllocineApiBundle.git",
-                "reference": "5b7a5ef7d84f318019222d5cc5881af3824067bd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shima5/SPAllocineApiBundle/zipball/5b7a5ef7d84f318019222d5cc5881af3824067bd",
-                "reference": "5b7a5ef7d84f318019222d5cc5881af3824067bd",
-                "shasum": ""
-            },
-            "require": {
-                "guzzle/guzzle": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "SP\\AllocineBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Reinis Grinbergs",
-                    "email": "rpg600@gmail.com"
-                }
-            ],
-            "description": "Allocine API cleint",
-            "time": "2013-11-05 14:28:38"
-        },
-        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.0.3",
             "source": {
@@ -3361,6 +3327,108 @@
                 "negotiation"
             ],
             "time": "2014-02-11 15:51:10"
+        },
+        {
+            "name": "wtfzdotnet/php-tmdb-api",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wtfzdotnet/php-tmdb-api.git",
+                "reference": "7a8405d8b3e70285a660cd4520e0913be2a78068"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/7a8405d8b3e70285a660cd4520e0913be2a78068",
+                "reference": "7a8405d8b3e70285a660cd4520e0913be2a78068",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "guzzle/guzzle": ">=0.7",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Tmdb\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Roterman",
+                    "email": "michael@wtfz.net",
+                    "homepage": "http://wtfz.net"
+                }
+            ],
+            "description": "PHP wrapper for TMDB (TheMovieDatabase) API v3. Supports two types of approaches, one modelled with repositories, models and factories. And the other by simple array access to RAW data from The Movie Database.",
+            "homepage": "https://github.com/wtfzdotnet/php-tmdb-api",
+            "keywords": [
+                "api",
+                "movie",
+                "php",
+                "tmdb",
+                "tv",
+                "tv show",
+                "tvdb",
+                "wrapper"
+            ],
+            "time": "2014-02-26 22:05:12"
+        },
+        {
+            "name": "wtfzdotnet/wtfz-tmdb-bundle",
+            "version": "dev-master",
+            "target-dir": "Wtfz/TmdbBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wtfzdotnet/WtfzTmdbBundle.git",
+                "reference": "c8ba5dc69c73245080fb44ce78a459c68e6772fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wtfzdotnet/WtfzTmdbBundle/zipball/c8ba5dc69c73245080fb44ce78a459c68e6772fc",
+                "reference": "c8ba5dc69c73245080fb44ce78a459c68e6772fc",
+                "shasum": ""
+            },
+            "require": {
+                "wtfzdotnet/php-tmdb-api": "*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Wtfz\\TmdbBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Roterman",
+                    "email": "michael@wtfz.net",
+                    "homepage": "http://wtfz.net"
+                }
+            ],
+            "description": "Symfony2 Bundle for TMDB ( The Movie Database ) API. Provides easy access to the wtfzdotnet/php-tmdb-api library.",
+            "homepage": "https://github.com/wtfzdotnet/php-tmdb-api",
+            "keywords": [
+                "api",
+                "movie",
+                "php",
+                "tmdb",
+                "tv",
+                "tv show",
+                "tvdb",
+                "wrapper"
+            ],
+            "time": "2014-02-15 01:18:37"
         }
     ],
     "packages-dev": [
@@ -3383,7 +3451,8 @@
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "guzzle/guzzle": 20,
-        "sp/allocine-api-bundle": 20
+        "wtfzdotnet/wtfz-tmdb-bundle": 20,
+        "wtfzdotnet/php-tmdb-api": 20
     },
     "platform": {
         "php": ">=5.3.3"

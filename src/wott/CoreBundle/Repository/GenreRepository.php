@@ -1,6 +1,6 @@
 <?php
 
-namespace wott\CoreBundle\Entity;
+namespace wott\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

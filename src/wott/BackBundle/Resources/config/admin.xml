@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    
+
     <parameters>
         <parameter key="wott_back.filmadmin.class">wott\BackBundle\Admin\FilmAdmin</parameter>
         <parameter key="wott_back.genreadmin.class">wott\BackBundle\Admin\GenreAdmin</parameter>
@@ -13,25 +13,25 @@
 
     <services>
         <service id="wott.admin.film" class="%wott_back.filmadmin.class%">
-           <tag name="sonata.admin" manager_type="orm" group="Content" label="Film"/>
-            <argument />
-          <argument>wott\CoreBundle\Entity\Film</argument>
+          <tag name="sonata.admin" manager_type="orm" group="Content" label="Film"/>
+          <argument />
+            <argument>wott\CoreBundle\Entity\Film</argument>
           <argument />
         </service>
 
         <service id="wott.admin.genre" class="%wott_back.genreadmin.class%">
-           <tag name="sonata.admin" manager_type="orm" group="Content" label="Genre"/>
-            <argument />
-          <argument>wott\CoreBundle\Entity\Genre</argument>
+          <tag name="sonata.admin" manager_type="orm" group="Content" label="Genre"/>
+          <argument />
+            <argument>wott\CoreBundle\Entity\Genre</argument>
           <argument />
         </service>
 
         <service id="wott.admin.people" class="%wott_back.peopleadmin.class%">
-           <tag name="sonata.admin" manager_type="orm" group="Content" label="People"/>
-            <argument />
-          <argument>wott\CoreBundle\Entity\People</argument>
+          <tag name="sonata.admin" manager_type="orm" group="Content" label="People"/>
+          <argument />
+            <argument>wott\CoreBundle\Entity\People</argument>
           <argument />
         </service>
     </services>
-    
+
 </container>

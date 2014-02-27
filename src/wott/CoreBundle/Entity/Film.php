@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Film
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="wott\CoreBundle\Entity\FilmRepository")
+ * @ORM\Entity(repositoryClass="wott\CoreBundle\Repository\FilmRepository")
  */
 class Film
 {
@@ -109,7 +109,7 @@ class Film
     {
       $this->genres[] = $genre;
     }
-  
+
     /**
       * @param wott\CoreBundle\Entity\Genre $genres
       */
@@ -117,11 +117,11 @@ class Film
     {
       $this->genres->removeElement($genre);
     }
-  
+
     /**
       * @return Doctrine\Common\Collections\Collection
       */
-    public function getGenres() 
+    public function getGenres()
     {
       return $this->genres;
     }
@@ -131,7 +131,7 @@ class Film
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -154,7 +154,7 @@ class Film
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -177,7 +177,7 @@ class Film
     /**
      * Get original_title
      *
-     * @return string 
+     * @return string
      */
     public function getOriginalTitle()
     {
@@ -200,7 +200,7 @@ class Film
     /**
      * Get date_dvd
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateDvd()
     {
@@ -223,7 +223,7 @@ class Film
     /**
      * Get date_cinema
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCinema()
     {
@@ -246,7 +246,7 @@ class Film
     /**
      * Get synopsis
      *
-     * @return string 
+     * @return string
      */
     public function getSynopsis()
     {
@@ -269,7 +269,7 @@ class Film
     /**
      * Get urlTrailer
      *
-     * @return string 
+     * @return string
      */
     public function getUrlTrailer()
     {
@@ -292,7 +292,7 @@ class Film
     /**
      * Get nationalities
      *
-     * @return array 
+     * @return array
      */
     public function getNationalities()
     {
@@ -315,7 +315,7 @@ class Film
     /**
      * Get runtime
      *
-     * @return integer 
+     * @return integer
      */
     public function getRuntime()
     {
@@ -338,7 +338,7 @@ class Film
     /**
      * Get popularity
      *
-     * @return float 
+     * @return float
      */
     public function getPopularity()
     {
@@ -361,7 +361,7 @@ class Film
     /**
      * Get urlPoster
      *
-     * @return string 
+     * @return string
      */
     public function getUrlPoster()
     {

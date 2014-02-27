@@ -31,6 +31,13 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+# Services
+services:
+    wott.command.insertGenres:
+        class: wott\CoreBundle\Command\InsertGenresCommand
+        tags:
+            -  { name: wott.insertGenres }
+
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
@@ -64,7 +71,6 @@ doctrine:
        auto_generate_proxy_classes: "%kernel.debug%"
        auto_mapping: true
 
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -74,9 +80,9 @@ swiftmailer:
     spool:     { type: memory }
 
 fos_user:
-    db_driver: orm
+    db_driver:     orm
     firewall_name: main
-    user_class: wott\CoreBundle\Entity\User
+    user_class:    wott\CoreBundle\Entity\User
     group:
         group_class: wott\CoreBundle\Entity\Group
 
@@ -87,20 +93,29 @@ fos_facebook:
     cookie: true
     permissions: [email, user_birthday, user_location]
 
+wtfz_tmdb:
+    api_key:       08d1be52779cf63ba98f25fdc4e30dcb
+
 sonata_user:
     manager_type: orm
     class:
-        user: wott\CoreBundle\Entity\User
+        user:  wott\CoreBundle\Entity\User
         group: wott\CoreBundle\Entity\Group
 
 sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
-            contexts:   [admin]
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
 
         sonata.block.service.text:
         sonata.block.service.rss:
         sonata.block.service.action:
-        sonata.user.block.menu:    
+        sonata.user.block.menu:
         sonata.user.block.account:
+
+sonata_admin:
+    title:      What's on TV tonight ?
+    title_logo: bundles/wottback/img/logo.png

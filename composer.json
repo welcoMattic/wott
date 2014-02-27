@@ -20,8 +20,8 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "willdurand/faker-bundle": "@stable",
-        "friendsofsymfony/user-bundle": "1.3.*@dev",
         "friendsofsymfony/facebook-bundle": "1.3.*",
+        "friendsofsymfony/user-bundle": "1.3.*@dev",
         "sonata-project/core-bundle": "2.2.*@dev",
         "sonata-project/block-bundle": "2.2.*@dev",
         "sonata-project/jquery-bundle": "1.9.*@dev",
@@ -31,8 +31,8 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
         "knplabs/knp-menu": "1.1.*@dev",
         "knplabs/knp-menu-bundle": "1.1.*@dev",
-        "guzzle/guzzle": "dev-master",
-        "sp/allocine-api-bundle": "dev-master"
+        "wtfzdotnet/wtfz-tmdb-bundle": "dev-master",
+        "wtfzdotnet/php-tmdb-api": "dev-develop"
     },
     "scripts": {
         "post-install-cmd": [
