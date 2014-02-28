@@ -165,9 +165,9 @@ class People
      * @param string $apiId
      * @return People
      */
-    public function setApiId($apiId)
+    public function setApiId($api_id)
     {
-        $this->api_id = $apiId;
+        $this->api_id = $api_id;
 
         return $this;
     }
@@ -175,7 +175,7 @@ class People
     /**
      * Get api_id
      *
-     * @return string 
+     * @return string
      */
     public function getApiId()
     {

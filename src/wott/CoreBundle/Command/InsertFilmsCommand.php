@@ -24,31 +24,64 @@ class InsertFilmsCommand extends ContainerAwareCommand
     {
         $client = $this->getContainer()->get('wtfz_tmdb.client');
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-
         $genres = $em->getRepository('wottCoreBundle:Genre')->findAll();
-        $res = array();
+        $i = 0;
+
         foreach($genres as $genre) {
-            $films = $client->getGenresApi()->getMovies(
-                        $genres[0]->getApiId(),
+            $res = $client->getGenresApi()->getMovies(
+                        $genre->getApiId(),
                         array('page' => 1, 'language' => 'fr', 'include_adult' => 'false')
                     );
-            if ($em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $genre['id']))) {
+            foreach($res['results'] as $basicFilm) {
+                if (!$em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id']))) {
 
+                    $film = $client->getMoviesApi()->getMovie(
+                                $basicFilm['id'],
+                                array('language' => 'fr', 'append_to_response' => 'trailers')
+                            );
+
+                    $images = $client->getMoviesApi()->getImages($basicFilm['id'],
+                                array('language' => 'fr', 'include_image_language' => 'fr')
+                            );
+
+                    $f = new Film();
+
+                    $break = false;
+                    foreach($film['genres'] as $genre) {
+                        if($genre['id'] == 10762) {
+                            $break = true;
+                            continue;
+                        }
+                        $g = $em->getRepository('wottCoreBundle:Genre')->findOneBy(array('api_id' => $genre['id']));
+                        $f->addGenre($g);
+                    }
+                    if($break) continue;
+
+                    $f->setApiId($film['id']);
+                    $f->setTitle($film['title']);
+                    $f->setOriginalTitle($film['original_title']);
+                    $f->setReleaseDate(new \DateTime($film['release_date']));
+                    $f->setSynopsis($film['overview'] ? $film['overview'] : '.');
+                    $f->setRuntime($film['runtime'] ? $film['runtime'] : 0);
+                    $f->setPopularity($film['popularity']);
+                    $f->setUrlPoster(!empty($images['posters']) ? $images['posters'][0]['file_path'] : '');
+
+                    $f->setNationalities(array_reduce($film['production_countries'], function($current, $next) {
+                                            return ($current != '') ? $current . ',' . $next['name'] : $next['name'];
+                                        }));
+
+                    if(!empty($film['trailers']['youtube'])) {
+                        $f->setUrlTrailer($film['trailers']['youtube'][0]['source']);
+                    }
+
+
+                    $em->persist($f);
+                    $i++;
+                }
             }
         }
 
-        $i = 0;
-        // foreach ($genres as $genre) {
-        //     if (!$em->getRepository('wottCoreBundle:Genre')->findOneBy(array('apiId' => $genre['id']))) {
-        //         $g = new Genre();
-        //         $g->setApiId($genre['id']);
-        //         $g->setName($genre['name']);
-        //         $em->persist($g);
-        //         $i++;
-        //     }
-        // }
-
-        // $em->flush();
+        $em->flush();
 
         $output->writeln(($i === 1) ? $i . ' film inserted' : $i . ' films inserted');
     }
