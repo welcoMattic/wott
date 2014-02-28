@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+  <body>
+    {% if app.user %}
+      <a href="{{ path('_security_logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ path('fos_user_security_login') }}">Login without FB</a>
+      {{ facebook_login_button() }}
+      {{ facebook_initialize({'xfbml': true, 'culture': 'fr_FR', 'fbAsyncInit': 'onFbInit();'}) }}
+      <script type="text/javascript" > // Script for FOSFacebookBundle
+        function goLogIn(){
+          window.location = "{{ path('_security_check') }}";
+        }
+
+        function onFbInit() {
+          if (typeof(FB) != 'undefined' && FB != null ) {
+            FB.Event.subscribe('auth.statusChange', function(response) {
+              if (response.session || response.authResponse) setTimeout(goLogIn, 50);
+              else window.location = "{{ path('_security_logout') }}";
+            });
+          }
+        }
+      </script>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+  </body>
+</html>
