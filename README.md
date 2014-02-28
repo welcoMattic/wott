@@ -41,3 +41,7 @@ if the dump sql looks like correct, do
 
 ``` php app/console wott:insertGenres ```
 ``` php app/console wott:insertFilms ```
+
+- Compile assets with Assetic
+
+``` php app/console assetic:dump ```

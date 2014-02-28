@@ -35,7 +35,8 @@
         "wtfzdotnet/php-tmdb-api": "dev-develop",
         "genemu/form-bundle": "2.2.*@dev",
         "braincrafted/bootstrap-bundle": "~2.0",
-        "twbs/bootstrap": "dev-less.js"
+        "twbs/bootstrap": "dev-less.js",
+        "components/jquery": "1.10.2"
     },
     "scripts": {
         "post-install-cmd": [
