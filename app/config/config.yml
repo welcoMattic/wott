@@ -84,6 +84,10 @@ swiftmailer:
 wtfz_tmdb:
     api_key:       "%api_tmdb_key%"
 
+genemu_form:
+    select2: ~
+
+
 braincrafted_bootstrap:
     less_filter: less
     output_dir:
@@ -116,3 +120,4 @@ knp_menu:
         template: BraincraftedBootstrapBundle:Menu:bootstrap.html.twig
     templating: false # if true, enables the helper for PHP templates
     default_renderer: twig # The renderer to use, list is also available by default
+

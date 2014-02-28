@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Wtfz\TmdbBundle\WtfzTmdbBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
         );
 
