@@ -16,3 +16,4 @@ parameters:
     api_facebook_secret:  8dfe6e597365b5974b3cc2d1d9117b53 # Clé secrète
     api_facebook_name:    http://apps.facebook.com/wottappdev/ # App Namespace
     api_facebook_server:  http://wott.dev/ # URL du site
+    api_tmdb_key: 08d1be52779cf63ba98f25fdc4e30dcb
