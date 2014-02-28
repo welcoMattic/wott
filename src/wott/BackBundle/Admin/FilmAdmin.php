@@ -7,9 +7,15 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class FilmAdmin extends Admin
 {
+    protected function configureRoutes(RouteCollection $collection)
+    {
+
+        $collection->remove('create');
+    }
 
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
@@ -17,7 +23,7 @@ class FilmAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('original_title', 'text')
-            ->add('release_date', 'date', array('years' => range( date('Y'), '1900')))
+            ->add('release_date', 'genemu_jquerydate')
             ->add('synopsis', 'text')
             ->add('nationalities', 'text')
             ->add('url_trailer', 'url')
