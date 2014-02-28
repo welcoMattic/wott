@@ -8,7 +8,7 @@ Symfony2 project @ IESA Multimédia
 Minimum configuration required :
 
 - Apache >= 2.2 (ou Nginx >= 1.2.1)
-- PHP 5.5.9 
+- PHP 5.5.9
 - MySQL >= 5.5
 - Xdebug 2.2.3
 - APC
@@ -17,7 +17,7 @@ Minimum configuration required :
 
 config webseveur local (hosts + vhost)
 
-- Clone the repo 
+- Clone the repo
 
 ```git clone https://github.com/welcoMattic/wott```
 
@@ -29,11 +29,15 @@ config webseveur local (hosts + vhost)
 
 ```composer update```
 
+- Update your database
+
+``` php app/console doctrine:schema:update --dump-sql ```
+
+if the dump sql looks like correct, do
+
+``` php app/console doctrine:schema:update --force ```
+
 - Populate your database from TMDB API
 
 ``` php app/console wott:insertGenres ```
-
-Faker (create 5 entries in People, Film and Genre)
-
-```php app/console faker:populate```
-
+``` php app/console wott:insertFilms ```
