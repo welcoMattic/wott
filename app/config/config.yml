@@ -92,16 +92,16 @@ braincrafted_bootstrap:
     less_filter: less
     output_dir:
     assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
-    jquery_path: %kernel.root_dir%/../vendor/components/jquery/jquery.js
-    less_filter: less # "less", "lessphp" or "none"
+    jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
+    less_filter: less
     auto_configure:
         assetic: true
         twig: true
-        knp_menu: true
-        knp_paginator: true
+        knp_menu: false
+        knp_paginator: false
     customize:
-        variables_file: ~
-        bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
+        variables_file: %kernel.root_dir%/../web/less/variables.less
+        bootstrap_output: %kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less
         bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
 
 knp_paginator:
@@ -112,6 +112,12 @@ knp_paginator:
         sort_direction_name: direction # sort direction query parameter name
         distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
     template:
-        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        pagination: BraincraftedBootstrapBundle:Pagination:bootstrap.html.twig
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+knp_menu:
+    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
+        template: BraincraftedBootstrapBundle:Menu:bootstrap.html.twig
+    templating: false # if true, enables the helper for PHP templates
+    default_renderer: twig # The renderer to use, list is also available by default
 
