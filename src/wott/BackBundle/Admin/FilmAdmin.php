@@ -17,8 +17,7 @@ class FilmAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('original_title', 'text')
-            ->add('date_dvd', 'date', array('years' => range( date('Y'), '1900')))
-            ->add('date_cinema', 'date', array('years' => range( date('Y'), '1900')))
+            ->add('release_date', 'date', array('years' => range( date('Y'), '1900')))
             ->add('synopsis', 'text')
             ->add('nationalities', 'text')
             ->add('url_trailer', 'url')
@@ -27,7 +26,7 @@ class FilmAdmin extends Admin
             ->add('url_poster', 'url')
             ->add('genres', 'entity', array('class' => 'wott\CoreBundle\Entity\Genre', 'property' => 'name', 'multiple' => true, 'by_reference' => false))
             ;
-        
+
     }
 
     // Fields to be shown on filter forms
@@ -35,8 +34,7 @@ class FilmAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-            ->add('date_dvd')
-            ->add('date_cinema')
+            ->add('release_date')
             ->add('popularity')
             ->add('nationalities')
         ;
