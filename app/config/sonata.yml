@@ -3,6 +3,11 @@ sonata_user:
     class:
         user:  wott\CoreBundle\Entity\User
         group: wott\CoreBundle\Entity\Group
+    profile:
+        menu:
+            - { route: 'sonata_user_profile_show', label: 'sonata_profile_title', domain: 'SonataUserBundle'}
+            - { route: 'sonata_user_profile_edit_authentication', label: 'link_edit_authentication', domain: 'SonataUserBundle'}
+
 
 sonata_block:
     default_contexts: [cms]
