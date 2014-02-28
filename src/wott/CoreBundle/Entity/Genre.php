@@ -31,9 +31,9 @@ class Genre
     /**
      * @var integer
      *
-     * @ORM\Column(name="apiId", type="integer")
+     * @ORM\Column(name="api_id", type="integer", nullable=true)
      */
-    private $apiId;
+    private $api_id;
 
     /**
      * Get id
@@ -69,25 +69,25 @@ class Genre
     }
 
     /**
-     * Set apiId
+     * Set api_id
      *
-     * @param integer $apiId
+     * @param integer $api_id
      * @return Genre
      */
-    public function setApiId($apiId)
+    public function setApiId($api_id)
     {
-        $this->apiId = $apiId;
+        $this->api_id = $api_id;
 
         return $this;
     }
 
     /**
-     * Get apiId
+     * Get api_id
      *
      * @return integer
      */
     public function getApiId()
     {
-        return $this->apiId;
+        return $this->api_id;
     }
 }

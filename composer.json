@@ -19,7 +19,6 @@
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "willdurand/faker-bundle": "@stable",
         "friendsofsymfony/facebook-bundle": "1.3.*",
         "friendsofsymfony/user-bundle": "1.3.*@dev",
         "sonata-project/core-bundle": "2.2.*@dev",
@@ -32,7 +31,8 @@
         "knplabs/knp-menu": "1.1.*@dev",
         "knplabs/knp-menu-bundle": "1.1.*@dev",
         "wtfzdotnet/wtfz-tmdb-bundle": "dev-master",
-        "wtfzdotnet/php-tmdb-api": "dev-develop"
+        "wtfzdotnet/php-tmdb-api": "dev-develop",
+        "genemu/form-bundle": "2.2.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

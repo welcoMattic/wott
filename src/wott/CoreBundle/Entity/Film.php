@@ -38,16 +38,9 @@ class Film
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_dvd", type="datetime")
+     * @ORM\Column(name="release_date", type="datetime")
      */
-    private $date_dvd;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_cinema", type="datetime")
-     */
-    private $date_cinema;
+    private $release_date;
 
     /**
      * @var string
@@ -59,7 +52,7 @@ class Film
     /**
      * @var string
      *
-     * @ORM\Column(name="urlTrailer", type="text")
+     * @ORM\Column(name="urlTrailer", type="text", nullable=true)
      */
     private $url_trailer;
 
@@ -97,6 +90,14 @@ class Film
      */
     private $genres;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="api_id", type="integer", nullable=true)
+     *
+     */
+    private $api_id;
+
     public function __construct()
     {
       $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
@@ -125,8 +126,6 @@ class Film
     {
       return $this->genres;
     }
-
-
 
     /**
      * Get id
@@ -185,49 +184,26 @@ class Film
     }
 
     /**
-     * Set dateDvd
+     * Set release_date
      *
-     * @param \DateTime $date_dvd
+     * @param \DateTime $release_date
      * @return Film
      */
-    public function setDateDvd($date_dvd)
+    public function setReleaseDate($release_date)
     {
-        $this->date_dvd = $date_dvd;
+        $this->release_date = $release_date;
 
         return $this;
     }
 
     /**
-     * Get date_dvd
+     * Get release_date
      *
      * @return \DateTime
      */
-    public function getDateDvd()
+    public function getReleaseDate()
     {
-        return $this->date_dvd;
-    }
-
-    /**
-     * Set date_cinema
-     *
-     * @param \DateTime $date_cinema
-     * @return Film
-     */
-    public function setDateCinema($date_cinema)
-    {
-        $this->date_cinema = $date_cinema;
-
-        return $this;
-    }
-
-    /**
-     * Get date_cinema
-     *
-     * @return \DateTime
-     */
-    public function getDateCinema()
-    {
-        return $this->date_cinema;
+        return $this->release_date;
     }
 
     /**
@@ -366,5 +342,51 @@ class Film
     public function getUrlPoster()
     {
         return $this->url_poster;
+    }
+
+    /**
+     * Set api_id
+     *
+     * @param integer $apiId
+     * @return Film
+     */
+    public function setApiId($api_id)
+    {
+        $this->api_id = $api_id;
+
+        return $this;
+    }
+
+    /**
+     * Get api_id
+     *
+     * @return integer
+     */
+    public function getApiId()
+    {
+        return $this->api_id;
+    }
+
+    /**
+     * Set date_release
+     *
+     * @param \DateTime $dateRelease
+     * @return Film
+     */
+    public function setDateRelease($dateRelease)
+    {
+        $this->date_release = $dateRelease;
+
+        return $this;
+    }
+
+    /**
+     * Get date_release
+     *
+     * @return \DateTime
+     */
+    public function getDateRelease()
+    {
+        return $this->date_release;
     }
 }

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d5aa82dc2b62615ee4f6d8942af017bf",
+    "hash": "dfb22e33db80760ee8282e45b50cbf6b",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -935,32 +935,49 @@
             "time": "2013-12-16 13:37:42"
         },
         {
-            "name": "fzaninotto/faker",
-            "version": "v1.3.0",
+            "name": "genemu/form-bundle",
+            "version": "dev-master",
+            "target-dir": "Genemu/Bundle/FormBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "1d143fd8caf4d264602450bc01d7484af788706b"
+                "url": "https://github.com/genemu/GenemuFormBundle.git",
+                "reference": "156089856016abde934b92961724b9aa728b7eae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/1d143fd8caf4d264602450bc01d7484af788706b",
-                "reference": "1d143fd8caf4d264602450bc01d7484af788706b",
+                "url": "https://api.github.com/repos/genemu/GenemuFormBundle/zipball/156089856016abde934b92961724b9aa728b7eae",
+                "reference": "156089856016abde934b92961724b9aa728b7eae",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.2",
+                "symfony/form": "~2.3",
+                "symfony/framework-bundle": "~2.3"
             },
-            "type": "library",
+            "require-dev": {
+                "doctrine/doctrine-bundle": "1.*",
+                "doctrine/mongodb-odm-bundle": "*",
+                "doctrine/orm": "2.*",
+                "phpunit/phpunit": "3.7.*",
+                "propel/propel-bundle": "*",
+                "symfony/doctrine-bridge": "~2.3",
+                "symfony/finder": "2.*"
+            },
+            "suggest": {
+                "symfony/doctrine-bundle": "In order to use some form types with Doctrine",
+                "symfony/finder": "For an image type",
+                "symfony/mongodb-odm-bundle": "For MongoDB integration",
+                "symfony/twig-bridge": "For integration into Twig templates"
+            },
+            "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.0-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
-                    "Faker": "src/",
-                    "Faker\\PHPUnit": "test/"
+                    "Genemu\\Bundle\\FormBundle": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -969,16 +986,24 @@
             ],
             "authors": [
                 {
-                    "name": "François Zaninotto"
+                    "name": "Olivier Chauvel",
+                    "email": "olivier@generation-multiple.com"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/genemu/GenemuFormBundle/contributors"
+                },
+                {
+                    "name": "Bilal Amarni",
+                    "email": "bilal.amarni@gmail.com"
                 }
             ],
-            "description": "Faker is a PHP library that generates fake data for you.",
+            "description": "Extra form types for your Symfony2 projects",
             "keywords": [
-                "data",
-                "faker",
-                "fixtures"
+                "extra form",
+                "form"
             ],
-            "time": "2013-12-16 21:56:48"
+            "time": "2013-11-13 16:22:53"
         },
         {
             "name": "guzzle/guzzle",
@@ -2622,12 +2647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataUserBundle.git",
-                "reference": "96d42a9b78ef089e6f72e566b1ab04eff63e895f"
+                "reference": "20403b161c5e1bd2c4107923736299fa054ccd68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/96d42a9b78ef089e6f72e566b1ab04eff63e895f",
-                "reference": "96d42a9b78ef089e6f72e566b1ab04eff63e895f",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/20403b161c5e1bd2c4107923736299fa054ccd68",
+                "reference": "20403b161c5e1bd2c4107923736299fa054ccd68",
                 "shasum": ""
             },
             "require": {
@@ -2685,7 +2710,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2014-02-26 16:13:49"
+            "time": "2014-02-27 19:48:12"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3190,55 +3215,6 @@
             "time": "2014-02-13 10:19:29"
         },
         {
-            "name": "willdurand/faker-bundle",
-            "version": "1.1.0",
-            "target-dir": "Bazinga/Bundle/FakerBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/willdurand/BazingaFakerBundle.git",
-                "reference": "fac5bed8f9bc7b0648d196d4012cd8bd26840b42"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaFakerBundle/zipball/fac5bed8f9bc7b0648d196d4012cd8bd26840b42",
-                "reference": "fac5bed8f9bc7b0648d196d4012cd8bd26840b42",
-                "shasum": ""
-            },
-            "require": {
-                "fzaninotto/faker": "~1.3",
-                "symfony/framework-bundle": "~2.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Bazinga\\Bundle\\FakerBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "William Durand",
-                    "email": "william.durand1@gmail.com",
-                    "homepage": "http://www.willdurand.fr"
-                }
-            ],
-            "description": "Put the awesome Faker lib into the DIC and populate your database with fake data.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2014-02-19 16:04:12"
-        },
-        {
             "name": "willdurand/jsonp-callback-validator",
             "version": "v1.0.0",
             "source": {
@@ -3334,12 +3310,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wtfzdotnet/php-tmdb-api.git",
-                "reference": "7a8405d8b3e70285a660cd4520e0913be2a78068"
+                "reference": "2b3a6db87ab8e17fbbe648ee0cb16185c83b749c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/7a8405d8b3e70285a660cd4520e0913be2a78068",
-                "reference": "7a8405d8b3e70285a660cd4520e0913be2a78068",
+                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/2b3a6db87ab8e17fbbe648ee0cb16185c83b749c",
+                "reference": "2b3a6db87ab8e17fbbe648ee0cb16185c83b749c",
                 "shasum": ""
             },
             "require": {
@@ -3379,7 +3355,7 @@
                 "tvdb",
                 "wrapper"
             ],
-            "time": "2014-02-26 22:05:12"
+            "time": "2014-02-27 13:36:12"
         },
         {
             "name": "wtfzdotnet/wtfz-tmdb-bundle",
@@ -3439,7 +3415,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "willdurand/faker-bundle": 0,
         "friendsofsymfony/user-bundle": 20,
         "sonata-project/core-bundle": 20,
         "sonata-project/block-bundle": 20,
@@ -3451,7 +3426,8 @@
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "wtfzdotnet/wtfz-tmdb-bundle": 20,
-        "wtfzdotnet/php-tmdb-api": 20
+        "wtfzdotnet/php-tmdb-api": 20,
+        "genemu/form-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -25,11 +25,10 @@ class InsertGenresCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
         $res = $client->getGenresApi()->getGenres(array('language' => 'fr'));
-        $genres = $res['genres'];
 
         $i = 0;
-        foreach ($genres as $genre) {
-            if (!$em->getRepository('wottCoreBundle:Genre')->findOneBy(array('apiId' => $genre['id']))) {
+        foreach ($res['genres'] as $genre) {
+            if (!$em->getRepository('wottCoreBundle:Genre')->findOneBy(array('api_id' => $genre['id']))) {
                 $g = new Genre();
                 $g->setApiId($genre['id']);
                 $g->setName($genre['name']);
