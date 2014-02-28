@@ -21,3 +21,5 @@ sonata_block:
 sonata_admin:
     title:      What's on TV tonight ?
     title_logo: bundles/wottback/img/logo.png
+    templates:
+        layout: "::standard_layout.html.twig"

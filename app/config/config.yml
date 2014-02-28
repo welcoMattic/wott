@@ -81,3 +81,6 @@ swiftmailer:
 # WTFZ_TMDB Bundle
 wtfz_tmdb:
     api_key:       08d1be52779cf63ba98f25fdc4e30dcb
+
+genemu_form:
+    select2: ~
