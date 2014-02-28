@@ -74,9 +74,9 @@ class Genre
      * @param integer $api_id
      * @return Genre
      */
-    public function setApiId($apiId)
+    public function setApiId($api_id)
     {
-        $this->api_id = $apiId;
+        $this->api_id = $api_id;
 
         return $this;
     }
