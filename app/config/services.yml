@@ -1,5 +1,6 @@
 # Services
 services:
+
     wott.command.insertGenres:
         class: wott\CoreBundle\Command\InsertGenresCommand
         tags:
