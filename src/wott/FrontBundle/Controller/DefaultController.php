@@ -20,7 +20,6 @@ class DefaultController extends Controller
     {
 
     	$em=$this->getDoctrine()->getManager();
-
         return array();
     }
 
@@ -84,4 +83,31 @@ class DefaultController extends Controller
         return new Response();
     }
 
+    /**
+     * @Route("/showFilm/{id}", name="showFilm", requirements={"id" = "\d+"})
+     * @Template()
+     */
+    public function showFilmAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/contact/", name="contact")
+     * @Template()
+     */
+    public function contactAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/mentions/", name="mentions")
+     * @Template()
+     */
+    public function mentionsAction()
+    {
+        return array();
+    }
+    
 }

@@ -43,7 +43,7 @@
                     <h3 class="text-center">Titre du film</h3>
                     <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
                     <a class="btn center-block btn-primary" href="#" title="Ajouter le film à ma watchlist">Ajouter le film à ma watchlist</a>
-                    <a class="btn center-block btn-default" href="#" title="Voir le détail du film">Voir le détail</a>
+                    <a class="btn center-block btn-default" href="{{ path('showFilm', {'id': film.id}) }}" title="Voir le détail du film">Voir le détail</a>
                 </div> 
             </div>
         </div>
