@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use wott\CoreBundle\Entity\People;
+use wott\CoreBundle\Entity\FilmPeople;
 
 class InsertPeoplesCommand extends ContainerAwareCommand
 {
@@ -55,7 +56,14 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                 $p->setUrlProfileImage($people['profile_path']);
                 $p->setApiId($people['id']);
 
+                $filmPeople = new FilmPeople();
+                $filmPeople->setFilm($film);
+                $filmPeople->setPeople($p);
+                !isset($basicPeople['job']) ?: $filmPeople->setJob($basicPeople['job']);
+                !isset($basicPeople['character']) ?: $filmPeople->setRole($basicPeople['character']);
+
                 $em->persist($p);
+                $em->persist($filmPeople);
                 $i++;
             }
             $j++;

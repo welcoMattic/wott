@@ -2446,12 +2446,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "460b632a4e9e9c6a221a24f291c2b3da31b2fdce"
+                "reference": "af04f9814c9c940396b143a767e33ccc9ceb24ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/460b632a4e9e9c6a221a24f291c2b3da31b2fdce",
-                "reference": "460b632a4e9e9c6a221a24f291c2b3da31b2fdce",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/af04f9814c9c940396b143a767e33ccc9ceb24ce",
+                "reference": "af04f9814c9c940396b143a767e33ccc9ceb24ce",
                 "shasum": ""
             },
             "require": {
@@ -2500,7 +2500,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2014-02-28 16:14:21"
+            "time": "2014-03-04 19:45:30"
         },
         {
             "name": "sonata-project/doctrine-extensions",
@@ -3544,12 +3544,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wtfzdotnet/php-tmdb-api.git",
-                "reference": "6a2e7b24db8485eeb1bc4e36f3da6b8713458c88"
+                "reference": "20a3507ac9b04488b82203b89f6667a185d0b2a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/6a2e7b24db8485eeb1bc4e36f3da6b8713458c88",
-                "reference": "6a2e7b24db8485eeb1bc4e36f3da6b8713458c88",
+                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/20a3507ac9b04488b82203b89f6667a185d0b2a7",
+                "reference": "20a3507ac9b04488b82203b89f6667a185d0b2a7",
                 "shasum": ""
             },
             "require": {
@@ -3563,8 +3563,8 @@
                 "phpunit/phpunit": ">=3.7"
             },
             "suggest": {
-                "doctrine/cache": "This library is required if you want to make use of caching features.",
-                "monolog/monolog": "This library is required if you want to make use of logging features."
+                "doctrine/cache": "Required if you want to make use of caching features.",
+                "monolog/monolog": "Required if you want to make use of logging features."
             },
             "type": "library",
             "autoload": {
@@ -3595,7 +3595,7 @@
                 "tvdb",
                 "wrapper"
             ],
-            "time": "2014-03-02 23:12:55"
+            "time": "2014-03-04 23:26:12"
         },
         {
             "name": "wtfzdotnet/wtfz-tmdb-bundle",

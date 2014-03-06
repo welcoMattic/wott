@@ -14,35 +14,49 @@ class FilmPeople
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\Film")
+     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\Film", inversedBy="filmPeople")
      */
     private $film;
+
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\People")
+     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\People", inversedBy="filmPeople")
      */
     private $people;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="job", type="string", length=255)
+     * @ORM\Column(name="job", type="string", length=255, nullable=true)
      */
     private $job;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="role", type="string", length=255)
+     * @ORM\Column(name="role", type="string", length=255, nullable=true)
      */
     private $role;
 
-
-  
+    /**
+     * Set film
+     *
+     * @param object Film
+     * @return FilmPeople
+     */
     public function setFilm(\wott\CoreBundle\Entity\Film $film)
     {
       $this->film = $film;
+
+      return $this;
     }
+
+    /**
+     * Get Film
+     *
+     * @param object $Film
+     * @return Film
+     */
     public function getFilm()
     {
       return $this->film;

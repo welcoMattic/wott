@@ -98,6 +98,11 @@ class Film
      */
     private $api_id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="wott\CoreBundle\Entity\FilmPeople", mappedBy="film")
+     */
+    private $filmPeople;
+
     public function __construct()
     {
       $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
