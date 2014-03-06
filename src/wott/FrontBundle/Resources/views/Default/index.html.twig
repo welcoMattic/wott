@@ -1,12 +1,63 @@
 {% extends 'wottFrontBundle::layout.html.twig' %}
 
 {% block content %}
-What's on TV tonight !
+<section id="main" class="container" role="content">
+    <!-- menu filtres-->
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <p class="pull-left">Trier par :</p>
+                    {{ knp_menu_render('wottFrontBundle:Builder:filtersMenu', { 'style': 'navbar' }) }}
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <div class="pull-right">
+                        <button type="button" class="btn bt-default btn-large">{{ icon('th') }}</button>
+                        <button type="button" class="btn bt-default btn-large">{{ icon('th-list') }}</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!--fin filtres-->
+    <div class="row">
+    {% for film in films %}
+            <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="{{ film.urlPoster|image_url_path}}" alt="Vignette du film" />
+                <div class="caption">
+                    <h2 class="text-center">{{ film.title }}</h2>
+                    <p>{{ film.synopsis | slice(0, 100) }}</p>
+                    <a href="" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter le film à ma watchlist</a>
+                    <a class="btn center-block btn-default" href="#" title="Voir le détail du film">Voir le détail</a>
+                </div> 
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-5">
+            <p>Ici la pagination</p>
+            {# knp_pagination_render(pagination) #}
+        </div>
+    </div>
+</section>
 
 <a href="" class="action" data-id="1" data-action="Like">Like</a>
 <a href="" class="action" data-id="1" data-action="Seen">see</a>
-<a href="" class="action" data-id="1" data-action="Wanted">wanted</a>
+
+
+
+
+
 {% endblock %}
+
+
 
 {% block javascript %}
 {{ parent() }}
@@ -21,7 +72,7 @@ $(document).ready(function(){
         $.ajax({
 
            type: "POST",
-           url: {{ path('like') }},
+           url: "{{ path('like') }}",
            data: {"idFilm" : idFilm, "action" : action }
          }).done(function (response) {
             console.log(response);
@@ -35,3 +86,4 @@ $(document).ready(function(){
 </script>
 
 {% endblock %}
+

@@ -6,8 +6,10 @@
 
     <services>
     <service id="wott.twig.front_extension" class="wott\FrontBundle\Twig\FrontExtension">
+    	<argument type="service" id="wtfz_tmdb.client"/>
         <tag name="twig.extension" />
     </service>
+
 
 </services>
 </container>
