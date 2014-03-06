@@ -9,3 +9,7 @@ services:
         class: wott\CoreBundle\Command\InsertFilmsCommand
         tags:
             -  { name: wott.insertFilms }
+    wott.command.insertPeoples:
+        class: wott\CoreBundle\Command\InsertPeoplesCommand
+        tags:
+            -  { name: wott.insertPeoples }
