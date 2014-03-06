@@ -33,7 +33,7 @@
                     <h2 class="text-center">{{ film.title }}</h2>
                     <p>{{ film.synopsis | slice(0, 100) }}</p>
                     <a href="" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter le film à ma watchlist</a>
-                    <a class="btn center-block btn-default" href="#" title="Voir le détail du film">Voir le détail</a>
+                    <a class="btn center-block btn-default" href="{{ path('showFilm', { 'id': film.id }) }}" title="Voir le détail du film">Voir le détail</a>
                 </div> 
             </div>
         </div>
