@@ -18,19 +18,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+    	$em=$this->getDoctrine()->getManager();
 
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
         return array('films'=>$films);
-    }
-
-    /**
-     * @Route("/movie/")
-     * @Template()
-     */
-    public function movieAction()
-    {
-        return array();
     }
 
     /**
@@ -82,4 +73,31 @@ class DefaultController extends Controller
         return new Response(var_dump($$getter));
     }
 
+    /**
+     * @Route("/showFilm/{id}", name="showFilm", requirements={"id" = "\d+"})
+     * @Template()
+     */
+    public function showFilmAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/contact/", name="contact")
+     * @Template()
+     */
+    public function contactAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/mentions/", name="mentions")
+     * @Template()
+     */
+    public function mentionsAction()
+    {
+        return array();
+    }
+    
 }
