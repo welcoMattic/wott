@@ -2,6 +2,7 @@
 
 {% block content %}
 <section id="main" class="container" role="content">
+
     <!-- menu filtres-->
     <div class="row">
         <div class="col-md-12">
@@ -24,16 +25,17 @@
         </div>
     </div>
     <!--fin filtres-->
+
     <div class="row">
     {% for film in films %}
-            <div class="col-md-3">
+        <div class="col-md-3">
             <div class="thumbnail">
                 <img src="{{ film.urlPoster|image_url_path}}" alt="Vignette du film" />
                 <div class="caption">
                     <h2 class="text-center">{{ film.title }}</h2>
                     <p>{{ film.synopsis | slice(0, 100) }}</p>
                     <a href="" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter le film à ma watchlist</a>
-                    <a class="btn center-block btn-default" href="#" title="Voir le détail du film">Voir le détail</a>
+                    <a class="btn center-block btn-default" href="{{ path('showFilm', { 'id': film.id }) }}" title="Voir le détail du film">Voir le détail</a>
                 </div>
             </div>
         </div>
@@ -50,38 +52,26 @@
 
 <a href="" class="action" data-id="1" data-action="Like">Like</a>
 <a href="" class="action" data-id="1" data-action="Seen">see</a>
-
-
-
-
-
 {% endblock %}
-
 
 
 {% block javascript %}
 {{ parent() }}
 <script>
 $(document).ready(function(){
-
     $('.action').click(function(){
-
         idFilm=$(this).data('id');
         action=$(this).data('action')
-
         $.ajax({
-
-           type: "POST",
-           url: "{{ path('like') }}",
-           data: {"idFilm" : idFilm, "action" : action }
-         }).done(function (response) {
+            type: "POST",
+            url: "{{ path('like') }}",
+            data: {"idFilm" : idFilm, "action" : action }
+        })
+        .done(function (response) {
             console.log(response);
-            });
-
+        });
         return false;
-
     });
-
 })
 </script>
 
