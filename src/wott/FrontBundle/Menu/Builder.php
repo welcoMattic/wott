@@ -13,6 +13,10 @@ class Builder extends ContainerAware
 
         $menu->addChild('Home', array('route' => 'homepage'));
 
+        $menu->addChild('Mon espace', array('route' => 'homepage'));
+
+        $menu->addChild('Nous contacter', array('route' => 'homepage'));
+
         return $menu;
     }
     public function filtersMenu(FactoryInterface $factory, array $options)
