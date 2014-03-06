@@ -3,9 +3,7 @@
 namespace wott\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use wott\CoreBundle\Entity\People;
 use wott\CoreBundle\Entity\FilmPeople;
@@ -30,7 +28,7 @@ class InsertPeoplesCommand extends ContainerAwareCommand
         $i = 0;
         $j= 0;
 
-        foreach($films as $film) {
+        foreach ($films as $film) {
             if($j > 4) continue;
             $res = $client->getMoviesApi()->getCredits(
                         $film->getApiId(),
@@ -38,7 +36,7 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                     );
             $basicPeoples = array_merge($res['cast'], $res['crew']);
 
-            foreach($basicPeoples as $basicPeople) {
+            foreach ($basicPeoples as $basicPeople) {
                 $people = $client->getPeopleApi()->getPerson(
                     $basicPeople['id'],
                     array('language' => 'fr')
