@@ -93,10 +93,16 @@ class Film
     /**
      * @var integer
      *
-     * @ORM\Column(name="api_id", type="integer", nullable=true)
+     * @ORM\Column(name="api_id", type="integer")
      *
      */
     private $api_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="wott\CoreBundle\Entity\FilmPeople", mappedBy="film")
+     */
+    private $filmPeople;
+
 
     public function __construct()
     {

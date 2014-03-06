@@ -18,9 +18,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-
     	$em=$this->getDoctrine()->getManager();
         return array();
+
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
+
+        return array('films'=>$films);
     }
 
     /**
@@ -53,8 +56,6 @@ class DefaultController extends Controller
 
         $filmUser=$em->getRepository('wottCoreBundle:FilmUser')->findOneBy(array('film'=>$film, 'user'=>$user));
 
-
-
         if (empty($filmUser)) {
             $filmUser= new FilmUser();
             $filmUser->setUser($user);
@@ -80,7 +81,7 @@ class DefaultController extends Controller
         $em->flush();
         $$getter=$filmUser->$getter();
 
-        return new Response();
+        return new Response(var_dump($$getter));
     }
 
     /**

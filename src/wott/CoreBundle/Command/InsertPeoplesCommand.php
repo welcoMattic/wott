@@ -7,17 +7,16 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use wott\CoreBundle\Entity\Film;
-use wott\CoreBundle\Entity\Genre;
 use wott\CoreBundle\Entity\People;
+use wott\CoreBundle\Entity\FilmPeople;
 
 class InsertPeoplesCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('wott:insertFilms')
-            ->setDescription('Populate Film entity with TMDB API data')
+            ->setName('wott:insertPeoples')
+            ->setDescription('Populate People entity with TMDB API data')
         ;
     }
 
@@ -25,65 +24,55 @@ class InsertPeoplesCommand extends ContainerAwareCommand
     {
         $client = $this->getContainer()->get('wtfz_tmdb.client');
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        $genres = $em->getRepository('wottCoreBundle:Genre')->findAll();
+        $films = $em->getRepository('wottCoreBundle:Film')->findAll();
+        $progress = $this->getHelperSet()->get('progress');
+        $progress->start($output, 5);
         $i = 0;
+        $j= 0;
 
-        foreach($genres as $genre) {
-            $res = $client->getGenresApi()->getMovies(
-                        $genre->getApiId(),
-                        array('page' => 1, 'language' => 'fr', 'include_adult' => 'false')
+        foreach($films as $film) {
+            if($j > 4) continue;
+            $res = $client->getMoviesApi()->getCredits(
+                        $film->getApiId(),
+                        array('language' => 'fr')
                     );
-            foreach($res['results'] as $basicFilm) {
-                if (!$em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id']))) {
+            $basicPeoples = array_merge($res['cast'], $res['crew']);
 
-                    $film = $client->getMoviesApi()->getMovie(
-                                $basicFilm['id'],
-                                array('language' => 'fr', 'append_to_response' => 'trailers')
-                            );
+            foreach($basicPeoples as $basicPeople) {
+                $people = $client->getPeopleApi()->getPerson(
+                    $basicPeople['id'],
+                    array('language' => 'fr')
+                );
 
-                    $images = $client->getMoviesApi()->getImages($basicFilm['id'],
-                                array('language' => 'fr', 'include_image_language' => 'fr')
-                            );
+                if(!isset($people['name']) || $em->getRepository('wottCoreBundle:People')->findOneBy(array('api_id' => $basicPeople['id'])))
+                    continue;
 
-                    $f = new Film();
+                $filmPeople = new FilmPeople();
+                $filmPeople->setFilm($film);
 
-                    $break = false;
-                    foreach($film['genres'] as $genre) {
-                        if($genre['id'] == 10762) {
-                            $break = true;
-                            continue;
-                        }
-                        $g = $em->getRepository('wottCoreBundle:Genre')->findOneBy(array('api_id' => $genre['id']));
-                        $f->addGenre($g);
-                    }
-                    if($break) continue;
+                $p = new People();
+                $p->setName($people['name']);
+                $p->setBiography($people['biography']);
+                $p->setBirthday($people['birthday'] ? new \DateTime($people['birthday']) : null);
+                $p->setDeathday($people['deathday'] ? new \DateTime($people['deathday']) : null);
+                $p->setNationality($people['place_of_birth']);
+                $p->setUrlProfileImage($people['profile_path']);
+                $p->setApiId($people['id']);
 
-                    $f->setApiId($film['id']);
-                    $f->setTitle($film['title']);
-                    $f->setOriginalTitle($film['original_title']);
-                    $f->setReleaseDate(new \DateTime($film['release_date']));
-                    $f->setSynopsis($film['overview'] ? $film['overview'] : '.');
-                    $f->setRuntime($film['runtime'] ? $film['runtime'] : 0);
-                    $f->setPopularity($film['popularity']);
-                    $f->setUrlPoster(!empty($images['posters']) ? $images['posters'][0]['file_path'] : '');
+                $filmPeople->setPeople($p);
+                !isset($basicPeople['job'])       ?: $filmPeople->setJob($basicPeople['job']);
+                !isset($basicPeople['character']) ?: $filmPeople->setRole($basicPeople['character']);
 
-                    $f->setNationalities(array_reduce($film['production_countries'], function($current, $next) {
-                                            return ($current != '') ? $current . ',' . $next['name'] : $next['name'];
-                                        }));
-
-                    if(!empty($film['trailers']['youtube'])) {
-                        $f->setUrlTrailer($film['trailers']['youtube'][0]['source']);
-                    }
-
-
-                    $em->persist($f);
-                    $i++;
-                }
+                $em->persist($filmPeople);
+                $i++;
             }
+            $j++;
+            $progress->advance();
         }
 
+        $progress->finish();
         $em->flush();
 
-        $output->writeln(($i === 1) ? $i . ' film inserted' : $i . ' films inserted');
+        $output->writeln(($i === 1) ? $i . ' people inserted' : $i . ' peoples inserted');
     }
 }

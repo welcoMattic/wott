@@ -25,6 +25,8 @@ class InsertFilmsCommand extends ContainerAwareCommand
         $client = $this->getContainer()->get('wtfz_tmdb.client');
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $genres = $em->getRepository('wottCoreBundle:Genre')->findAll();
+        $progress = $this->getHelperSet()->get('progress');
+        $progress->start($output, count($genres));
         $i = 0;
 
         foreach($genres as $genre) {
@@ -33,7 +35,7 @@ class InsertFilmsCommand extends ContainerAwareCommand
                         array('page' => 1, 'language' => 'fr', 'include_adult' => 'false')
                     );
             foreach($res['results'] as $basicFilm) {
-                if (!$em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id']))) {
+                if ($em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id'])) == null) {
 
                     $film = $client->getMoviesApi()->getMovie(
                                 $basicFilm['id'],
@@ -79,9 +81,11 @@ class InsertFilmsCommand extends ContainerAwareCommand
                     $i++;
                 }
             }
+            $progress->advance();
         }
 
         $em->flush();
+        $progress->finish();
 
         $output->writeln(($i === 1) ? $i . ' film inserted' : $i . ' films inserted');
     }
