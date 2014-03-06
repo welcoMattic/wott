@@ -20,7 +20,8 @@ class DefaultController extends Controller
     {
     	$em=$this->getDoctrine()->getManager();
 
-    	$films= $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(9);
+    	$films= $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
+
         return array('films'=>$films);
     }
 
@@ -81,7 +82,7 @@ class DefaultController extends Controller
         $em->flush();
         $$getter=$filmUser->$getter();
 
-        return new Response();
+        return new Response(var_dump($$getter));
     }
 
 }
