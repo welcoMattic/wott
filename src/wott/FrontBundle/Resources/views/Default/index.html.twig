@@ -1,6 +1,6 @@
 {% extends 'wottFrontBundle::layout.html.twig' %}
 
-{% block content %}
+{% block header %}
 <section id="main" class="container" role="content">
     <!-- menu filtres-->
     <div class="row">
@@ -25,6 +25,9 @@
     </div>
     <!--fin filtres-->
     <div class="row">
+    {% endblock %}
+    
+    {% block content %}
     {% for film in films %}
             <div class="col-md-3">
             <div class="thumbnail">
