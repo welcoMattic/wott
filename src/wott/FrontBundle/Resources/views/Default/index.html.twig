@@ -25,7 +25,7 @@
     </div>
     <!--fin filtres-->
 
-    <div class="row">
+    <div class="row" id="movies">
     {% for film in films %}
             <div class="col-md-3">
             <div class="thumbnail">
@@ -35,6 +35,26 @@
                     <p>{{ film.synopsis | slice(0, 100) }}</p>
                     <a href="" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter le film à ma watchlist</a>
                     <a class="btn center-block btn-default" href="#" title="Voir le détail du film">Voir le détail</a>
+                    <button class="progress-button" data-style="shrink" data-horizontal>Submit</button>
+                    <script src="{{ asset('bundles/wottfront/js/progressButton.js') }}"></script>
+        <script>
+            [].slice.call( document.querySelectorAll( 'button.progress-button' ) ).forEach( function( bttn ) {
+                new ProgressButton( bttn, {
+                    callback : function( instance ) {
+                        var progress = 0,
+                            interval = setInterval( function() {
+                                progress = Math.min( progress + Math.random() * 0.1, 1 );
+                                instance._setProgress( progress );
+
+                                if( progress === 1 ) {
+                                    instance._stop(1);
+                                    clearInterval( interval );
+                                }
+                            }, 200 );
+                    }
+                } );
+            } );
+        </script>
                 </div> 
             </div>
         </div>
