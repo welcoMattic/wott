@@ -62,7 +62,7 @@ class DefaultController extends Controller
         } else {
             $$getter=$filmUser->$getter();
 
-            if ($$getter==false) {
+            if (!$$getter) {
 
                 $filmUser->$setter(true);
                 $filmUser->$date();
@@ -76,7 +76,7 @@ class DefaultController extends Controller
         $em->flush();
         $$getter=$filmUser->$getter();
 
-        return new Response(var_dump($$getter));
+        return new Response();
     }
 
 }
