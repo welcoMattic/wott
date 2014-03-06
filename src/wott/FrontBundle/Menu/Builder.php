@@ -19,6 +19,7 @@ class Builder extends ContainerAware
 
         return $menu;
     }
+
     public function filtersMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
@@ -39,3 +40,5 @@ class Builder extends ContainerAware
     }
 
 }
+
+

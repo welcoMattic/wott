@@ -27,14 +27,14 @@ class FilmUser
     /**
      * @var integer
      *
-     * @ORM\Column(name="note", type="integer")
+     * @ORM\Column(name="note", type="integer", nullable = true)
      */
     private $note;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_like", type="datetime")
+     * @ORM\Column(name="date_like", type="datetime", nullable = true)
      */
     private $dateLike;
 
@@ -42,30 +42,38 @@ class FilmUser
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_seen", type="datetime")
+     * @ORM\Column(name="date_seen", type="datetime", nullable = true)
      */
     private $dateSeen;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_like", type="boolean")
+     * @ORM\Column(name="is_like", type="boolean", nullable = true)
      */
     private $isLike;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_seen", type="boolean")
+     * @ORM\Column(name="is_seen", type="boolean", nullable = true)
      */
     private $isSeen;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_wanted", type="boolean")
+     * @ORM\Column(name="is_wanted", type="boolean", nullable = true)
      */
     private $isWanted;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_wanted", type="datetime", nullable = true)
+     */
+    private $dateWanted;
+
 
     public function setFilm(\wott\CoreBundle\Entity\Film $film)
     {
@@ -229,5 +237,28 @@ class FilmUser
     public function getIsWanted()
     {
         return $this->isWanted;
+    }
+
+    /**
+     * Set dateWanted
+     *
+     * @param \DateTime $dateWanted
+     * @return FilmUser
+     */
+    public function setDateWanted()
+    {
+        $this->dateWanted = new \Datetime('now');
+
+        return $this;
+    }
+
+    /**
+     * Get dateWanted
+     *
+     * @return \DateTime 
+     */
+    public function getDateWanted()
+    {
+        return $this->dateWanted;
     }
 }
