@@ -5,11 +5,7 @@ namespace wott\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use wott\CoreBundle\Entity\Film;
-use wott\CoreBundle\Entity\Genre;
-use wott\CoreBundle\Entity\People;
-use wott\CoreBundle\Entity\FilmPeople;
 use wott\CoreBundle\Entity\FilmUser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +18,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+
+    	$em=$this->getDoctrine()->getManager();
 
         return array();
     }
@@ -41,7 +39,6 @@ class DefaultController extends Controller
     public function likeAction(Request $request)
     {
 
-
         $idFilm=$request->request->get('idFilm');
         $action=$request->request->get('action');
         $idUser=$this->container->get('security.context')->getToken()->getUser()->getId();
@@ -56,9 +53,10 @@ class DefaultController extends Controller
         $user=$em->getRepository('wottCoreBundle:User')->find($idUser);
 
         $filmUser=$em->getRepository('wottCoreBundle:FilmUser')->findOneBy(array('film'=>$film, 'user'=>$user));
-        
 
-        if(empty($filmUser)){
+
+
+        if (empty($filmUser)) {
             $filmUser= new FilmUser();
             $filmUser->setUser($user);
             $filmUser->setFilm($film);
@@ -66,17 +64,15 @@ class DefaultController extends Controller
             $filmUser->$date();
 
             $em->persist($filmUser);
-        }
-        else{
+        } else {
             $$getter=$filmUser->$getter();
 
-            if($$getter==false){
-                
+            if (!$$getter) {
+
                 $filmUser->$setter(true);
                 $filmUser->$date();
-            }
-            else{
-                
+            } else {
+
                 $filmUser->$setter(false);
                 $filmUser->$date();
             }
@@ -85,7 +81,7 @@ class DefaultController extends Controller
         $em->flush();
         $$getter=$filmUser->$getter();
 
-        return new Response(var_dump($$getter));
+        return new Response();
     }
 
 }

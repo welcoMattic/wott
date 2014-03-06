@@ -10,10 +10,12 @@ class FrontExtension extends \Twig_Extension
         );
     }
 
-    public function ms_in_hoursFilter($ms) {
+    public function ms_in_hoursFilter($ms)
+    {
         if ($ms > 3600)
             $h = floor($ms / 3600);
         $ms = $ms % 3600;
+
         return trim($h.'h').gmdate('i', $ms);
     }
 

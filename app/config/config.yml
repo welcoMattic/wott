@@ -83,7 +83,14 @@ swiftmailer:
 # WTFZ_TMDB Bundle
 wtfz_tmdb:
     api_key:       "%api_tmdb_key%"
+    cache:
+        enabled: true
+        path: "/tmp/php-tmdb-api"
 
+    log:
+        enabled: true
+        path: "/tmp/php-tmdb-api.log"
+        
 genemu_form:
     select2: ~
 
