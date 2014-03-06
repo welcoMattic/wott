@@ -93,7 +93,7 @@ class Film
     /**
      * @var integer
      *
-     * @ORM\Column(name="api_id", type="integer", nullable=true)
+     * @ORM\Column(name="api_id", type="integer")
      *
      */
     private $api_id;
