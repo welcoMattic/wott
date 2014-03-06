@@ -47,6 +47,9 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                 if(!isset($people['name']) || $em->getRepository('wottCoreBundle:People')->findOneBy(array('api_id' => $basicPeople['id'])))
                     continue;
 
+                $filmPeople = new FilmPeople();
+                $filmPeople->setFilm($film);
+
                 $p = new People();
                 $p->setName($people['name']);
                 $p->setBiography($people['biography']);
@@ -56,13 +59,10 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                 $p->setUrlProfileImage($people['profile_path']);
                 $p->setApiId($people['id']);
 
-                $filmPeople = new FilmPeople();
-                $filmPeople->setFilm($film);
                 $filmPeople->setPeople($p);
-                !isset($basicPeople['job']) ?: $filmPeople->setJob($basicPeople['job']);
+                !isset($basicPeople['job'])       ?: $filmPeople->setJob($basicPeople['job']);
                 !isset($basicPeople['character']) ?: $filmPeople->setRole($basicPeople['character']);
 
-                $em->persist($p);
                 $em->persist($filmPeople);
                 $i++;
             }

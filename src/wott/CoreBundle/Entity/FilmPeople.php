@@ -7,20 +7,25 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * FilmPeople
  *
- * @ORM\Table()
+ * @ORM\Table(name="film_people")
  * @ORM\Entity
  */
 class FilmPeople
 {
     /**
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\Film", inversedBy="filmPeople")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\Film", inversedBy="filmPeople", cascade={"persist", "remove"})
      */
     private $film;
 
     /**
-     * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\People", inversedBy="filmPeople")
+     * @ORM\ManyToOne(targetEntity="wott\CoreBundle\Entity\People", inversedBy="filmPeople", cascade={"persist", "remove"})
      */
     private $people;
 
@@ -54,7 +59,7 @@ class FilmPeople
     /**
      * Get Film
      *
-     * @param object $Film
+     * @param object Film
      * @return Film
      */
     public function getFilm()
@@ -62,11 +67,25 @@ class FilmPeople
       return $this->film;
     }
 
-
+    /**
+     * Set people
+     *
+     * @param object People
+     * @return People
+     */
     public function setPeople(\wott\CoreBundle\Entity\People $people)
     {
       $this->people = $people;
+
+      return $this;
     }
+
+    /**
+     * Get Film
+     *
+     * @param object People
+     * @return People
+     */
     public function getPeople()
     {
       return $people->people;

@@ -35,7 +35,7 @@ class InsertFilmsCommand extends ContainerAwareCommand
                         array('page' => 1, 'language' => 'fr', 'include_adult' => 'false')
                     );
             foreach($res['results'] as $basicFilm) {
-                if (!$em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id']))) {
+                if ($em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id'])) == null) {
 
                     $film = $client->getMoviesApi()->getMovie(
                                 $basicFilm['id'],

@@ -71,7 +71,7 @@ class People
     private $api_id;
 
     /**
-     * @ORM\OneToMany(targetEntity="wott\CoreBundle\Entity\FilmPeople", mappedBy="people", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="wott\CoreBundle\Entity\FilmPeople", mappedBy="people")
      */
     private $filmPeople;
 
