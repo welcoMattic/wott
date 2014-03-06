@@ -6,6 +6,13 @@ What's on TV tonight !
 <a href="" class="action" data-id="1" data-action="Like">Like</a>
 <a href="" class="action" data-id="1" data-action="Seen">see</a>
 <a href="" class="action" data-id="1" data-action="Wanted">wanted</a>
+
+
+{% for film in films %}
+    {{ film.title }}/
+{% endfor %}
+
+
 {% endblock %}
 
 {% block javascript %}
@@ -21,7 +28,7 @@ $(document).ready(function(){
         $.ajax({
 
            type: "POST",
-           url: {{ path('like') }},
+           url: "{{ path('like') }}",
            data: {"idFilm" : idFilm, "action" : action }
          }).done(function (response) {
             console.log(response);

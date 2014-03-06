@@ -18,10 +18,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-
     	$em=$this->getDoctrine()->getManager();
 
-        return array();
+    	$films= $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(9);
+        return array('films'=>$films);
     }
 
     /**
