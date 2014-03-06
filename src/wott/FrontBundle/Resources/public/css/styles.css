@@ -1,1 +1,26 @@
-p{color:red;}
+header img {
+	max-height: 100px;
+}
+
+header nav .nav {
+	margin-top: 40px;
+	font-size: 20px;
+}
+
+header .fb-login-button {
+	margin-left: 10px;
+}
+
+#filter p {
+	margin-top: 15px;
+}
+
+#filter div div button {
+	margin-top: 8px;
+}
+
+#movies .btn {
+	margin-top: 10px;
+	height: 35px;
+}
+
