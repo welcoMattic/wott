@@ -12,16 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class FilmRepository extends EntityRepository
 {
-	public function getFilmByPopularity($limit)
-	{
+    public function getFilmByPopularity($limit)
+    {
 
-    	$qb = $this->_em->createQueryBuilder();
+        $qb = $this->_em->createQueryBuilder();
 
-    	$qb->select('a')
-    				->from('wottCoreBundle:Film', 'a')
-    				->orderBy('a.popularity', 'DESC')
-    				->setMaxResults($limit);
+        $qb->select('a')
+                    ->from('wottCoreBundle:Film', 'a')
+                    ->orderBy('a.popularity', 'DESC')
+                    ->setMaxResults($limit);
 
-    	return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
     }
 }

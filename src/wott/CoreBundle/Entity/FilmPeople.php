@@ -91,11 +91,10 @@ class FilmPeople
       return $people->people;
     }
 
-
     /**
      * Set job
      *
-     * @param string $job
+     * @param  string     $job
      * @return FilmPeople
      */
     public function setJob($job)
@@ -108,7 +107,7 @@ class FilmPeople
     /**
      * Get job
      *
-     * @return string 
+     * @return string
      */
     public function getJob()
     {
@@ -118,7 +117,7 @@ class FilmPeople
     /**
      * Set role
      *
-     * @param string $role
+     * @param  string     $role
      * @return FilmPeople
      */
     public function setRole($role)
@@ -131,7 +130,7 @@ class FilmPeople
     /**
      * Get role
      *
-     * @return string 
+     * @return string
      */
     public function getRole()
     {
