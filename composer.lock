@@ -2322,12 +2322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "8d2dbcd91df7d11403c4f1402977d224ea2dc6fc"
+                "reference": "2e79f244d83c4115dda2f89f589c85ce665b3672"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/8d2dbcd91df7d11403c4f1402977d224ea2dc6fc",
-                "reference": "8d2dbcd91df7d11403c4f1402977d224ea2dc6fc",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/2e79f244d83c4115dda2f89f589c85ce665b3672",
+                "reference": "2e79f244d83c4115dda2f89f589c85ce665b3672",
                 "shasum": ""
             },
             "require": {
@@ -2378,7 +2378,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2014-02-28 15:57:09"
+            "time": "2014-03-06 17:45:45"
         },
         {
             "name": "sonata-project/cache",
@@ -3544,12 +3544,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wtfzdotnet/php-tmdb-api.git",
-                "reference": "20a3507ac9b04488b82203b89f6667a185d0b2a7"
+                "reference": "7a21f05ea3127668e7625f45e2f1d370bfa9dbcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/20a3507ac9b04488b82203b89f6667a185d0b2a7",
-                "reference": "20a3507ac9b04488b82203b89f6667a185d0b2a7",
+                "url": "https://api.github.com/repos/wtfzdotnet/php-tmdb-api/zipball/7a21f05ea3127668e7625f45e2f1d370bfa9dbcb",
+                "reference": "7a21f05ea3127668e7625f45e2f1d370bfa9dbcb",
                 "shasum": ""
             },
             "require": {
@@ -3595,7 +3595,7 @@
                 "tvdb",
                 "wrapper"
             ],
-            "time": "2014-03-04 23:26:12"
+            "time": "2014-03-06 19:38:05"
         },
         {
             "name": "wtfzdotnet/wtfz-tmdb-bundle",
