@@ -46,7 +46,7 @@ $(document).ready(function(){
            data: {"idFilm" : idFilm, "action" : action }
          }).done(function (response) {
             console.log(response);
-            });
+        });
 
         return false;
 
@@ -59,11 +59,15 @@ $(document).ready(function(){
         $.ajax({
            type: "POST",
            url: "{{ path('list') }}/"+display,
+           beforeSend:function(){
+                $('#movies').remove();
+                $('.progress').toggleClass('dispNone');
+            }
          }).done(function (response) {
-            $('#movies').remove();
             $('#filter').after(response);
-            $('.display').toggleClass('dispNone')
-            });
+            $('.display').toggleClass('dispNone');
+            $('.progress').toggleClass('dispNone');
+        });
 
         return false;
 
