@@ -5,7 +5,6 @@ namespace wott\BackBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
@@ -31,7 +30,7 @@ class FilmAdmin extends Admin
             ->add('popularity', 'number')
             ->add('url_poster', 'url')
             ->add('genres', 'genemu_jqueryselect2_entity', array( 'class' => 'wott\CoreBundle\Entity\Genre', 'property' => 'name', 'multiple' => true))
-    
+
             ;
 
     }

@@ -34,7 +34,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $facebookId
+     * @param  string $facebookId
      * @return void
      */
     public function setFacebookId($facebookId)

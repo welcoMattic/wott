@@ -3,9 +3,7 @@
 namespace wott\CoreBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use wott\CoreBundle\Entity\Film;
 use wott\CoreBundle\Entity\Genre;
@@ -29,12 +27,12 @@ class InsertFilmsCommand extends ContainerAwareCommand
         $progress->start($output, count($genres));
         $i = 0;
 
-        foreach($genres as $genre) {
+        foreach ($genres as $genre) {
             $res = $client->getGenresApi()->getMovies(
                         $genre->getApiId(),
                         array('page' => 1, 'language' => 'fr', 'include_adult' => 'false')
                     );
-            foreach($res['results'] as $basicFilm) {
+            foreach ($res['results'] as $basicFilm) {
                 if ($em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id'])) == null) {
 
                     $film = $client->getMoviesApi()->getMovie(
@@ -49,8 +47,8 @@ class InsertFilmsCommand extends ContainerAwareCommand
                     $f = new Film();
 
                     $break = false;
-                    foreach($film['genres'] as $genre) {
-                        if($genre['id'] == 10762) {
+                    foreach ($film['genres'] as $genre) {
+                        if ($genre['id'] == 10762) {
                             $break = true;
                             continue;
                         }
@@ -68,14 +66,13 @@ class InsertFilmsCommand extends ContainerAwareCommand
                     $f->setPopularity($film['popularity']);
                     $f->setUrlPoster(!empty($images['posters']) ? $images['posters'][0]['file_path'] : '');
 
-                    $f->setNationalities(array_reduce($film['production_countries'], function($current, $next) {
+                    $f->setNationalities(array_reduce($film['production_countries'], function ($current, $next) {
                                             return ($current != '') ? $current . ',' . $next['name'] : $next['name'];
                                         }));
 
-                    if(!empty($film['trailers']['youtube'])) {
+                    if (!empty($film['trailers']['youtube'])) {
                         $f->setUrlTrailer($film['trailers']['youtube'][0]['source']);
                     }
-
 
                     $em->persist($f);
                     $i++;
