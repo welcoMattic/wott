@@ -73,7 +73,6 @@ class FilmUser
      */
     private $dateWanted;
 
-
     public function setFilm(\wott\CoreBundle\Entity\Film $film)
     {
       $this->film = $film;

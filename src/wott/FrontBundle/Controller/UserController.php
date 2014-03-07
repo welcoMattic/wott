@@ -73,6 +73,7 @@ class UserController extends Controller
         $User = $this->container->get('security.context')->getToken()->getUser();
         $films = $em->getRepository('wottCoreBundle:FilmUser')->getLikesByUser($User);
 var_dump($films);
+
         return array('films' => $films);
     }
 

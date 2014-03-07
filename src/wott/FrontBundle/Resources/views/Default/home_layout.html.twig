@@ -55,7 +55,7 @@ $(document).ready(function(){
     $('.display').click(function(){
 
         display = $(this).data('display');
-        
+
         $.ajax({
            type: "POST",
            url: "{{ path('list') }}/"+display,
@@ -78,4 +78,3 @@ $(document).ready(function(){
 </script>
 
 {% endblock %}
-
