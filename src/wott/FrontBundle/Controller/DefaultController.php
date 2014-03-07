@@ -81,7 +81,7 @@ class DefaultController extends Controller
     public function showFilmAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $film = $em->getRepository('wottCoreBundle:Film')->find($id);
+        $film = $em->getRepository('wottCoreBundle:Film')->findOneBy( array('id' => $id));
 
         return array('film' => $film);
     }
