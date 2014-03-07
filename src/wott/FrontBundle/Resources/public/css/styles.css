@@ -1,7 +1,32 @@
-/* ----------------------------------------
-== HEADER
-------------------------------------------- */
-
-header img{
-    max-height: 100px;
+header img {
+	max-height: 100px;
 }
+
+header nav .nav {
+	margin-top: 40px;
+	font-size: 20px;
+}
+
+header .fb-login-button {
+	margin-left: 10px;
+}
+
+#filter p {
+	margin-top: 15px;
+}
+
+#filter div div button {
+	margin-top: 8px;
+}
+
+.list-group li p .thumbnail{
+	width: auto;
+	max-height: 250px;
+	text-align: left;
+}
+
+.list-group li p .btn{
+	margin-bottom: 5px;
+}
+
+
