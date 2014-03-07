@@ -26,7 +26,7 @@ class InsertFilmsCommand extends ContainerAwareCommand
         $progress = $this->getHelperSet()->get('progress');
         $progress->start($output, count($genres));
         $i = 0;
-        $addedFilms = [];
+        $addedFilms = array();
 
         foreach ($genres as $genre) {
             $res = $client->getGenresApi()->getMovies(
