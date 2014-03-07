@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * FilmUser
  *
- * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Table(name="film_user")
+ * @ORM\Entity(repositoryClass="wott\CoreBundle\Repository\FilmUserRepository")
  */
 class FilmUser
 {
@@ -27,45 +27,51 @@ class FilmUser
     /**
      * @var integer
      *
-     * @ORM\Column(name="note", type="integer")
+     * @ORM\Column(name="note", type="integer", nullable = true)
      */
     private $note;
 
     /**
-     * @var \DateTime
+     * @var boolean
      *
-     * @ORM\Column(name="date_like", type="datetime")
+     * @ORM\Column(name="is_like", type="boolean", nullable = true)
      */
-    private $dateLike;
-
+    private $isLike;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_seen", type="datetime")
+     * @ORM\Column(name="date_like", type="datetime", nullable = true)
+     */
+    private $dateLike;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_seen", type="boolean", nullable = true)
+     */
+    private $isSeen;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_seen", type="datetime", nullable = true)
      */
     private $dateSeen;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_like", type="boolean")
-     */
-    private $isLike;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_seen", type="boolean")
-     */
-    private $isSeen;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_wanted", type="boolean")
+     * @ORM\Column(name="is_wanted", type="boolean", nullable = true)
      */
     private $isWanted;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_wanted", type="datetime", nullable = true)
+     */
+    private $dateWanted;
 
     public function setFilm(\wott\CoreBundle\Entity\Film $film)
     {
@@ -88,7 +94,7 @@ class FilmUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -108,7 +114,7 @@ class FilmUser
     /**
      * Set note
      *
-     * @param integer $note
+     * @param  integer  $note
      * @return FilmUser
      */
     public function setNote($note)
@@ -133,7 +139,7 @@ class FilmUser
     /**
      * Get dateLike
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateLike()
     {
@@ -155,7 +161,7 @@ class FilmUser
     /**
      * Get dateSeen
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateSeen()
     {
@@ -165,7 +171,7 @@ class FilmUser
     /**
      * Set isLike
      *
-     * @param boolean $isLike
+     * @param  boolean  $isLike
      * @return FilmUser
      */
     public function setIsLike($isLike)
@@ -178,7 +184,7 @@ class FilmUser
     /**
      * Get isLike
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsLike()
     {
@@ -188,7 +194,7 @@ class FilmUser
     /**
      * Set isSeen
      *
-     * @param boolean $isSeen
+     * @param  boolean  $isSeen
      * @return FilmUser
      */
     public function setIsSeen($isSeen)
@@ -201,7 +207,7 @@ class FilmUser
     /**
      * Get isSeen
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsSeen()
     {
@@ -211,7 +217,7 @@ class FilmUser
     /**
      * Set isWanted
      *
-     * @param boolean $isWanted
+     * @param  boolean  $isWanted
      * @return FilmUser
      */
     public function setIsWanted($isWanted)
@@ -224,10 +230,33 @@ class FilmUser
     /**
      * Get isWanted
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsWanted()
     {
         return $this->isWanted;
+    }
+
+    /**
+     * Set dateWanted
+     *
+     * @param  \DateTime $dateWanted
+     * @return FilmUser
+     */
+    public function setDateWanted()
+    {
+        $this->dateWanted = new \Datetime('now');
+
+        return $this;
+    }
+
+    /**
+     * Get dateWanted
+     *
+     * @return \DateTime
+     */
+    public function getDateWanted()
+    {
+        return $this->dateWanted;
     }
 }

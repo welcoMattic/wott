@@ -1,5 +1,6 @@
 # Services
 services:
+
     wott.command.insertGenres:
         class: wott\CoreBundle\Command\InsertGenresCommand
         tags:
@@ -8,3 +9,7 @@ services:
         class: wott\CoreBundle\Command\InsertFilmsCommand
         tags:
             -  { name: wott.insertFilms }
+    wott.command.insertPeoples:
+        class: wott\CoreBundle\Command\InsertPeoplesCommand
+        tags:
+            -  { name: wott.insertPeoples }

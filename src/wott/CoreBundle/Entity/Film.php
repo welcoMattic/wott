@@ -93,10 +93,15 @@ class Film
     /**
      * @var integer
      *
-     * @ORM\Column(name="api_id", type="integer", nullable=true)
+     * @ORM\Column(name="api_id", type="integer")
      *
      */
     private $api_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="wott\CoreBundle\Entity\FilmPeople", mappedBy="film")
+     */
+    private $filmPeople;
 
     public function __construct()
     {
@@ -140,7 +145,7 @@ class Film
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Film
      */
     public function setTitle($title)
@@ -163,7 +168,7 @@ class Film
     /**
      * Set original_title
      *
-     * @param string $original_title
+     * @param  string $original_title
      * @return Film
      */
     public function setOriginalTitle($original_title)
@@ -186,7 +191,7 @@ class Film
     /**
      * Set release_date
      *
-     * @param \DateTime $release_date
+     * @param  \DateTime $release_date
      * @return Film
      */
     public function setReleaseDate($release_date)
@@ -209,7 +214,7 @@ class Film
     /**
      * Set synopsis
      *
-     * @param string $synopsis
+     * @param  string $synopsis
      * @return Film
      */
     public function setSynopsis($synopsis)
@@ -232,7 +237,7 @@ class Film
     /**
      * Set urlTrailer
      *
-     * @param string $urlTrailer
+     * @param  string $urlTrailer
      * @return Film
      */
     public function setUrlTrailer($url_trailer)
@@ -255,7 +260,7 @@ class Film
     /**
      * Set nationalities
      *
-     * @param array $nationalities
+     * @param  array $nationalities
      * @return Film
      */
     public function setNationalities($nationalities)
@@ -278,7 +283,7 @@ class Film
     /**
      * Set runtime
      *
-     * @param integer $runtime
+     * @param  integer $runtime
      * @return Film
      */
     public function setRuntime($runtime)
@@ -301,7 +306,7 @@ class Film
     /**
      * Set popularity
      *
-     * @param float $popularity
+     * @param  float $popularity
      * @return Film
      */
     public function setPopularity($popularity)
@@ -324,7 +329,7 @@ class Film
     /**
      * Set urlPoster
      *
-     * @param string $urlPoster
+     * @param  string $urlPoster
      * @return Film
      */
     public function setUrlPoster($url_poster)
@@ -347,7 +352,7 @@ class Film
     /**
      * Set api_id
      *
-     * @param integer $apiId
+     * @param  integer $apiId
      * @return Film
      */
     public function setApiId($api_id)
@@ -370,7 +375,7 @@ class Film
     /**
      * Set date_release
      *
-     * @param \DateTime $dateRelease
+     * @param  \DateTime $dateRelease
      * @return Film
      */
     public function setDateRelease($dateRelease)

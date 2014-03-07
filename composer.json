@@ -6,6 +6,19 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "1.10.2",
+                "dist": {
+                    "url": "http://code.jquery.com/jquery-1.10.2.js",
+                    "type": "file"
+                }
+            }
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.4",
@@ -34,8 +47,9 @@
         "wtfzdotnet/wtfz-tmdb-bundle": "dev-master",
         "wtfzdotnet/php-tmdb-api": "dev-develop",
         "genemu/form-bundle": "2.2.*@dev",
-        "braincrafted/bootstrap-bundle": "~2.0",
-        "twbs/bootstrap": "dev-less.js"
+        "braincrafted/bootstrap-bundle": "dev-develop",
+        "twbs/bootstrap": "3.0.*",
+        "jquery/jquery":  "1.10.*"
     },
     "scripts": {
         "post-install-cmd": [

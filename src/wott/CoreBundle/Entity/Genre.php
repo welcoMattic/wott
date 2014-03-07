@@ -31,7 +31,7 @@ class Genre
     /**
      * @var integer
      *
-     * @ORM\Column(name="api_id", type="integer", nullable=true)
+     * @ORM\Column(name="api_id", type="integer")
      */
     private $api_id;
 
@@ -48,7 +48,7 @@ class Genre
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Genre
      */
     public function setName($name)
@@ -71,7 +71,7 @@ class Genre
     /**
      * Set api_id
      *
-     * @param integer $api_id
+     * @param  integer $api_id
      * @return Genre
      */
     public function setApiId($api_id)

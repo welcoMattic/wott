@@ -31,31 +31,49 @@ class People
     /**
      * @var string
      *
-     * @ORM\Column(name="nationality", type="string", length=5)
+     * @ORM\Column(name="nationality", type="string", length=255, nullable=true)
      */
     private $nationality;
 
     /**
+     * @var text
+     *
+     * @ORM\Column(name="biography", type="text", nullable=true)
+     */
+    private $biography;
+
+    /**
      * @var date
      *
-     * @ORM\Column(name="birthday", type="date")
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      */
     private $birthday;
 
     /**
+     * @var date
+     *
+     * @ORM\Column(name="deathday", type="date", nullable=true)
+     */
+    private $deathday;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="url_profile_image", type="string", length=255)
+     * @ORM\Column(name="url_profile_image", type="string", length=255, nullable=true)
      */
     private $url_profile_image;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="api_id", type="string", length=255, nullable=true)
+     * @ORM\Column(name="api_id", type="string", length=255)
      */
     private $api_id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="wott\CoreBundle\Entity\FilmPeople", mappedBy="people")
+     */
+    private $filmPeople;
 
     /**
      * Get id
@@ -70,7 +88,7 @@ class People
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return People
      */
     public function setName($name)
@@ -93,7 +111,7 @@ class People
     /**
      * Set nationality
      *
-     * @param string $nationality
+     * @param  string $nationality
      * @return People
      */
     public function setNationality($nationality)
@@ -116,7 +134,7 @@ class People
     /**
      * Set age
      *
-     * @param date $birthday
+     * @param  date   $birthday
      * @return People
      */
     public function setBirthday($birthday)
@@ -139,7 +157,7 @@ class People
     /**
      * Set url_profile_image
      *
-     * @param string $url_profile_image
+     * @param  string $url_profile_image
      * @return People
      */
     public function setUrlProfileImage($url_profile_image)
@@ -162,7 +180,7 @@ class People
     /**
      * Set api_id
      *
-     * @param string $apiId
+     * @param  string $apiId
      * @return People
      */
     public function setApiId($api_id)
@@ -180,5 +198,51 @@ class People
     public function getApiId()
     {
         return $this->api_id;
+    }
+
+    /**
+     * Set biography
+     *
+     * @param  string $biography
+     * @return People
+     */
+    public function setBiography($biography)
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
+    /**
+     * Get biography
+     *
+     * @return string
+     */
+    public function getBiography()
+    {
+        return $this->biography;
+    }
+
+    /**
+     * Set deathday
+     *
+     * @param  \DateTime $deathday
+     * @return People
+     */
+    public function setDeathday($deathday)
+    {
+        $this->deathday = $deathday;
+
+        return $this;
+    }
+
+    /**
+     * Get deathday
+     *
+     * @return \DateTime
+     */
+    public function getDeathday()
+    {
+        return $this->deathday;
     }
 }
