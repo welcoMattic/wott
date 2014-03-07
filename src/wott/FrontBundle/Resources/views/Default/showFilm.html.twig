@@ -1,5 +1,45 @@
 {% extends 'wottFrontBundle::layout.html.twig' %}
 
 {% block content %}
-<p>Détail d'un film</p>
+
+<section id="main" class="container-fluid" role="content">
+    <div class="row">
+        <div class="col-md-5">
+            <p> <a href="{{ path('homepage') }}">Home</a> > Titre du film</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="#" alt="Affiche du film A">
+            <button class="btn btn-default btn-primary center-block">Ajouter à ma watchlist</button>
+            <button class="btn btn-default center-block">Liker le film</button>
+            <button class="btn btn-default center-block">J'ai vu ce film</button>
+        </div>
+        <div class="col-md-8">
+            <h2>Titre du film</h2>
+            <ul>
+                <li>Titre original : </li>
+                <li>Film de : XXXX</li>
+                <li>Nationalité(s) :</li>
+                <li>Genres : XXX</li>
+                <li>Temps : 0.00</li>
+                <li>Année de sortie Cinéma : XXXX</li>
+                <li>Note : </li>
+            </ul>
+            <h3>Synopsis</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at sem adipiscing, adipiscing tellus et, sodales tortor. Suspendisse malesuada risus ac diam consectetur, ac sagittis nisl placerat. Sed consequat at leo sit amet bibendum. Donec vel nisi sollicitudin, ornare odio ullamcorper, pulvinar quam.
+            </p>
+            <h3>Trailer</h3>
+                <p>Ici la vidéo (mettre iframe</p>
+            <h3>Acteurs</h3>
+                <div class="row-fluid">
+                    <div class="col-md-3">
+                        <img src="" alt="">
+                        <p>Nom de l'acteur</p>
+                    </div>                    
+                </div>
+         </div>
+    </div>
+</section>
+
 {% endblock %}
