@@ -42,7 +42,7 @@ $(document).ready(function(){
         $.ajax({
 
            type: "POST",
-           url: "{{ path('filmuser') }}",
+           url: "{{ path('filmUser') }}",
            data: {"idFilm" : idFilm, "action" : action }
          }).done(function (response) {
             console.log(response);
