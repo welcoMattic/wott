@@ -1,28 +1,4 @@
-{% extends 'wottFrontBundle::layout.html.twig' %}
-{% block content %}
-    <!-- menu filtres-->
-    <div class="row">
-        <div class="col-md-12">
-            <nav id="filter" class="navbar navbar-default" role="navigation">
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <p class="pull-left">Trier par :</p>
-                    {{ knp_menu_render('wottFrontBundle:Builder:filtersMenu', { 'style': 'navbar' }) }}
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                    <div class="pull-right">
-                        <button type="button" class="btn bt-default btn-large">{{ icon('th') }}</button>
-                        <button type="button" class="btn bt-default btn-large">{{ icon('th-list') }}</button>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <!--fin filtres-->
-{% endblock %}
+{% extends 'wottFrontBundle:Default:home_layout.html.twig' %}
 
 {% block main %}
 

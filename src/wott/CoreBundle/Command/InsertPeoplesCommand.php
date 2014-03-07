@@ -24,12 +24,10 @@ class InsertPeoplesCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $films = $em->getRepository('wottCoreBundle:Film')->findAll();
         $progress = $this->getHelperSet()->get('progress');
-        $progress->start($output, 5);
+        $progress->start($output, count($films));
         $i = 0;
-        $j= 0;
 
         foreach ($films as $film) {
-            if($j > 4) continue;
             $res = $client->getMoviesApi()->getCredits(
                         $film->getApiId(),
                         array('language' => 'fr')
@@ -64,7 +62,6 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                 $em->persist($filmPeople);
                 $i++;
             }
-            $j++;
             $progress->advance();
         }
 
