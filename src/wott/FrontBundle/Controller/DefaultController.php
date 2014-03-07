@@ -21,7 +21,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
-
         return array('films'=>$films);
     }
 
