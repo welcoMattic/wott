@@ -28,6 +28,7 @@ class InsertPeoplesCommand extends ContainerAwareCommand
         $i = 0;
 
         foreach ($films as $film) {
+            if($film->getId()<126) continue;
             $res = $client->getMoviesApi()->getCredits(
                         $film->getApiId(),
                         array('language' => 'fr')
@@ -39,7 +40,6 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                     $basicPeople['id'],
                     array('language' => 'fr')
                 );
-
                 if(!isset($people['name']) || $em->getRepository('wottCoreBundle:People')->findOneBy(array('api_id' => $basicPeople['id'])))
                     continue;
 
@@ -49,8 +49,8 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                 $p = new People();
                 $p->setName($people['name']);
                 $p->setBiography($people['biography']);
-                $p->setBirthday($people['birthday'] ? new \DateTime($people['birthday']) : null);
-                $p->setDeathday($people['deathday'] ? new \DateTime($people['deathday']) : null);
+                $p->setBirthday($people['birthday'] && preg_match( '`^\d{4}-d{2}-d{2}$`' , $people['birthday'] ) ? new \DateTime($people['birthday']) : null);
+                $p->setDeathday($people['deathday'] && preg_match( '`^\d{4}-d{2}-d{2}$`' , $people['deathday'] ) ? new \DateTime($people['deathday']) : null);
                 $p->setNationality($people['place_of_birth']);
                 $p->setUrlProfileImage($people['profile_path']);
                 $p->setApiId($people['id']);

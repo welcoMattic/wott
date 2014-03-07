@@ -24,15 +24,18 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
+        $menu->addChild('Trier par')
+            ->setAttribute('class', 'navbar-text');
+
         $menu->addChild('Genres', array('route' => 'homepage'))
             ->setAttribute('dropdown', true);
-            $menu['Genres']->addChild('Genre 1', array('uri' => '#'));
-            $menu['Genres']->addChild('Genre 2', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 1', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 2', array('uri' => '#'));
 
         $menu->addChild('Décennie', array('route' => 'homepage'))
             ->setAttribute('dropdown', true);
-            $menu['Décennie']->addChild('1900', array('uri' => '#'));
-            $menu['Décennie']->addChild('2000', array('uri' => '#'));
+        $menu['Décennie']->addChild('1900', array('uri' => '#'));
+        $menu['Décennie']->addChild('2000', array('uri' => '#'));
 
         $menu->addChild('Note', array('route' => 'homepage'));
 
