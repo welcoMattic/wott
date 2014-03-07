@@ -88,7 +88,7 @@ class People
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return People
      */
     public function setName($name)
@@ -111,7 +111,7 @@ class People
     /**
      * Set nationality
      *
-     * @param string $nationality
+     * @param  string $nationality
      * @return People
      */
     public function setNationality($nationality)
@@ -134,7 +134,7 @@ class People
     /**
      * Set age
      *
-     * @param date $birthday
+     * @param  date   $birthday
      * @return People
      */
     public function setBirthday($birthday)
@@ -157,7 +157,7 @@ class People
     /**
      * Set url_profile_image
      *
-     * @param string $url_profile_image
+     * @param  string $url_profile_image
      * @return People
      */
     public function setUrlProfileImage($url_profile_image)
@@ -180,7 +180,7 @@ class People
     /**
      * Set api_id
      *
-     * @param string $apiId
+     * @param  string $apiId
      * @return People
      */
     public function setApiId($api_id)
@@ -203,7 +203,7 @@ class People
     /**
      * Set biography
      *
-     * @param string $biography
+     * @param  string $biography
      * @return People
      */
     public function setBiography($biography)
@@ -226,7 +226,7 @@ class People
     /**
      * Set deathday
      *
-     * @param \DateTime $deathday
+     * @param  \DateTime $deathday
      * @return People
      */
     public function setDeathday($deathday)

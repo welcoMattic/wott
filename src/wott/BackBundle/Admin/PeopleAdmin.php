@@ -5,7 +5,6 @@ namespace wott\BackBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
 class PeopleAdmin extends Admin
@@ -20,7 +19,7 @@ class PeopleAdmin extends Admin
             ->add('birthday', 'date', array('years' => range( date('Y'), '1900')))
             ->add('url_profile_image', 'url')
             ;
-        
+
     }
 
     // Fields to be shown on filter forms

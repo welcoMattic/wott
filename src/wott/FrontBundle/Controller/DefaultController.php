@@ -18,7 +18,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-    	$em=$this->getDoctrine()->getManager();
+        $em=$this->getDoctrine()->getManager();
 
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
 
@@ -26,14 +26,14 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("like/", name="like")
+     * @Route("filmuser/", name="filmuser")
      */
-    public function likeAction(Request $request)
+    public function filmUserAction(Request $request)
     {
 
-        $idFilm=$request->request->get('idFilm');
-        $action=$request->request->get('action');
-        $idUser=$this->container->get('security.context')->getToken()->getUser()->getId();
+        $idFilm = $request->request->get('idFilm');
+        $action = $request->request->get('action');
+        $idUser = $this->container->get('security.context')->getToken()->getUser()->getId();
 
         $setter = 'setIs'.$action;
         $getter = 'getIs'.$action;
@@ -44,7 +44,7 @@ class DefaultController extends Controller
         $film=$em->getRepository('wottCoreBundle:Film')->find($idFilm);
         $user=$em->getRepository('wottCoreBundle:User')->find($idUser);
 
-        $filmUser=$em->getRepository('wottCoreBundle:FilmUser')->findOneBy(array('film'=>$film, 'user'=>$user));
+        $filmUser = $em->getRepository('wottCoreBundle:FilmUser')->findOneBy(array('film'=>$film, 'user'=>$user));
 
         if (empty($filmUser)) {
             $filmUser= new FilmUser();
@@ -69,7 +69,7 @@ class DefaultController extends Controller
         }
 
         $em->flush();
-        $$getter=$filmUser->$getter();
+        $$getter = $filmUser->$getter();
 
         return new Response(var_dump($$getter));
     }
@@ -78,9 +78,12 @@ class DefaultController extends Controller
      * @Route("/showFilm/{id}", name="showFilm", requirements={"id" = "\d+"})
      * @Template()
      */
-    public function showFilmAction()
+    public function showFilmAction($id)
     {
-        return array();
+        $em = $this->getDoctrine()->getManager();
+        $film = $em->getRepository('wottCoreBundle:Film')->find($id);
+
+        return array('film' => $film);
     }
 
     /**
@@ -100,5 +103,5 @@ class DefaultController extends Controller
     {
         return array();
     }
-    
+
 }

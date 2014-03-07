@@ -38,7 +38,6 @@ class FilmUser
      */
     private $dateLike;
 
-
     /**
      * @var \DateTime
      *
@@ -74,7 +73,6 @@ class FilmUser
      */
     private $dateWanted;
 
-
     public function setFilm(\wott\CoreBundle\Entity\Film $film)
     {
       $this->film = $film;
@@ -96,7 +94,7 @@ class FilmUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -116,7 +114,7 @@ class FilmUser
     /**
      * Set note
      *
-     * @param integer $note
+     * @param  integer  $note
      * @return FilmUser
      */
     public function setNote($note)
@@ -141,7 +139,7 @@ class FilmUser
     /**
      * Get dateLike
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateLike()
     {
@@ -163,7 +161,7 @@ class FilmUser
     /**
      * Get dateSeen
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateSeen()
     {
@@ -173,7 +171,7 @@ class FilmUser
     /**
      * Set isLike
      *
-     * @param boolean $isLike
+     * @param  boolean  $isLike
      * @return FilmUser
      */
     public function setIsLike($isLike)
@@ -186,7 +184,7 @@ class FilmUser
     /**
      * Get isLike
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsLike()
     {
@@ -196,7 +194,7 @@ class FilmUser
     /**
      * Set isSeen
      *
-     * @param boolean $isSeen
+     * @param  boolean  $isSeen
      * @return FilmUser
      */
     public function setIsSeen($isSeen)
@@ -209,7 +207,7 @@ class FilmUser
     /**
      * Get isSeen
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsSeen()
     {
@@ -219,7 +217,7 @@ class FilmUser
     /**
      * Set isWanted
      *
-     * @param boolean $isWanted
+     * @param  boolean  $isWanted
      * @return FilmUser
      */
     public function setIsWanted($isWanted)
@@ -232,7 +230,7 @@ class FilmUser
     /**
      * Get isWanted
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsWanted()
     {
@@ -242,7 +240,7 @@ class FilmUser
     /**
      * Set dateWanted
      *
-     * @param \DateTime $dateWanted
+     * @param  \DateTime $dateWanted
      * @return FilmUser
      */
     public function setDateWanted()
@@ -255,7 +253,7 @@ class FilmUser
     /**
      * Get dateWanted
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateWanted()
     {
