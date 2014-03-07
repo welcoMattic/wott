@@ -1,0 +1,35 @@
+{% block main %}
+    <div class="row" id="movies">
+    <ul class="container list-group">
+    {% for film in films %}
+            <li class="list-group-item row-fluid col-md-12">
+                <p class="col-md-3">
+                    <img class="thumbnail" src="{{ film.urlPoster|image_url_path}}" alt="Vignette du film" />
+                </p>
+                <div class="col-md-6">
+                    <h2 class="list-group-item-header">{{ film.title }}</h2>
+                    <p class="list-group-item-text">{{ film.synopsis | slice(0, 500) }}</p>
+                </div>
+                <p class="col-md-3">
+                   <a href="" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>
+                    <a class="btn center-block btn-default" href="" class="action" data-id="1" data-action="Like">Like</a>
+                </p>
+            </li>
+    {% endfor %}
+    </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-md-offset-5">
+            <p>Ici la pagination</p>
+            {# knp_pagination_render(pagination) #}
+        </div>
+    </div>
+</section>
+
+<a href="" class="action" data-id="1" data-action="Like">Like</a>
+<a href="" class="action" data-id="1" data-action="Seen">see</a>
+</div>
+<a href="" class="action" data-id="1" data-action="Seen">see</a>
+
+{% endblock %}

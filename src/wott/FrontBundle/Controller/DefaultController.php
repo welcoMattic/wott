@@ -13,16 +13,29 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{display}", defaults={"display" = ""}, name="homepage")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($display)
     {
         $em=$this->getDoctrine()->getManager();
 
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
 
-        return array('films'=>$films);
+        if($display === 'grid'){
+        $content = $this->render('wottFrontBundle:Default:index_grid.html.twig', array(
+            'films' => $films));
+        }
+        else if($display === 'list'){
+           $content = $this->render('wottFrontBundle:Default:index_list.html.twig', array(
+            'films' => $films));
+        }
+        else{
+            $content = $this->render('wottFrontBundle:Default:index.html.twig', array(
+            'films' => $films));
+        }
+
+        return $content;
     }
 
     /**
