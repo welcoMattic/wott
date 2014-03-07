@@ -1,9 +1,11 @@
 {% extends 'wottFrontBundle::layout.html.twig' %}
+
 {% block content %}
+<section id="main" class="container" role="content">
     <!-- menu filtres-->
     <div class="row">
         <div class="col-md-12">
-            <nav class="navbar navbar-default" role="navigation">
+            <nav id="filter" class="navbar navbar-default" role="navigation">
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <p class="pull-left">Trier par :</p>
                     {{ knp_menu_render('wottFrontBundle:Builder:filtersMenu', { 'style': 'navbar' }) }}
@@ -23,23 +25,28 @@
     </div>
     <!--fin filtres-->
 
+   
 
+ 
     
+    
+     <div class="row" id="movies">
     <div class="row">
+    <ul class="container list-group">
     {% for film in films %}
-            <div class="col-md-3">
-            <div class="thumbnail">
-                <img src="{{ film.urlPoster|image_url_path}}" alt="Vignette du film" />
-                <div class="caption">
-                    <h2 class="text-center">{{ film.title }}</h2>
-                    <p>{{ film.synopsis | slice(0, 100) }}</p>
-                    {% if is_granted('ROLE_USER') %}
-                        <a href="" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter le film à ma watchlist</a>
-                    {% endif %}
-                    <a class="btn center-block btn-default" href="{{ path('showFilm', { 'id': film.id }) }}" title="Voir le détail du film">Voir le détail</a>
+            <li class="list-group-item row-fluid col-md-12">
+                <p class="col-md-3">
+                    <img class="thumbnail" src="{{ film.urlPoster|image_url_path}}" alt="Vignette du film" />
+                </p>
+                <div class="col-md-6">
+                    <h2 class="list-group-item-header">{{ film.title }}</h2>
+                    <p class="list-group-item-text">{{ film.synopsis | slice(0, 500) }}</p>
                 </div>
-            </div>
-        </div>
+                <p class="col-md-3">
+                   <a href="" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>
+                    <a class="btn center-block btn-default" href="" class="action" data-id="1" data-action="Like">Like</a>
+                </p>
+            </li>
     {% endfor %}
 
     </div>
@@ -49,7 +56,7 @@
             {# knp_pagination_render(pagination) #}
         </div>
     </div>
-
+</section>
 
 <a href="" class="action" data-id="1" data-action="Like">Like</a>
 <a href="" class="action" data-id="1" data-action="Seen">see</a>
@@ -57,7 +64,8 @@
 
 
 
-
+</ul>
+</div>
 {% endblock %}
 
 
@@ -75,7 +83,7 @@ $(document).ready(function(){
         $.ajax({
 
            type: "POST",
-           url: "{{ path('filmuser') }}",
+           url: "{{ path('like') }}",
            data: {"idFilm" : idFilm, "action" : action }
          }).done(function (response) {
             console.log(response);
