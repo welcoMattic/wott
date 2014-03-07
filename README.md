@@ -31,17 +31,14 @@ config webseveur local (hosts + vhost)
 
 - Update your database
 
-``` php app/console doctrine:schema:update --dump-sql ```
-
-if the dump sql looks like correct, do
-
-``` php app/console doctrine:schema:update --force ```
+``` php app/console doctrine:schema:create ```
 
 - Populate your database from TMDB API
 
 ``` php app/console wott:insertGenres ```
 ``` php app/console wott:insertFilms ```
+``` php app/console wott:insertPeoples ```
 
-- Compile assets with Assetic
+- Create a superAdmin to access to the admin dashboard
 
-``` php app/console assetic:dump ```
+``` php app/console fos:user:create --super-admin ```

@@ -1,41 +1,41 @@
 header img {
-	max-height: 100px;
+    max-height: 100px;
 }
 
 header nav .nav {
-	margin-top: 40px;
-	font-size: 20px;
+    margin-top: 40px;
+    font-size: 20px;
 }
 
 header .fb-login-button {
-	margin-left: 10px;
-}
-
-#filter nav p {
-	margin-top: 15px;
+    margin-left: 10px;
 }
 
 #filter nav div div button {
-	margin-top: 8px;
+    margin-top: 8px;
 }
 
 .list-group li p .thumbnail{
-	width: auto;
-	max-height: 250px;
-	text-align: left;
+    width: auto;
+    max-height: 250px;
+    text-align: left;
 }
 
 .list-group li p .btn{
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .dispNone{
-	display:none;
+    display:none;
 }
 
 
 footer.well {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+#btn-logout {
+    width: 90%;
 }
 
 /*** Responsive videoplayer (Youtube) ***/
