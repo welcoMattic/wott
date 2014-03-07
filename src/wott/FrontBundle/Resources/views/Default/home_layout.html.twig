@@ -55,11 +55,10 @@ $(document).ready(function(){
     $('.display').click(function(){
 
         display = $(this).data('display');
+        
         $.ajax({
-
            type: "POST",
-           url: "{{ path('homepage') }}"+display,
-           
+           url: "{{ path('list') }}/"+display,
          }).done(function (response) {
             $('#movies').remove();
             $('#filter').after(response);

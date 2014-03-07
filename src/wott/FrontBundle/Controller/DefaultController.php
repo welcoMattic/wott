@@ -13,13 +13,30 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/{display}", defaults={"display" = ""}, name="homepage")
+     * @Route("/", name="homepage")
      * @Template()
      */
-    public function indexAction($display)
+    public function indexAction()
     {
+
         $em=$this->getDoctrine()->getManager();
 
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
+
+        $content = $this->render('wottFrontBundle:Default:index.html.twig', array('films' => $films));
+
+
+        return $content;
+    }
+
+    /**
+     * @Route("/list/{display}", defaults={"display" = ""}, name="list")
+     * @Template()
+     */
+    public function listAction($display)
+    {
+        
+        $em=$this->getDoctrine()->getManager();
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
 
         if($display === 'grid'){
@@ -30,12 +47,9 @@ class DefaultController extends Controller
            $content = $this->render('wottFrontBundle:Default:index_list.html.twig', array(
             'films' => $films));
         }
-        else{
-            $content = $this->render('wottFrontBundle:Default:index.html.twig', array(
-            'films' => $films));
-        }
 
         return $content;
+        
     }
 
     /**
