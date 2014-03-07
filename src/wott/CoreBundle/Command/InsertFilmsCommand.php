@@ -35,7 +35,6 @@ class InsertFilmsCommand extends ContainerAwareCommand
                     );
             foreach ($res['results'] as $basicFilm) {
                 if ($em->getRepository('wottCoreBundle:Film')->findOneBy(array('api_id' => $basicFilm['id'])) == null) {
-<<<<<<< HEAD
                     if (!in_array($basicFilm['id'], $addedFilms)) {
                         $film = $client->getMoviesApi()->getMovie(
                                     $basicFilm['id'],
@@ -80,50 +79,6 @@ class InsertFilmsCommand extends ContainerAwareCommand
                         $i++;
                         $addedFilms[] = $basicFilm['id'];
                     }
-=======
-
-                    $film = $client->getMoviesApi()->getMovie(
-                                $basicFilm['id'],
-                                array('language' => 'fr', 'append_to_response' => 'trailers')
-                            );
-
-                    $images = $client->getMoviesApi()->getImages($basicFilm['id'],
-                                array('language' => 'fr', 'include_image_language' => 'fr')
-                            );
-
-                    $f = new Film();
-
-                    $break = false;
-                    foreach ($film['genres'] as $genre) {
-                        if ($genre['id'] == 10762) {
-                            $break = true;
-                            continue;
-                        }
-                        $g = $em->getRepository('wottCoreBundle:Genre')->findOneBy(array('api_id' => $genre['id']));
-                        $f->addGenre($g);
-                    }
-                    if($break) continue;
-
-                    $f->setApiId($film['id']);
-                    $f->setTitle($film['title']);
-                    $f->setOriginalTitle($film['original_title']);
-                    $f->setReleaseDate(new \DateTime($film['release_date']));
-                    $f->setSynopsis($film['overview'] ? $film['overview'] : '.');
-                    $f->setRuntime($film['runtime'] ? $film['runtime'] : 0);
-                    $f->setPopularity($film['popularity']);
-                    $f->setUrlPoster(!empty($images['posters']) ? $images['posters'][0]['file_path'] : '');
-
-                    $f->setNationalities(array_reduce($film['production_countries'], function ($current, $next) {
-                                            return ($current != '') ? $current . ',' . $next['name'] : $next['name'];
-                                        }));
-
-                    if (!empty($film['trailers']['youtube'])) {
-                        $f->setUrlTrailer($film['trailers']['youtube'][0]['source']);
-                    }
-
-                    $em->persist($f);
-                    $i++;
->>>>>>> 064e9fa281adb66dcc4b6816b1d7f6691bd0f58d
                 }
             }
             $progress->advance();

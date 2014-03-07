@@ -55,7 +55,7 @@ class User extends BaseUser
     /**
      * @param Array
      */
-    public function setFBData($fbdata) // C'est dans cette méthode que vous ajouterez vos informations
+    public function setFBData($fbdata)
     {
         if (isset($fbdata['id'])) {
             $this->setFacebookId($fbdata['id']);

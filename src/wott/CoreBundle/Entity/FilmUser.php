@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * FilmUser
  *
  * @ORM\Table(name="film_user")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="wott\CoreBundle\Repository\FilmUserRepository")
  */
 class FilmUser
 {
@@ -32,20 +32,6 @@ class FilmUser
     private $note;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_like", type="datetime", nullable = true)
-     */
-    private $dateLike;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_seen", type="datetime", nullable = true)
-     */
-    private $dateSeen;
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="is_like", type="boolean", nullable = true)
@@ -53,11 +39,25 @@ class FilmUser
     private $isLike;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_like", type="datetime", nullable = true)
+     */
+    private $dateLike;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="is_seen", type="boolean", nullable = true)
      */
     private $isSeen;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_seen", type="datetime", nullable = true)
+     */
+    private $dateSeen;
 
     /**
      * @var boolean
@@ -72,6 +72,7 @@ class FilmUser
      * @ORM\Column(name="date_wanted", type="datetime", nullable = true)
      */
     private $dateWanted;
+
 
     public function setFilm(\wott\CoreBundle\Entity\Film $film)
     {

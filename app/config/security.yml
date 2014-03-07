@@ -51,16 +51,10 @@ security:
 
 
     access_control:
-
-       #- { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       #- { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       #- { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       #- { path: ^/secured/.*, role: [IS_AUTHENTICATED_FULLY] }
-       #- { path: ^/.*, role: [IS_AUTHENTICATED_ANONYMOUSLY] }
        #Sonata
         - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login-check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
         - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/, role: ROLE_USER }
