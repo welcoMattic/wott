@@ -28,7 +28,6 @@ class InsertPeoplesCommand extends ContainerAwareCommand
         $i = 0;
 
         foreach ($films as $film) {
-            if($film->getId()<126) continue;
             $res = $client->getMoviesApi()->getCredits(
                         $film->getApiId(),
                         array('language' => 'fr')
@@ -36,6 +35,7 @@ class InsertPeoplesCommand extends ContainerAwareCommand
             $basicPeoples = array_merge($res['cast'], $res['crew']);
 
             foreach ($basicPeoples as $basicPeople) {
+                $i++;
                 $people = $client->getPeopleApi()->getPerson(
                     $basicPeople['id'],
                     array('language' => 'fr')
@@ -60,7 +60,7 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                 !isset($basicPeople['character']) ?: $filmPeople->setRole($basicPeople['character']);
 
                 $em->persist($filmPeople);
-                $i++;
+
             }
             $progress->advance();
         }

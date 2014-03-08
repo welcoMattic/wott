@@ -11,11 +11,9 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
-        $menu->addChild('Home', array('route' => 'homepage'));
-
-        $menu->addChild('Mon espace', array('route' => 'fos_user_profile_show'));
-
-        $menu->addChild('Nous contacter', array('route' => 'contact'));
+        $menu->addChild('Accueil', array('route' => 'homepage'));
+        $menu->addChild('Contact', array('route' => 'contact'));
+        $menu->addChild('Mentions', array('route' => 'mentions'));
 
         return $menu;
     }
