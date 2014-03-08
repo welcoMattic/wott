@@ -3,6 +3,7 @@
 namespace wott\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use wott\CoreBundle\Entity\Genre;
 
 /**
  * GenreRepository
@@ -12,4 +13,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class GenreRepository extends EntityRepository
 {
+
+    public function getFilmsByPopularity(Genre $genre, $limit)
+    {
+        $qb = $this->createQueryBuilder('f');
+
+        $query = $qb->select('f')
+                    ->where('f.genre = :genre')
+                    ->orderBy('f.popularity', 'DESC')
+                    ->setParameter('genre', $this)
+                    ->setMaxResults($limit)
+                    ->getQuery();
+
+        return $query->getResult();
+    }
+
 }

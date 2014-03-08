@@ -70,11 +70,17 @@ class UserController extends Controller
     public function suggestAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $User = $this->container->get('security.context')->getToken()->getUser();
-        $films = $em->getRepository('wottCoreBundle:FilmUser')->getLikesByUser($User);
-var_dump($films);
-
-        return array('films' => $films);
+        $user = $this->getUser();
+        $likedFilms = $em->getRepository('wottCoreBundle:FilmUser')->getLikesByUser($user);
+        $likedGenres = array();
+        $tmpFilms = array();
+        foreach($likedFilms as $likedFilm) {
+            foreach($likedFilm->getFilm()->getGenres() as $genre) {
+                $tmpFilms[] = $em->getRepository('wottCoreBundle:Genre')->getFilmsByPopularity($genre, 10);
+                // [TODO] get isSeen films and pop them
+            }
+        }
+        return array('tmpFilms' => $tmpFilms);
     }
 
 }

@@ -35,13 +35,13 @@ class InsertPeoplesCommand extends ContainerAwareCommand
             $basicPeoples = array_merge($res['cast'], $res['crew']);
 
             foreach ($basicPeoples as $basicPeople) {
-                $i++;
                 $people = $client->getPeopleApi()->getPerson(
                     $basicPeople['id'],
                     array('language' => 'fr')
                 );
                 if(!isset($people['name']) || $em->getRepository('wottCoreBundle:People')->findOneBy(array('api_id' => $basicPeople['id'])))
                     continue;
+                $i++;
 
                 $filmPeople = new FilmPeople();
                 $filmPeople->setFilm($film);

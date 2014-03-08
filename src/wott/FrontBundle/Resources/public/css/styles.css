@@ -12,6 +12,10 @@ header .fb-login-button {
     margin-top: 14px;
 }
 
+.hide {
+    display: none;
+}
+
 #filter nav div div button {
     margin-top: 8px;
 }

@@ -36,6 +36,19 @@ class Genre
     private $api_id;
 
     /**
+     * @ORM\ManyToMany(targetEntity="wott\CoreBundle\Entity\Film", mappedBy="genres")
+     */
+    private $films;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->films = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -89,5 +102,38 @@ class Genre
     public function getApiId()
     {
         return $this->api_id;
+    }
+
+    /**
+     * Add films
+     *
+     * @param \wott\CoreBundle\Entity\Film $films
+     * @return Film
+     */
+    public function addFilm(\wott\CoreBundle\Entity\Film $films)
+    {
+        $this->films[] = $films;
+
+        return $this;
+    }
+
+    /**
+     * Remove films
+     *
+     * @param \wott\CoreBundle\Entity\Film $films
+     */
+    public function removeFilms(\wott\CoreBundle\Entity\Film $films)
+    {
+        $this->films->removeElement($films);
+    }
+
+    /**
+     * Get films
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFilms()
+    {
+        return $this->films;
     }
 }
