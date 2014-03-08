@@ -10,31 +10,50 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ film.urlPoster|image_url_path }}" alt="Affiche du film A">
+            <img class="img-responsive img-rounded" src="{{ film.urlPoster|image_url_path }}" alt="Affiche du film A">
             <button class="btn btn-default btn-primary center-block">Ajouter à ma watchlist</button>
             <button class="btn btn-default center-block">Liker le film</button>
             <button class="btn btn-default center-block">J'ai vu ce film</button>
         </div>
         <div class="col-md-8">
             <h2>{{ film.title }}</h2>
-            <ul>
-                <li>Titre original : {{ film.originalTitle }}</li>
-                <li>Film de : </li>
-                <li>Nationalité(s) : {{ film.nationalities }}</li>
-                <li>Genres : </li>
-                <li>Temps : {{ film.runtime }}</li>
-                <li>Année de sortie cinéma :</li>
-                <li>Note : {{ film.popularity }}</li>
-            </ul>
-            <h3>Synopsis</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at sem adipiscing, adipiscing tellus et, sodales tortor. Suspendisse malesuada risus ac diam consectetur, ac sagittis nisl placerat. Sed consequat at leo sit amet bibendum. Donec vel nisi sollicitudin, ornare odio ullamcorper, pulvinar quam.
-            </p>
-            <h3>Trailer</h3>
-                <div class="videoWrapper">
-                    <iframe width="605" height="395" src="{{ film.urlTrailer|image_url_path }}" allowfullscreen=""></iframe>
+            <div class="row">
+                <div class="col-md-6">
+                    <blockquote>
+                        <p>Titre original</p> <small><cite title="Original Title">{{ film.originalTitle }}</cite></small>
+                        <p>Réalisateur</p> <small><cite title="Director"></cite></small>
+                        <p>Sortie au cinéma</p> <small><cite title="Release date">{{ film.releaseDate|date("d/m/Y") }}</cite></small>
+                        <p>Durée</p> <small><cite title="runtime">{{ film.runtime }}</cite></small>
+                    </blockquote>
                 </div>
-            <h3>Acteurs</h3>
-                <div class="row-fluid">
+                <div class="col-md-6">
+                    <blockquote>
+                        <p>Nationalités</p> <small><cite title="nationalities">{{ film.nationalities }}</cite></small>
+                        <p>Genres</p>
+                        <small><cite title="genres">
+                            {% for genre in film.genres %}
+                                {% if loop.last %}
+                                {{ genre.name }}
+                                {% else %}
+                                {{ genre.name }},
+                                {% endif %}
+                            {% endfor %}
+                        </cite></small>
+                        <p>Note</p> <small><cite title="note">{{ film.popularity|number_format }} / 100</cite></small>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="row">
+                <h3>Synopsis</h3>
+                <p>{{ film.synopsis }}</p>
+                {% if film.urlTrailer == true %}
+                <h3>Trailer</h3>
+                <div class="videoWrapper">
+                    <iframe width="605" height="395" src="http://www.youtube.com/embed/DKKpespYHkg" allowfullscreen=""></iframe>
+                </div>
+                {% endif %}
+                <h3>Acteurs</h3>
+                <div class="row">
                     <div class="col-md-3">
                         <div class="thumbnail">
                             <img src="#" alt="Visuel acteur A">
@@ -42,8 +61,9 @@
                         </div>
                     </div>
                 </div>
-         </div>
-    </div>
+            </div>     
+        </div>
+    </div><!--row-->
 </section>
 
 {% endblock %}
