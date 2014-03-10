@@ -16,12 +16,12 @@ class GenreRepository extends EntityRepository
 
     public function getFilmsByPopularity(Genre $genre, $limit)
     {
-        $qb = $this->createQueryBuilder('f');
+        $qb = $this->createQueryBuilder('g');
 
         $query = $qb->select('f')
                     ->where('f.genre = :genre')
                     ->orderBy('f.popularity', 'DESC')
-                    ->setParameter('genre', $this)
+                    ->setParameter('genre', $genre)
                     ->setMaxResults($limit)
                     ->getQuery();
 

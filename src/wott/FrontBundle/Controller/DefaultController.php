@@ -16,7 +16,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
 
         return array('films' => $films);
     }
