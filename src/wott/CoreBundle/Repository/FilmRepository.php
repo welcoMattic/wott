@@ -13,12 +13,14 @@ use Doctrine\ORM\EntityRepository;
 class FilmRepository extends EntityRepository
 {
 
-    public function getFilmsByPopularity($limit)
+    public function getFilmsByPopularity($limit, $genre = null)
     {
         $qb = $this->createQueryBuilder('f');
-        $qb->orderBy('f.popularity', 'DESC')->setMaxResults($limit);
+        $query = $qb->orderBy('f.popularity', 'DESC');
+        if($genre) $query->where('f.genre', ':genre')->setParameter('genre',$genre);
+        $query->setMaxResults($limit)->getQuery();
 
-        return $qb->getQuery()->getResult();
+        return $query->getResult();
     }
 
 }

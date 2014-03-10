@@ -76,7 +76,7 @@ class UserController extends Controller
         $tmpFilms = array();
         foreach($likedFilms as $likedFilm) {
             foreach($likedFilm->getFilm()->getGenres() as $genre) {
-                $tmpFilms[] = $em->getRepository('wottCoreBundle:Genre')->getFilmsByPopularity($genre, 10);
+                $tmpFilms[] = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($genre, 10);
                 // [TODO] get isSeen films and pop them
             }
         }
