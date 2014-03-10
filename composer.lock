@@ -2322,12 +2322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "2e79f244d83c4115dda2f89f589c85ce665b3672"
+                "reference": "5eb3453cffd8051281f2cdf4478096df5badb383"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/2e79f244d83c4115dda2f89f589c85ce665b3672",
-                "reference": "2e79f244d83c4115dda2f89f589c85ce665b3672",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/5eb3453cffd8051281f2cdf4478096df5badb383",
+                "reference": "5eb3453cffd8051281f2cdf4478096df5badb383",
                 "shasum": ""
             },
             "require": {
@@ -2378,7 +2378,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2014-03-06 17:45:45"
+            "time": "2014-03-07 11:23:14"
         },
         {
             "name": "sonata-project/cache",

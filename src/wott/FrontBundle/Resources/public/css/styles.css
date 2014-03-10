@@ -9,6 +9,11 @@ header nav .nav {
 
 header .fb-login-button {
     margin-left: 10px;
+    margin-top: 14px;
+}
+
+.hide {
+    display: none;
 }
 
 #filter nav div div button {

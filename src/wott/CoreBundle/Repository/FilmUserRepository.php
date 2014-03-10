@@ -13,15 +13,17 @@ use wott\CoreBundle\Entity\User;
  */
 class FilmUserRepository extends EntityRepository
 {
-    public function getLikesByUser(User $User)
+
+    public function getLikesByUser(User $user)
     {
         $qb = $this->createQueryBuilder('fu');
-        $qb->select('fu, f')
-                ->join('fu.film', 'f')
-                ->where('fu.isLike = true AND fu.user = :user')
-                ->setParameter('user', $User);
+        $query = $qb->select('fu, f')
+                    ->join('fu.film', 'f')
+                    ->where('fu.user = :user')
+                    ->setParameter('user', $user)
+                    ->getQuery();
 
-        return $qb->getQuery()->getResult();
+        return $query->getResult();
     }
 
 }

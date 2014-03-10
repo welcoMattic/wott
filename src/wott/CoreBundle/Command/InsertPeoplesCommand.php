@@ -28,7 +28,6 @@ class InsertPeoplesCommand extends ContainerAwareCommand
         $i = 0;
 
         foreach ($films as $film) {
-            if($film->getId()<126) continue;
             $res = $client->getMoviesApi()->getCredits(
                         $film->getApiId(),
                         array('language' => 'fr')
@@ -42,6 +41,7 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                 );
                 if(!isset($people['name']) || $em->getRepository('wottCoreBundle:People')->findOneBy(array('api_id' => $basicPeople['id'])))
                     continue;
+                $i++;
 
                 $filmPeople = new FilmPeople();
                 $filmPeople->setFilm($film);
@@ -60,7 +60,7 @@ class InsertPeoplesCommand extends ContainerAwareCommand
                 !isset($basicPeople['character']) ?: $filmPeople->setRole($basicPeople['character']);
 
                 $em->persist($filmPeople);
-                $i++;
+
             }
             $progress->advance();
         }
