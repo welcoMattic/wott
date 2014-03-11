@@ -28,15 +28,15 @@ class UserController extends Controller
         $getter = 'getIs'.$action;
         $date = 'setDate'.$action;
 
-        $em=$this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-        $film=$em->getRepository('wottCoreBundle:Film')->find($idFilm);
-        $user=$em->getRepository('wottCoreBundle:User')->find($idUser);
+        $film = $em->getRepository('wottCoreBundle:Film')->find($idFilm);
+        $user = $em->getRepository('wottCoreBundle:User')->find($idUser);
 
         $filmUser = $em->getRepository('wottCoreBundle:FilmUser')->findOneBy(array('film'=>$film, 'user'=>$user));
 
         if (empty($filmUser)) {
-            $filmUser= new FilmUser();
+            $filmUser = new FilmUser();
             $filmUser->setUser($user);
             $filmUser->setFilm($film);
             $filmUser->$setter(true);
@@ -44,14 +44,12 @@ class UserController extends Controller
 
             $em->persist($filmUser);
         } else {
-            $$getter=$filmUser->$getter();
+            $$getter = $filmUser->$getter();
 
             if (!$$getter) {
-
                 $filmUser->$setter(true);
                 $filmUser->$date();
             } else {
-
                 $filmUser->$setter(false);
                 $filmUser->$date();
             }
@@ -72,12 +70,10 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $FilmUser = $em->getRepository('wottCoreBundle:FilmUser');
-        
-        $film=$FilmUser->suggest($user);
+
+        $films = $FilmUser->suggest($user);
 
         return array('films' => $films);
     }
-
-
 
 }

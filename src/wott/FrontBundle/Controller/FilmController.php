@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use wott\CoreBundle\Entity\Film;
-use wott\CoreBundle\Entity\FilmPeople; 
+use wott\CoreBundle\Entity\FilmPeople;
 
 /**
  * @Route("/films")
@@ -29,15 +29,16 @@ class FilmController extends Controller
 
         var_dump($filmPeople);die();
 
-        foreach($filmPeople as $people){
-            if($people->getJob() == 'Director'){
+        foreach ($filmPeople as $people) {
+            if ($people->getJob() == 'Director') {
                 $director = $people->getPeople()->getName();
             }
-            if($people->getRole()){
+            if ($people->getRole()) {
                 array_push($cast, $people->getPeople()->getName());
             }
 
         }
+
         return array('film' => $film, 'director' => $director, 'cast' => $cast);
     }
 

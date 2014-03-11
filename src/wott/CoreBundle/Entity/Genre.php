@@ -107,7 +107,7 @@ class Genre
     /**
      * Add films
      *
-     * @param \wott\CoreBundle\Entity\Film $films
+     * @param  \wott\CoreBundle\Entity\Film $films
      * @return Film
      */
     public function addFilm(\wott\CoreBundle\Entity\Film $films)

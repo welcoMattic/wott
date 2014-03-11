@@ -256,7 +256,7 @@ class People
     /**
      * Add filmPeople
      *
-     * @param \wott\CoreBundle\Entity\FilmPeople $filmPeople
+     * @param  \wott\CoreBundle\Entity\FilmPeople $filmPeople
      * @return People
      */
     public function addFilmPeople(\wott\CoreBundle\Entity\FilmPeople $filmPeople)

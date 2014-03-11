@@ -39,22 +39,22 @@ class FilmUserRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function suggest(User $user){
-        
-        $likedFilmsByUser = $this->getLikesByUser($user);
+    public function suggest(User $user)
+    {
+        $em = $this->getEntityManager();
+        $likedFilmsByUser = self::getLikesByUser($user);
         $films = array();
         $seenFilms = array();
-        $film = new FilmRepository();
 
-        foreach($likedFilmsByUser as $likedFilmByUser) {
-            foreach($likedFilmByUser->getFilm()->getGenres() as $genre) {
-                $filmsByLikedGenres = $film->getFilmsByPopularity(10, $genre);
+        foreach ($likedFilmsByUser as $likedFilmByUser) {
+            foreach ($likedFilmByUser->getFilm()->getGenres() as $genre) {
+                $filmsByLikedGenres = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(10, $genre);
                 $seenFilmsUser = $this->getIsSeenFilms($user);
-                foreach($seenFilmsUser as $seenFilmUser) {
+                foreach ($seenFilmsUser as $seenFilmUser) {
                     $seenFilms[] = $seenFilmUser->getFilm();
                 }
-                foreach($filmsByLikedGenres as $filmsByLikedGenre) {
-                    if(!in_array($filmsByLikedGenre, $seenFilms) && !in_array($filmsByLikedGenre, $films)) {
+                foreach ($filmsByLikedGenres as $filmsByLikedGenre) {
+                    if (!in_array($filmsByLikedGenre, $seenFilms) && !in_array($filmsByLikedGenre, $films)) {
                         $films[] = $filmsByLikedGenre;
                     }
                 }
@@ -63,7 +63,5 @@ class FilmUserRepository extends EntityRepository
 
         return $films;
     }
-
-
 
 }
