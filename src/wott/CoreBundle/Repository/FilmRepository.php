@@ -17,8 +17,6 @@ class FilmRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('f');
 
-        var_dump($genre);
-
         if($genre) {
           $query = $qb->where(':genre MEMBER OF f.genres')
                       ->setParameter('genre', $genre)
