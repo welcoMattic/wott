@@ -16,12 +16,20 @@ class FilmRepository extends EntityRepository
     public function getFilmsByPopularity($limit, $genre = null)
     {
         $qb = $this->createQueryBuilder('f');
-        $query = $qb->orderBy('f.popularity', 'DESC');
-        /*if($genre){
-        	$query->where('f.genre', ':genre');
-        	$query->setParameter('genre',$genre);
-        }*/
-        $query->setMaxResults($limit)->getQuery();
+
+        var_dump($genre);
+
+        if($genre) {
+          $query = $qb->where('f.genres =  :genres')
+                      ->setParameter('genres', $genre)
+                      ->orderBy('f.popularity', 'DESC')
+                      ->setMaxResults($limit)
+                      ->getQuery();
+        } else {
+          $query = $qb->orderBy('f.popularity', 'DESC')
+                      ->setMaxResults($limit)
+                      ->getQuery();
+        }
 
         return $query->getResult();
     }
