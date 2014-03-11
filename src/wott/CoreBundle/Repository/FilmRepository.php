@@ -18,7 +18,7 @@ class FilmRepository extends EntityRepository
         $qb = $this->createQueryBuilder('f');
 
         if($genre) {
-          $query = $qb->where('f.genre =  :genre')
+          $query = $qb->where(':genre MEMBER OF f.genres')
                       ->setParameter('genre', $genre)
                       ->orderBy('f.popularity', 'DESC')
                       ->setMaxResults($limit)

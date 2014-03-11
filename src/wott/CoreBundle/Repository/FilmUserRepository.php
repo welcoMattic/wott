@@ -26,4 +26,16 @@ class FilmUserRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function getIsSeenFilms(User $user)
+    {
+        $qb = $this->createQueryBuilder('fu');
+        $query = $qb->select('fu, f')
+                    ->join('fu.film', 'f')
+                    ->where('fu.user = :user AND fu.isSeen = true')
+                    ->setParameter('user', $user)
+                    ->getQuery();
+
+        return $query->getResult();
+    }
+
 }
