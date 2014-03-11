@@ -21,6 +21,7 @@ class FilmUserRepository extends EntityRepository
         $query = $qb->select('fu, f')
                     ->join('fu.film', 'f')
                     ->where('fu.user = :user')
+                    ->andWhere('fu.isLike = true')
                     ->setParameter('user', $user)
                     ->getQuery();
 
@@ -32,7 +33,8 @@ class FilmUserRepository extends EntityRepository
         $qb = $this->createQueryBuilder('fu');
         $query = $qb->select('fu, f')
                     ->join('fu.film', 'f')
-                    ->where('fu.user = :user AND fu.isSeen = true')
+                    ->where('fu.user = :user')
+                    ->andWhere('fu.isSeen = true')
                     ->setParameter('user', $user)
                     ->getQuery();
 
@@ -42,21 +44,20 @@ class FilmUserRepository extends EntityRepository
     public function suggest(User $user)
     {
         $em = $this->getEntityManager();
-        $likedFilmsByUser = self::getLikesByUser($user);
+        $likedFilmsByUser = $this->getLikesByUser($user);
+        $seenFilmsUser = $this->getIsSeenFilms($user);
+        foreach ($seenFilmsUser as $seenFilmUser) {
+            $seenFilms[] = $seenFilmUser->getFilm();
+        }
         $films = array();
         $seenFilms = array();
 
         foreach ($likedFilmsByUser as $likedFilmByUser) {
             foreach ($likedFilmByUser->getFilm()->getGenres() as $genre) {
                 $filmsByLikedGenres = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(10, $genre);
-                $seenFilmsUser = $this->getIsSeenFilms($user);
-                foreach ($seenFilmsUser as $seenFilmUser) {
-                    $seenFilms[] = $seenFilmUser->getFilm();
-                }
                 foreach ($filmsByLikedGenres as $filmsByLikedGenre) {
-                    if (!in_array($filmsByLikedGenre, $seenFilms) && !in_array($filmsByLikedGenre, $films)) {
+                    if (!in_array($filmsByLikedGenre, $seenFilms) && !in_array($filmsByLikedGenre, $films))
                         $films[] = $filmsByLikedGenre;
-                    }
                 }
             }
         }
