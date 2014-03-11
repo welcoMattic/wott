@@ -71,26 +71,13 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $likedFilmsByUser = $em->getRepository('wottCoreBundle:FilmUser')->getLikesByUser($user);
-        $films = array();
-        $seenFilms = array();
-
-        foreach($likedFilmsByUser as $likedFilmByUser) {
-            foreach($likedFilmByUser->getFilm()->getGenres() as $genre) {
-                $filmsByLikedGenres = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(10, $genre);
-                $seenFilmsUser = $em->getRepository('wottCoreBundle:FilmUser')->getIsSeenFilms($user);
-                foreach($seenFilmsUser as $seenFilmUser) {
-                    $seenFilms[] = $seenFilmUser->getFilm();
-                }
-                foreach($filmsByLikedGenres as $filmsByLikedGenre) {
-                    if(!in_array($filmsByLikedGenre, $seenFilms) && !in_array($filmsByLikedGenre, $films)) {
-                        $films[] = $filmsByLikedGenre;
-                    }
-                }
-            }
-        }
+        $FilmUser = $em->getRepository('wottCoreBundle:FilmUser');
+        
+        $film=$FilmUser->suggest($user);
 
         return array('films' => $films);
     }
+
+
 
 }

@@ -4,6 +4,7 @@ namespace wott\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use wott\CoreBundle\Entity\User;
+use wott\CoreBundle\Entity\Film;
 
 /**
  * FilmUserRepository
@@ -37,5 +38,32 @@ class FilmUserRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    public function suggest(User $user){
+        
+        $likedFilmsByUser = $this->getLikesByUser($user);
+        $films = array();
+        $seenFilms = array();
+        $film = new FilmRepository();
+
+        foreach($likedFilmsByUser as $likedFilmByUser) {
+            foreach($likedFilmByUser->getFilm()->getGenres() as $genre) {
+                $filmsByLikedGenres = $film->getFilmsByPopularity(10, $genre);
+                $seenFilmsUser = $this->getIsSeenFilms($user);
+                foreach($seenFilmsUser as $seenFilmUser) {
+                    $seenFilms[] = $seenFilmUser->getFilm();
+                }
+                foreach($filmsByLikedGenres as $filmsByLikedGenre) {
+                    if(!in_array($filmsByLikedGenre, $seenFilms) && !in_array($filmsByLikedGenre, $films)) {
+                        $films[] = $filmsByLikedGenre;
+                    }
+                }
+            }
+        }
+
+        return $films;
+    }
+
+
 
 }
