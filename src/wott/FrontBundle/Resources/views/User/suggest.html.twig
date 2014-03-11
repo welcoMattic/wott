@@ -30,8 +30,8 @@
     </div>
 
     <div class="row" id="movies">
-        {% for tmpFilm in tmpFilms %}
-            {{ tmpFilm.title }}
+        {% for film in films %}
+            {{ film.title }} <br>
         {% endfor %}
     </div>
 {% endblock %}
