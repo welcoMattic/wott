@@ -4,6 +4,7 @@ namespace wott\CoreBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use wott\CoreBundle\Entity\User;
+use wott\CoreBundle\Entity\Film;
 
 /**
  * FilmUserRepository
@@ -13,15 +14,55 @@ use wott\CoreBundle\Entity\User;
  */
 class FilmUserRepository extends EntityRepository
 {
-    public function getLikesByUser(User $User)
+
+    public function getLikesByUser(User $user)
     {
         $qb = $this->createQueryBuilder('fu');
-        $qb->select('fu, f')
-                ->join('fu.film', 'f')
-                ->where('fu.isLike = true AND fu.user = :user')
-                ->setParameter('user', $User);
+        $query = $qb->select('fu, f')
+                    ->join('fu.film', 'f')
+                    ->where('fu.user = :user')
+                    ->andWhere('fu.isLike = true')
+                    ->setParameter('user', $user)
+                    ->getQuery();
 
-        return $qb->getQuery()->getResult();
+        return $query->getResult();
+    }
+
+    public function getIsSeenFilms(User $user)
+    {
+        $qb = $this->createQueryBuilder('fu');
+        $query = $qb->select('fu, f')
+                    ->join('fu.film', 'f')
+                    ->where('fu.user = :user')
+                    ->andWhere('fu.isSeen = true')
+                    ->setParameter('user', $user)
+                    ->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function suggest(User $user)
+    {
+        $em = $this->getEntityManager();
+        $likedFilmsByUser = $this->getLikesByUser($user);
+        $seenFilmsUser = $this->getIsSeenFilms($user);
+        foreach ($seenFilmsUser as $seenFilmUser) {
+            $seenFilms[] = $seenFilmUser->getFilm();
+        }
+        $films = array();
+        $seenFilms = array();
+
+        foreach ($likedFilmsByUser as $likedFilmByUser) {
+            foreach ($likedFilmByUser->getFilm()->getGenres() as $genre) {
+                $filmsByLikedGenres = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(10, $genre);
+                foreach ($filmsByLikedGenres as $filmsByLikedGenre) {
+                    if (!in_array($filmsByLikedGenre, $seenFilms) && !in_array($filmsByLikedGenre, $films))
+                        $films[] = $filmsByLikedGenre;
+                }
+            }
+        }
+
+        return $films;
     }
 
 }

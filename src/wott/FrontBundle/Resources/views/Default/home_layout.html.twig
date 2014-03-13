@@ -3,31 +3,31 @@
     <!-- menu filtres-->
     <div class="row" id="filter">
         <div class="col-md-12">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <p class="pull-left">Trier par :</p>
+            <div class="navbar navbar-default" role="navigation">
+                <div class="collapse navbar-collapse">
                     {{ knp_menu_render('wottFrontBundle:Builder:filtersMenu', { 'style': 'navbar' }) }}
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="search" class="form-control" placeholder="Rechercher un film">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-                    <div class="pull-right">
-                        <button type="button" class="btn bt-default btn-large display dispNone" data-display="grid">{{ icon('th') }}</button>
-                        <button type="button" class="btn bt-default btn-large display" data-display="list">{{ icon('th-list') }}</button>
-                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default navbar-btn display-btn active" data-display="grid">{{ icon('th') }}</button>
+                                <button type="button" class="btn btn-default navbar-btn display-btn" data-display="list">{{ icon('th-list') }}</button>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
         </div>
     </div>
     <!--fin filtres-->
 
-
     {% block main %}{% endblock %}
 {% endblock %}
-
-
 
 {% block javascript %}
 {{ parent() }}
@@ -52,8 +52,8 @@ $(document).ready(function(){
 
     });
 
-    $('.display').click(function(){
-
+    $('.display-btn').click(function(){
+        var $this = $(this);
         display = $(this).data('display');
 
         $.ajax({
@@ -61,12 +61,13 @@ $(document).ready(function(){
            url: "{{ path('list') }}/"+display,
            beforeSend:function(){
                 $('#movies').remove();
-                $('.progress').toggleClass('dispNone');
+                $('.progress').toggleClass('hide');
             }
          }).done(function (response) {
             $('#filter').after(response);
-            $('.display').toggleClass('dispNone');
-            $('.progress').toggleClass('dispNone');
+            $('.display-btn').removeClass('active');
+            $this.toggleClass('active');
+            $('.progress').toggleClass('hide');
         });
 
         return false;

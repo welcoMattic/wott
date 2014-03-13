@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-    <title>Home</title>
+    <title> WOTT - {% block title %}Home{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('bundles/wottfront/css/styles.css') }}" rel="stylesheet" media="screen">
@@ -11,66 +11,66 @@
 <body>
     {% block header %}
     <header>
-      <div class="row">
-        <nav class="navbar navbar-default" role="navigation">
-          <div class="container">
-            <div class="col-md-2 navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="{{ path('homepage') }}"><img src="{{ asset('bundles/wottfront/images/logo.png') }}" alt="Logo WOTT"></a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <h1>
-                  <a href="{{ path('homepage') }}">
-                    <img src="{{ asset('bundles/wottfront/images/logo.png') }}" alt="Logo WOTT">
-                  </a>
-                </h1>
-            </div>
-
-            <div class="col-md-6 collapse navbar-collapse navbar-ex1-collapse">
-                {{ knp_menu_render('wottFrontBundle:Builder:mainMenu', { 'style': 'navbar' }) }}
-            </div>
-
-            <div class="col-md-4 pull-right">
-              {% if app.user %}
-                <div class="pull-left">
-                  <a class="btn btn-default btn-xs" href="{{ path('_security_logout') }}">Logout</a>
+                    </button>
                 </div>
-              {% else %}
-                <div class="pull-left">
-                  <a class="btn btn-default btn-xs" href="{{ path('fos_user_security_login') }}">Login without FB</a>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    {{ knp_menu_render('wottFrontBundle:Builder:mainMenu', { 'style': 'navbar' }) }}
+                    {% if app.user %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
+                            <ul class="dropdown-menu" aria-labelledby="Mon compte">
+                                <li><a href="{{ path('sonata_user_profile_show') }}">Voir mon profil</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('_security_logout') }}" class="btn btn-danger navbar-btn" id="btn-logout">Déconnexion</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    {% else %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            {{ facebook_login_button() }}
+                            {{ facebook_initialize({'xfbml': true, 'culture': 'fr_FR', 'fbAsyncInit': 'onFbInit();'}) }}
+                        </li>
+                        <li><a href="{{ path('fos_user_security_login') }}">Connexion / Inscription sans Facebook</a></li>
+                    </ul>
+                    <script type="text/javascript" > // Script for FOSFacebookBundle
+                        function goLogIn(){
+                            window.location = "{{ path('_security_check') }}";
+                        }
+                        function onFbInit() {
+                            if (typeof(FB) != 'undefined' && FB != null ) {
+                                FB.Event.subscribe('auth.statusChange', function(response) {
+                                    if (response.session || response.authResponse) setTimeout(goLogIn, 50);
+                                    else window.location = "{{ path('_security_logout') }}";
+                                });
+                            }
+                        }
+                    </script>
+                    {% endif %}
                 </div>
-                <div>
-                  {{ facebook_login_button() }}
-                  {{ facebook_initialize({'xfbml': true, 'culture': 'fr_FR', 'fbAsyncInit': 'onFbInit();'}) }}
-                </div>
-                <script type="text/javascript" > // Script for FOSFacebookBundle
-                  function goLogIn(){
-                    window.location = "{{ path('_security_check') }}";
-                  }
-
-                  function onFbInit() {
-                    if (typeof(FB) != 'undefined' && FB != null ) {
-                      FB.Event.subscribe('auth.statusChange', function(response) {
-                        if (response.session || response.authResponse) setTimeout(goLogIn, 50);
-                        else window.location = "{{ path('_security_logout') }}";
-                      });
-                    }
-                  }
-                </script>
-              {% endif %}
-              </div>
             </div>
-        </nav>
-      </div>
+        </div>
     </header>
     {% endblock %}
+
+    <div class="jumbotron">
+        <h1>What's on TV tonight ?</h1>
+        <p>Bienvenue sur WOTT.fr, le site de suggestion de films pour ne plus glander devant TF1 le dimanche soir ! ;)</p>
+    </div>
 
     <section id="main" class="container-fluid" role="content">
     {% block content %}{% endblock %}
     </section>
-    
+
     <footer class="well">
       <div class="container">
         <p class="text-center">Copyright &copy; - 2014 - What's On TV Tonight</p>

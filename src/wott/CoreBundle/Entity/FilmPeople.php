@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * FilmPeople
  *
  * @ORM\Table(name="film_people")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="wott\CoreBundle\Repository\FilmPeopleRepository")
  */
 class FilmPeople
 {
@@ -88,7 +88,7 @@ class FilmPeople
      */
     public function getPeople()
     {
-      return $people->people;
+      return $this->people;
     }
 
     /**
@@ -135,5 +135,15 @@ class FilmPeople
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

@@ -245,4 +245,44 @@ class People
     {
         return $this->deathday;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->filmPeople = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add filmPeople
+     *
+     * @param  \wott\CoreBundle\Entity\FilmPeople $filmPeople
+     * @return People
+     */
+    public function addFilmPeople(\wott\CoreBundle\Entity\FilmPeople $filmPeople)
+    {
+        $this->filmPeople[] = $filmPeople;
+
+        return $this;
+    }
+
+    /**
+     * Remove filmPeople
+     *
+     * @param \wott\CoreBundle\Entity\FilmPeople $filmPeople
+     */
+    public function removeFilmPeople(\wott\CoreBundle\Entity\FilmPeople $filmPeople)
+    {
+        $this->filmPeople->removeElement($filmPeople);
+    }
+
+    /**
+     * Get filmPeople
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFilmPeople()
+    {
+        return $this->filmPeople;
+    }
 }
