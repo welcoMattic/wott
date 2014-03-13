@@ -26,6 +26,13 @@ class User extends BaseUser
     protected $facebookId;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="suggestDay", type="array")
+     */
+    protected $suggestDay;
+
+    /**
      * @return int
      */
     public function getId()
@@ -51,6 +58,7 @@ class User extends BaseUser
     {
         return $this->facebookId;
     }
+
 
     /**
      * @param Array
