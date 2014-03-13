@@ -16,13 +16,13 @@ class FilmPeopleRepository extends EntityRepository
 
     public function getCrewFilm(Film $film)
     {
-        $qb = $this->createQueryBuilder('fp');
-        $qb->select('fp, p')
-                ->join('fp.people', 'p')
-                ->where('fp.film = :film')
-                ->setParameter('film', $film);
 
-        return $qb->getQuery()->getResult();
+        $qb = $this->createQueryBuilder('fp');
+        $query = $qb->select('fp')
+                ->where('fp.film = :film')
+                ->setParameter('film', $film)
+                ->getQuery();
+        return $query->getResult();
     }
 
 }
