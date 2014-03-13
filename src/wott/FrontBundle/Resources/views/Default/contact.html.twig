@@ -1,5 +1,75 @@
 {% extends 'wottFrontBundle::layout.html.twig' %}
-
+{% block title %}Contact{% endblock %}
 {% block content %}
-<p>contact</p>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Nous contacter</h2>
+        <p>Vous pouvez nous contacter pour toute demande de renseignements ou autre, en remplissant le formulaire suivant.</p>
+        <p>{{ icon('exclamation-sign') }} Vous devez remplir tous les champs.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="well well-sm">
+            <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">
+                            Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                            </span>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">
+                            Subject</label>
+                        <select id="subject" name="subject" class="form-control" required="required">
+                            <option value="na" selected="">Choose One:</option>
+                            <option value="service">General Customer Service</option>
+                            <option value="suggestions">Suggestions</option>
+                            <option value="product">Product Support</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">
+                            Message</label>
+                        <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                            placeholder="Message"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+                        Send Message</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <form>
+        <legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+        <address>
+            <strong>WOTT</strong><br>
+            5 rue Saint-Augustin,<br>
+            75002, Paris<br>
+            <abbr title="Phone">
+                +33</abbr>
+            118 218
+        </address>
+        <address>
+            <a href="mailto:#">contact@wott.com</a>
+        </address>
+        </form>
+    </div>
+</div>
+
 {% endblock %}
