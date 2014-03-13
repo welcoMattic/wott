@@ -1,17 +1,6 @@
 {% extends "SonataUserBundle:Profile:layout.html.twig" %}
 
 {% block content %}
-
-    {#% block sonata_page_breadcrumb %}
-        {% if breadcrumb_context is not defined %}
-            {% set breadcrumb_context = 'user_index' %}
-        {% endif %}
-        <div class="row-fluid clearfix">
-            {{ sonata_block_render_event('breadcrumb', { 'context': breadcrumb_context, 'current_uri': app.request.requestUri }) }}
-        </div>
-    {% endblock %#}
-
-
     <div class="row">
         <div class="col-md-12">
             <h2>Mon profil</h2>
@@ -22,15 +11,10 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        {#% block sonata_profile_menu %}
-            {{ sonata_block_render({'type': 'sonata.user.block.menu'}, {'current_uri': app.request.requestUri}) }}
-        {% endblock %#}
-
-        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
-
-        {% block sonata_profile_content %}
-        {% endblock %}
-    </div>
+    
+    {% block sonata_profile_content %}
+    {% endblock %}
+    
+    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
 
 {% endblock %}

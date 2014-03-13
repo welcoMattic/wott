@@ -1,14 +1,12 @@
 {% extends "SonataUserBundle:Profile:action.html.twig" %}
 
-{% block title %}Informations de connexion{% endblock %}
+{% block title %}Mes infos nformations{% endblock %}
 
 {% block sonata_profile_content %}
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ 'title_user_edit_authentication'|trans({}, 'SonataUserBundle') }}</h3>
-            </div>
-            <div class="panel-body">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>{{ 'title_user_edit_authentication'|trans({}, 'SonataUserBundle') }}</h3>
+            <div class="well clearfix">                
                 <form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST" class="form-horizontal">
                     {{ form_widget(form) }}
 
@@ -16,14 +14,55 @@
                 </form>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h3>
-            </div>
-            <div class="panel-body">
+        <div class="col-md-6">
+            <h3>{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h3>
+            <div class="well clearfix">
                 {% render url("sonata_user_change_password") %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <h3>Notifications pour les suggestions</h3>
+            <p>Pour recevoir une notification à chaque nouvelle suggestion, cochez les jours où vous souhaitez recevoir une notification.</p>
+            <div class="well">
+                <form class="form-inline">
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="monday"> Lundi
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="tuesday"> Mardi
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="wednesday"> Mercredi
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="thursday"> Jeudi
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="friday"> Vendredi
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="saturday"> Samedi
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="sunday"> Dimanche
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
