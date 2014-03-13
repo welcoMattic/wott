@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ film.urlPoster|image_url_path }}" alt="Affiche du film A">
+            <img src="{{ film.urlPoster|image_url_path }}" class='img-responsive' alt="Affiche du film A">
             <button class="btn btn-default btn-primary center-block">Ajouter à ma watchlist</button>
             <button class="btn btn-default center-block">Liker le film</button>
             <button class="btn btn-default center-block">J'ai vu ce film</button>
@@ -19,11 +19,24 @@
             <h2>{{ film.title }}</h2>
             <ul>
                 <li>Titre original : {{ film.originalTitle }}</li>
-                <li>Film de : </li>
+                <li>Film de : {{ director }} </li>
+                <li>Acteurs princpaux : {% for actor in cast|slice(0, 3) %}
+                                            {% if loop.last %}
+                                                {{ actor }}
+                                            {% else %}
+                                                {{ actor }},
+                                            {% endif %}
+                                        {% endfor %}</li>
                 <li>Nationalité(s) : {{ film.nationalities }}</li>
-                <li>Genres : </li>
+                <li>Genres : {% for genre in film.genres %}
+                                {% if loop.last %}
+                                    {{ genre.name }}
+                                {% else %}
+                                    {{ genre.name }},
+                                {% endif %}
+                            {% endfor %}</li>
                 <li>Temps : {{ film.runtime }}</li>
-                <li>Année de sortie cinéma :</li>
+                <li>Année de sortie cinéma : {{ film.releaseDate|date("d/m/Y") }}</li>
                 <li>Note : {{ film.popularity }}</li>
             </ul>
             <h3>Synopsis</h3>
@@ -31,16 +44,7 @@
             </p>
             <h3>Trailer</h3>
                 <div class="videoWrapper">
-                    <iframe width="605" height="395" src="{{ film.urlTrailer|image_url_path }}" allowfullscreen=""></iframe>
-                </div>
-            <h3>Acteurs</h3>
-                <div class="row-fluid">
-                    <div class="col-md-3">
-                        <div class="thumbnail">
-                            <img src="#" alt="Visuel acteur A">
-                            <p class="text-center">Nom de l'acteur</p>
-                        </div>
-                    </div>
+                    <iframe width="605" height="395" src="" allowfullscreen=""></iframe>
                 </div>
          </div>
     </div>

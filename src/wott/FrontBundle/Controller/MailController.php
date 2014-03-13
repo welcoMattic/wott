@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 class MailController extends Controller
 {
 
-
     /**
      * @Route("/suggest/{id}", name="sendSuggest", requirements={"id" = "\d+"})
      * @Template()
@@ -27,22 +26,14 @@ class MailController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $em->getRepository('wottCoreBundle:User')->find($id);
-
-        $FilmUser = $em->getRepository('wottCoreBundle:FilmUser');
-        $films = $FilmUser->suggest($user);
-        $titles=array();
-
+        $films = $em->getRepository('wottCoreBundle:FilmUser')->suggest($user);
         $email= $user->getEmail();
 
-
- 		foreach ($films as $film) {
-        	array_push($titles, $film->getTitle());
-        }
         $message = \Swift_Message::newInstance()
-        ->setSubject('Hello Email')
+        ->setSubject('Tonight on TV !')
         ->setFrom('suggest@wott.fr')
         ->setTo($email)
-        ->setBody($this->renderView('wottFrontBundle:Mail:suggest.html.twig', array('titles' => $titles)))
+        ->setBody($this->renderView('wottFrontBundle:Mail:suggest.html.twig', array('films' => $films)))
     	;
 
     	$this->get('mailer')->send($message);
