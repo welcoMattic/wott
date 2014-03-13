@@ -86,17 +86,17 @@ class Film
     private $url_poster;
 
     /**
-     * @ORM\ManyToMany(targetEntity="wott\CoreBundle\Entity\Genre", cascade={"persist"})
-     */
-    private $genres;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="api_id", type="integer")
      *
      */
     private $api_id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="wott\CoreBundle\Entity\Genre", inversedBy="films")
+     */
+    private $genres;
 
     /**
      * @ORM\OneToMany(targetEntity="wott\CoreBundle\Entity\FilmPeople", mappedBy="film")
@@ -106,30 +106,6 @@ class Film
     public function __construct()
     {
       $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-      * @param wott\CoreBundle\Entity\Genre $genres
-      */
-    public function addGenre(\wott\CoreBundle\Entity\Genre $genre)
-    {
-      $this->genres[] = $genre;
-    }
-
-    /**
-      * @param wott\CoreBundle\Entity\Genre $genres
-      */
-    public function removeGenre(\wott\CoreBundle\Entity\Genre $genre)
-    {
-      $this->genres->removeElement($genre);
-    }
-
-    /**
-      * @return Doctrine\Common\Collections\Collection
-      */
-    public function getGenres()
-    {
-      return $this->genres;
     }
 
     /**
@@ -393,5 +369,62 @@ class Film
     public function getDateRelease()
     {
         return $this->date_release;
+    }
+
+    /**
+      * @param wott\CoreBundle\Entity\Genre $genres
+      */
+    public function addGenre(\wott\CoreBundle\Entity\Genre $genre)
+    {
+      $this->genres[] = $genre;
+    }
+
+    /**
+      * @param wott\CoreBundle\Entity\Genre $genres
+      */
+    public function removeGenre(\wott\CoreBundle\Entity\Genre $genre)
+    {
+      $this->genres->removeElement($genre);
+    }
+
+    /**
+      * @return Doctrine\Common\Collections\Collection
+      */
+    public function getGenres()
+    {
+      return $this->genres;
+    }
+
+    /**
+     * Add filmPeople
+     *
+     * @param  \wott\CoreBundle\Entity\FilmPeople $filmPeople
+     * @return Film
+     */
+    public function addFilmPeople(\wott\CoreBundle\Entity\FilmPeople $filmPeople)
+    {
+        $this->filmPeople[] = $filmPeople;
+
+        return $this;
+    }
+
+    /**
+     * Remove filmPeople
+     *
+     * @param \wott\CoreBundle\Entity\FilmPeople $filmPeople
+     */
+    public function removeFilmPeople(\wott\CoreBundle\Entity\FilmPeople $filmPeople)
+    {
+        $this->filmPeople->removeElement($filmPeople);
+    }
+
+    /**
+     * Get filmPeople
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFilmPeople()
+    {
+        return $this->filmPeople;
     }
 }

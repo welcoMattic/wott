@@ -15,12 +15,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $em=$this->getDoctrine()->getManager();
-        $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
+        $em = $this->getDoctrine()->getManager();
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
 
-        $content = $this->render('wottFrontBundle:Default:index.html.twig', array('films' => $films));
-
-        return $content;
+        return array('films' => $films);
     }
 
     /**
@@ -29,19 +27,16 @@ class DefaultController extends Controller
      */
     public function listAction($display)
     {
-        $em=$this->getDoctrine()->getManager();
-        $films = $em->getRepository('wottCoreBundle:Film')->getFilmByPopularity(8);
+        $em = $this->getDoctrine()->getManager();
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
 
         if ($display === 'grid') {
-        $content = $this->render('wottFrontBundle:Default:index_grid.html.twig', array(
-            'films' => $films));
+            $content = $this->render('wottFrontBundle:Default:index_grid.html.twig', array('films' => $films));
         } elseif ($display === 'list') {
-           $content = $this->render('wottFrontBundle:Default:index_list.html.twig', array(
-            'films' => $films));
+            $content = $this->render('wottFrontBundle:Default:index_list.html.twig', array('films' => $films));
         }
 
         return $content;
-
     }
 
     /**

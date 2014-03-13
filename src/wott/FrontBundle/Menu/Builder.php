@@ -11,11 +11,10 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
-        $menu->addChild('Home', array('route' => 'homepage'));
-
-        $menu->addChild('Mon espace', array('route' => 'fos_user_profile_show'));
-
-        $menu->addChild('Nous contacter', array('route' => 'contact'));
+        $menu->addChild('Accueil', array('route' => 'homepage'));
+        $menu->addChild('Suggestions', array('route' => 'suggest'));
+        $menu->addChild('Contact', array('route' => 'contact'));
+        $menu->addChild('Mentions', array('route' => 'mentions'));
 
         return $menu;
     }
@@ -24,15 +23,18 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
+        $menu->addChild('Trier par')
+            ->setAttribute('class', 'navbar-text');
+
         $menu->addChild('Genres', array('route' => 'homepage'))
             ->setAttribute('dropdown', true);
-            $menu['Genres']->addChild('Genre 1', array('uri' => '#'));
-            $menu['Genres']->addChild('Genre 2', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 1', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 2', array('uri' => '#'));
 
         $menu->addChild('Décennie', array('route' => 'homepage'))
             ->setAttribute('dropdown', true);
-            $menu['Décennie']->addChild('1900', array('uri' => '#'));
-            $menu['Décennie']->addChild('2000', array('uri' => '#'));
+        $menu['Décennie']->addChild('1900', array('uri' => '#'));
+        $menu['Décennie']->addChild('2000', array('uri' => '#'));
 
         $menu->addChild('Note', array('route' => 'homepage'));
 
