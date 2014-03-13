@@ -72,7 +72,10 @@ class InsertFilmsCommand extends ContainerAwareCommand
                                             }));
 
                         if (!empty($film['trailers']['youtube'])) {
-                            $f->setUrlTrailer($film['trailers']['youtube'][0]['source']);
+                            $prefix = substr($film['trailers']['youtube'][0]['source'], 0, 7);
+                            if ($prefix !== 'http://'){
+                                $f->setUrlTrailer($film['trailers']['youtube'][0]['source']);
+                            }
                         }
 
                         $em->persist($f);
