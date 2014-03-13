@@ -41,4 +41,14 @@ class Builder extends ContainerAware
         return $menu;
     }
 
+    public function profileMenu(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+
+        $menu->addChild('Ma Watchlist', array('route' => 'fos_user_profile_show'));
+        $menu->addChild('Mes informations', array('route' => 'sonata_user_profile_edit_authentication'));
+
+        return $menu;
+    }
+
 }
