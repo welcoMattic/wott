@@ -21,24 +21,30 @@ class SendSuggestCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
+        $date = date('D');
+        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+
+        $users = $em->getRepository('wottCoreBundle:User')->findAll();
+
+        foreach ($users as $user) {
+
+
+            if (!empty($user->getSuggestDay()) && in_array($date, $user->getSuggestDay())) {
+                $films = $em->getRepository('wottCoreBundle:FilmUser')->suggest($user);
+                $email= $user->getEmail();
+
+                $message = \Swift_Message::newInstance()
+                ->setSubject('Tonight on TV !')
+                ->setFrom('suggest@wott.fr')
+                ->setTo($email)
+                ->setBody($this->getContainer()->get('templating')->render('wottFrontBundle:Mail:suggest.html.twig', array('films' => $films)))
+                ;
         
+                $this->getContainer()->get('mailer')->send($message);
 
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $em->getRepository('wottCoreBundle:User')->find($id);
-        $films = $em->getRepository('wottCoreBundle:FilmUser')->suggest($user);
-        $email= $user->getEmail();
-
-        $message = \Swift_Message::newInstance()
-        ->setSubject('Tonight on TV !')
-        ->setFrom('suggest@wott.fr')
-        ->setTo($email)
-        ->setBody($this->renderView('wottFrontBundle:Mail:suggest.html.twig', array('films' => $films)))
-        ;
-
-        $this->get('mailer')->send($message);
-    
-        return array();
+                $output->writeln('mail send to '.$email);
+            }
+        }
 
     }
 
