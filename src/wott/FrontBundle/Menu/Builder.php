@@ -11,6 +11,8 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
+        $menu->setCurrentUri($this->container->get('request')->getRequestUri());
+
         $menu->addChild('Accueil', array('route' => 'homepage'));
         $menu->addChild('Suggestions', array('route' => 'suggest'));
         $menu->addChild('Contact', array('route' => 'contact'));
@@ -22,6 +24,8 @@ class Builder extends ContainerAware
     public function filtersMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+
+        $menu->setCurrentUri($this->container->get('request')->getRequestUri());
 
         $menu->addChild('Trier par')
             ->setAttribute('class', 'navbar-text');
@@ -45,9 +49,11 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
-        $menu->addChild('Ma Watchlist', array('route' => 'fos_user_profile_show'));
-        $menu->addChild('Films vus', array('route' => 'filmSeen'));
-        $menu->addChild('Mes Likes', array('route' => 'filmLike'));
+        $menu->setCurrentUri($this->container->get('request')->getRequestUri());
+
+        $menu->addChild('Ma Watchlist', array('route' => 'profile'));
+        $menu->addChild('Films vus', array('route' => 'profile', 'routeParameters' => array('action' => 'seen')));
+        $menu->addChild('Mes Likes', array('route' => 'profile', 'routeParameters' => array('action' => 'like')));
         $menu->addChild('Mes informations', array('route' => 'sonata_user_profile_edit_authentication'));
 
         return $menu;

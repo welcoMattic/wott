@@ -6,8 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use wott\CoreBundle\Entity\Film;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use FOS\UserBundle\Model\UserInterface;
 
 class DefaultController extends Controller
 {
@@ -41,28 +39,6 @@ class DefaultController extends Controller
         return $content;
     }
 
-
-    /**
-     * @Route("/profile/", name="")
-     * @Template("SonataUserBundle:Profile:show.html.twig")
-     */
-    public function profileAction()
-    {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
-        $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
-
-        $FilmUser = $em->getRepository('wottCoreBundle:FilmUser');
-
-        $filmsUser = $FilmUser->getIsWantedFilms($user);
-
-        return array('films' => $filmsUser);
-        
-    }
 
     /**
      * @Route("/contact", name="contact")
