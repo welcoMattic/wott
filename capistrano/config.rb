@@ -26,5 +26,4 @@ set :symfony_env, 'prod'
 before 'deploy:updated', "deploy:set_permissions:acl"
 
 after 'deploy:finishing', 'deploy:cleanup'
-after 'deploy:updated', 'wott:database'
-after 'deploy:updated', 'wott:assets'
+after 'deploy:updated', 'deploy:database'

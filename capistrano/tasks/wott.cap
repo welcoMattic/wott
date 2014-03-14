@@ -1,18 +1,8 @@
-namespace :wott do
+namespace :deploy do
 
   desc 'Force database update'
   task :database do
-    roles(:app) do
-      invoke 'symfony:run', :'doctrine:schema:update', '--force'
-    end
-  end
-
-  desc 'Install assets'
-  task :assets do
-    roles(:app) do
-      invoke 'symfony:run', :'assets:install'
-      invoke 'symfony:run', :'cache:clear'
-    end
+    invoke 'symfony:run', 'doctrine:schema:update', '--force'
   end
 
 end
