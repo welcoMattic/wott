@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-    <title>Home</title>
+    <title> WOTT - {% block title %}Home{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('bundles/wottfront/css/styles.css') }}" rel="stylesheet" media="screen">
@@ -28,7 +28,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
                             <ul class="dropdown-menu" aria-labelledby="Mon compte">
-                                <li><a href="{{ path('sonata_user_profile_show') }}">Voir mon profil</a></li>
+                                <li><a href="{{ path('profile') }}">Voir mon profil</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{{ path('_security_logout') }}" class="btn btn-danger navbar-btn" id="btn-logout">Déconnexion</a></li>
                             </ul>

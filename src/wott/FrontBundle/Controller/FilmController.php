@@ -20,6 +20,7 @@ class FilmController extends Controller
     public function showFilmAction($id)
     {
         $cast= array();
+        $director = 'inconnu';
 
         $em = $this->getDoctrine()->getManager();
         $film = $em->getRepository('wottCoreBundle:Film')->find($id);
@@ -34,7 +35,6 @@ class FilmController extends Controller
             if ($people->getRole()) {
                 array_push($cast, $people->getPeople()->getName());
             }
-
         }
 
         return array('film' => $film, 'director' => $director, 'cast' => $cast);
