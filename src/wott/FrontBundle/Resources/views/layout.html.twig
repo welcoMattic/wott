@@ -22,7 +22,7 @@
                     </button>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
-                    {{ knp_menu_render('wottFrontBundle:Builder:mainMenu', { 'style': 'navbar' }) }}
+                    {{ knp_menu_render('wottFrontBundle:Builder:mainMenu', { 'style': 'navbar', 'currentClass':'active'}) }}
                     {% if app.user %}
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
