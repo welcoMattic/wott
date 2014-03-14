@@ -18,11 +18,12 @@ class MailController extends Controller
 {
 
     /**
-     * @Route("/suggest/{id}", name="sendSuggest", requirements={"id" = "\d+"})
+     * @Route("/suggest", name="sendSuggest")
      * @Template()
      */
-    public function sendSuggestAction($id)
+    public function sendSuggestAction()
     {
+
         $em = $this->getDoctrine()->getManager();
 
         $user = $em->getRepository('wottCoreBundle:User')->find($id);

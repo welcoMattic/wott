@@ -43,10 +43,12 @@
             <h3>Synopsis</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at sem adipiscing, adipiscing tellus et, sodales tortor. Suspendisse malesuada risus ac diam consectetur, ac sagittis nisl placerat. Sed consequat at leo sit amet bibendum. Donec vel nisi sollicitudin, ornare odio ullamcorper, pulvinar quam.
             </p>
+            {% if film.urlTrailer %}
             <h3>Trailer</h3>
-                <div class="videoWrapper">
-                    <iframe width="605" height="395" src="" allowfullscreen=""></iframe>
+                <div class="videoWrapper">  
+                    <iframe width="605" height="395" src="//www.youtube.com/embed/{{ film.urlTrailer }}" allowfullscreen=""></iframe>
                 </div>
+            {% endif %}
          </div>
     </div>
 </section>

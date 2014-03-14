@@ -43,6 +43,7 @@ class DefaultController extends Controller
         return $content;
     }
 
+
     /**
      * @Route("/contact", name="contact")
      * @Template()

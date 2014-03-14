@@ -53,22 +53,25 @@ $(document).ready(function(){
     });
 
     $('.display-btn').click(function(){
+
+
         var $this = $(this);
         display = $(this).data('display');
 
-        $.ajax({
+        ajax = $.ajax({
            type: "POST",
            url: "{{ path('list') }}/"+display,
            beforeSend:function(){
                 $('#movies').remove();
-                $('.progress').toggleClass('hide');
+                $('.progress').toggleClass('active');
             }
          }).done(function (response) {
             $('#filter').after(response);
             $('.display-btn').removeClass('active');
             $this.toggleClass('active');
-            $('.progress').toggleClass('hide');
+            $('.progress').toggleClass('active');
         });
+
 
         return false;
 
