@@ -20,6 +20,9 @@ set :keep_releases, 3
 set :file_permissions_paths, ["app/logs", "app/cache"]
 set :file_permissions_users, ["www-data"]
 
+set :symfony_assets_flags, '--web'
+set :symfony_env, 'prod'
+
 before 'deploy:updated', "deploy:set_permissions:acl"
 
 after 'deploy:finishing', 'deploy:cleanup'

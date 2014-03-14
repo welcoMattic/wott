@@ -1,3 +1,7 @@
+header {
+    margin-bottom: 70px;
+}
+
 header img {
     max-height: 100px;
 }
@@ -8,16 +12,8 @@ header nav .nav {
 }
 
 header .fb-login-button {
-    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 14px;
-}
-
-.hide {
-    display: none;
-}
-
-#filter nav div div button {
-    margin-top: 8px;
 }
 
 .list-group li p .thumbnail{
@@ -30,13 +26,12 @@ header .fb-login-button {
     margin-bottom: 5px;
 }
 
-.dispNone{
-    display:none;
-}
-
-
 footer.well {
     margin-bottom: 0px;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0;
 }
 
 #btn-logout {
