@@ -15,39 +15,13 @@ use wott\CoreBundle\Entity\Film;
 class FilmUserRepository extends EntityRepository
 {
 
-    public function getLikesByUser(User $user)
+    public function getFilmsUser(User $user, $action)
     {
         $qb = $this->createQueryBuilder('fu');
         $query = $qb->select('fu, f')
                     ->join('fu.film', 'f')
                     ->where('fu.user = :user')
-                    ->andWhere('fu.isLike = true')
-                    ->setParameter('user', $user)
-                    ->getQuery();
-
-        return $query->getResult();
-    }
-
-    public function getIsSeenFilms(User $user)
-    {
-        $qb = $this->createQueryBuilder('fu');
-        $query = $qb->select('fu, f')
-                    ->join('fu.film', 'f')
-                    ->where('fu.user = :user')
-                    ->andWhere('fu.isSeen = true')
-                    ->setParameter('user', $user)
-                    ->getQuery();
-
-        return $query->getResult();
-    }
-
-    public function getIsWantedFilms(User $user)
-    {
-        $qb = $this->createQueryBuilder('fu');
-        $query = $qb->select('fu, f')
-                    ->join('fu.film', 'f')
-                    ->where('fu.user = :user')
-                    ->andWhere('fu.isWanted = true')
+                    ->andWhere('fu.is'. ucfirst($action) .' = true')
                     ->setParameter('user', $user)
                     ->getQuery();
 
@@ -57,8 +31,8 @@ class FilmUserRepository extends EntityRepository
     public function suggest(User $user)
     {
         $em = $this->getEntityManager();
-        $likedFilmsByUser = $this->getLikesByUser($user);
-        $seenFilmsUser = $this->getIsSeenFilms($user);
+        $likedFilmsByUser = $this->getFilmsUser($user, 'like');
+        $seenFilmsUser = $this->getFilmsUser($user, 'seen');
         foreach ($seenFilmsUser as $seenFilmUser) {
             $seenFilms[] = $seenFilmUser->getFilm();
         }

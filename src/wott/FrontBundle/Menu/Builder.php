@@ -45,9 +45,9 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
-        $menu->addChild('Ma Watchlist', array('route' => 'fos_user_profile_show'));
-        $menu->addChild('Films vus', array('route' => 'filmSeen'));
-        $menu->addChild('Mes Likes', array('route' => 'filmLike'));
+        $menu->addChild('Ma Watchlist', array('route' => 'profile'));
+        $menu->addChild('Films vus', array('route' => 'profile', 'routeParameters' => array('action' => 'seen')));
+        $menu->addChild('Mes Likes', array('route' => 'profile', 'routeParameters' => array('action' => 'like')));
         $menu->addChild('Mes informations', array('route' => 'sonata_user_profile_edit_authentication'));
 
         return $menu;
