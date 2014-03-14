@@ -32,7 +32,15 @@ class Builder extends ContainerAware
             ->setAttribute('dropdown', true);
         $menu['Genres']->addChild('Genre 1', array('uri' => '#'));
         $menu['Genres']->addChild('Genre 2', array('uri' => '#'));
-
+        $menu['Genres']->addChild('Genre 3', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 4', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 5', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 6', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 7', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 8', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 9', array('uri' => '#'));
+        $menu['Genres']->addChild('Genre 10', array('uri' => '#'));
+    
         $menu->addChild('Décennie', array('route' => 'homepage'))
             ->setAttribute('dropdown', true);
         $menu['Décennie']->addChild('1900', array('uri' => '#'));
