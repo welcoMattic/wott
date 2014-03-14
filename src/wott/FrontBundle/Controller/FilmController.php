@@ -28,7 +28,6 @@ class FilmController extends Controller
 
         $filmPeople = $em->getRepository('wottCoreBundle:FilmPeople')->getCrewFilm($film);
 
-
         foreach ($filmPeople as $people) {
             if ($people->getJob() == 'Director') {
                 $director = $people->getPeople()->getName();
