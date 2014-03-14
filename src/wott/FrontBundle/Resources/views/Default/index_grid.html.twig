@@ -12,7 +12,7 @@
                         <p>{{ film.synopsis | slice(0, 100) }}</p>
                         {% if is_granted('ROLE_USER') %}
                             <a href="#" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter le film à ma watchlist</a>
-                            <a class="btn center-block btn-default action" href="#" data-id="{{ film.id }} data-action="Like">">Like</a>
+                            <a class="btn center-block btn-default action" href="#" data-id="{{ film.id }}" data-action="Like">Like</a>
                         {% endif %}
                     </div>
                 </div>
@@ -20,6 +20,6 @@
         {% endfor %}
     </div>
 
-    <a href="" class="action" data-id="1" data-action="Seen">see</a>
+
 
 {% endblock %}

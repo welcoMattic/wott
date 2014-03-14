@@ -26,13 +26,15 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/list/{display}", defaults={"display" = ""}, name="list")
+     * @Route("/list/{display}/{genre}", defaults={"display" = "", "genre" = null}, name="list")
      * @Template()
      */
-    public function listAction($display)
+    public function listAction($display, $genre)
     {
         $em = $this->getDoctrine()->getManager();
-        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
+        $genre = $em->getRepository('wottCoreBundle:Genre')->find($genre);
+
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8, $genre);
 
         if ($display === 'grid') {
             $content = $this->render('wottFrontBundle:Default:index_grid.html.twig', array('films' => $films));

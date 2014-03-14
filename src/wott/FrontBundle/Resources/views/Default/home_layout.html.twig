@@ -52,15 +52,45 @@ $(document).ready(function(){
 
     });
 
+
+    $('.genres li').click(function(){
+
+
+        var $this = $(this);
+        idGenre = $this.children('a').attr('href');
+        display = $('.display-btn.active').data('display')
+
+        ajax = $.ajax({
+           type: "POST",
+           url: "{{ path('list') }}/"+display+"/"+idGenre,
+           beforeSend:function(){
+                $('#movies').remove();
+                $('.progress').toggleClass('active');
+            }
+         }).done(function (response) {
+            console.log(response);
+            $('#filter').after(response);
+            $('.progress').toggleClass('active');
+            $('.genre li').removeClass('active');
+            $this.toggleClass('active');
+        });
+
+
+        return false;
+
+    });
+
+
     $('.display-btn').click(function(){
 
 
         var $this = $(this);
+        idGenre = $('.genres li.active').children('a').attr('href');
         display = $(this).data('display');
 
         ajax = $.ajax({
            type: "POST",
-           url: "{{ path('list') }}/"+display,
+           url: "{{ path('list') }}/"+display+"/"+idGenre,
            beforeSend:function(){
                 $('#movies').remove();
                 $('.progress').toggleClass('active');

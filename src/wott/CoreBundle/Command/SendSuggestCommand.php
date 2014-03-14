@@ -29,7 +29,7 @@ class SendSuggestCommand extends ContainerAwareCommand
         foreach ($users as $user) {
 
 
-            if (!empty($user->getSuggestDay()) && in_array($date, $user->getSuggestDay())) {
+            if ($user->getSuggestDay() && in_array($date, $user->getSuggestDay())) {
                 $films = $em->getRepository('wottCoreBundle:FilmUser')->suggest($user);
                 $email= $user->getEmail();
 
