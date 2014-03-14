@@ -36,6 +36,7 @@ class FilmController extends Controller
             if ($people->getRole()) {
                 array_push($cast, $people->getPeople()->getName());
             }
+            
 
         }
 
