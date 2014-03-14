@@ -57,9 +57,8 @@ $(document).ready(function(){
 
 
         var $this = $(this);
-        idGenre = $this.attr('href');
-        display= $('.display-btn.active').data('display')
-        console.log(display);
+        idGenre = $this.children('a').attr('href');
+        display = $('.display-btn.active').data('display')
 
         ajax = $.ajax({
            type: "POST",
@@ -72,6 +71,8 @@ $(document).ready(function(){
             console.log(response);
             $('#filter').after(response);
             $('.progress').toggleClass('active');
+            $('.genre li').removeClass('active');
+            $this.toggleClass('active');
         });
 
 
@@ -84,11 +85,12 @@ $(document).ready(function(){
 
 
         var $this = $(this);
+        idGenre = $('.genres li.active').children('a').attr('href');
         display = $(this).data('display');
 
         ajax = $.ajax({
            type: "POST",
-           url: "{{ path('list') }}/"+display,
+           url: "{{ path('list') }}/"+display+"/"+idGenre,
            beforeSend:function(){
                 $('#movies').remove();
                 $('.progress').toggleClass('active');
