@@ -25,8 +25,6 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
-        $menu->setCurrentUri($this->container->get('request')->getRequestUri());
-
         $menu->addChild('Trier par')
             ->setAttribute('class', 'navbar-text');
 
