@@ -10,6 +10,10 @@
 
 
 /*** Header ***/
+header {
+    margin-top: 70px;
+}
+
 header img {
     max-height: 100px;
 }
@@ -20,19 +24,22 @@ header nav .nav {
 }
 
 header .fb-login-button {
-    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 14px;
 }
+
 #btn-logout {
     width: 90%;
 }
-
 
 /*** Footer ***/
 footer.well {
     margin-bottom: 0px;
 }
 
+ul.navbar-right .btn-group {
+    margin-right: 6px;
+}
 
 /*** Menu filtres ***/
 #filter nav div div button {
