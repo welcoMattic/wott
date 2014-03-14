@@ -82,7 +82,16 @@ class UserController extends Controller
      */
     public function profileAction()
     {
-        
+        /*$em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        $FilmUser = $em->getRepository('wottCoreBundle:FilmUser');
+
+        $filmsWanted = $FilmUser->getIsWantedFilms($user);
+
+        $filmsWanted->getFilm();
+
+        return array('films' => $filmsWanted);*/
     }
 
     /**
@@ -91,7 +100,19 @@ class UserController extends Controller
      */
     public function filmSeenAction()
     {
-        return array();
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        $FilmUser = $em->getRepository('wottCoreBundle:FilmUser');
+
+        $filmsSeen = $FilmUser->getIsSeenFilms($user);
+        $film = $em->getRepository('wottCoreBundle:Film');
+
+        foreach ($filmsSeen as $film) {
+            $film->getFilm();
+        }
+
+        return array('film' => $film);
     }
 
     /**
