@@ -77,15 +77,6 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/profile", name="profile")
-     * @Template()
-     */
-    public function profileAction()
-    {
-        
-    }
-
-    /**
      * @Route("/filmSeen", name="filmSeen")
      * @Template()
      */

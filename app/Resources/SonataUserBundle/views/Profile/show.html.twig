@@ -4,14 +4,16 @@
 
 {% block main %}
     <div class="row">
+    {% for filmuser in films %}
         <div class="col-md-3">
             <div class="thumbnail">
-                <img src="#" alt="Vignette du film" />
+                <img src="{{ filmuser.film.urlPoster|image_url_path }}" alt="Vignette du film" />
                 <div class="caption">
-                    <h4 class="text-center">title</h4>
-                    <p>Lorem ipsum</p>
+                    <h4 class="text-center">{{ filmuser.film.title }}</h4>
+                    <p>{{ filmuser.film.synopsis|slice(0, 100) }}</p>
                 </div>
             </div>
         </div>
+    {% endfor %}
     </div>
 {% endblock %}
