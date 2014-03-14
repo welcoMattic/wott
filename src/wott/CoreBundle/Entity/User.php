@@ -26,6 +26,13 @@ class User extends BaseUser
     protected $facebookId;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="suggestDay", type="array", nullable=true)
+     */
+    protected $suggestDay;
+
+    /**
      * @return int
      */
     public function getId()
@@ -52,6 +59,7 @@ class User extends BaseUser
         return $this->facebookId;
     }
 
+
     /**
      * @param Array
      */
@@ -70,6 +78,29 @@ class User extends BaseUser
         if (isset($fbdata['email'])) {
             $this->setEmail($fbdata['email']);
         }
+    }
+
+    /**
+     * Set suggestDay
+     *
+     * @param array $suggestDay
+     * @return User
+     */
+    public function setSuggestDay($suggestDay)
+    {
+        $this->suggestDay = $suggestDay;
+
+        return $this;
+    }
+
+    /**
+     * Get suggestDay
+     *
+     * @return array 
+     */
+    public function getSuggestDay()
+    {
+        return $this->suggestDay;
     }
 
 }
