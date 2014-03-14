@@ -41,6 +41,19 @@ class FilmUserRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function getIsWantedFilms(User $user)
+    {
+        $qb = $this->createQueryBuilder('fu');
+        $query = $qb->select('fu, f')
+                    ->join('fu.film', 'f')
+                    ->where('fu.user = :user')
+                    ->andWhere('fu.isWanted = true')
+                    ->setParameter('user', $user)
+                    ->getQuery();
+
+        return $query->getResult();
+    }
+
     public function suggest(User $user)
     {
         $em = $this->getEntityManager();
