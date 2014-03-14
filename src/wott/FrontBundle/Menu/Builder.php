@@ -7,9 +7,13 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class Builder extends ContainerAware
 {
+
+
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+
+        $menu->setCurrentUri($this->container->get('request')->getRequestUri());
 
         $menu->addChild('Accueil', array('route' => 'homepage'));
         $menu->addChild('Suggestions', array('route' => 'suggest'));
@@ -20,21 +24,20 @@ class Builder extends ContainerAware
     }
 
     public function filtersMenu(FactoryInterface $factory, array $options)
-    {
+    {   
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $genres= $em->getRepository('wottCoreBundle:Genre')->findAll();
+
         $menu = $factory->createItem('root');
 
         $menu->addChild('Trier par')
             ->setAttribute('class', 'navbar-text');
 
-        $menu->addChild('Genres', array('route' => 'homepage'))
-            ->setAttribute('dropdown', true);
-        $menu['Genres']->addChild('Genre 1', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 2', array('uri' => '#'));
-
-        $menu->addChild('Décennie', array('route' => 'homepage'))
-            ->setAttribute('dropdown', true);
-        $menu['Décennie']->addChild('1900', array('uri' => '#'));
-        $menu['Décennie']->addChild('2000', array('uri' => '#'));
+        $menu->addChild('Genres', array('route' => 'homepage'))           
+            ->setAttribute('dropdown', true)
+            ->setChildrenAttributes(array('class' => 'genres'));
+        foreach($genres as $genre)
+            $menu['Genres']->addChild($genre->getName(), array('uri' => $genre->getId()));
 
         $menu->addChild('Note', array('route' => 'homepage'));
 
@@ -44,6 +47,8 @@ class Builder extends ContainerAware
     public function profileMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+
+        $menu->setCurrentUri($this->container->get('request')->getRequestUri());
 
         $menu->addChild('Ma Watchlist', array('route' => 'profile'));
         $menu->addChild('Films vus', array('route' => 'profile', 'routeParameters' => array('action' => 'seen')));

@@ -9,6 +9,8 @@
             <div class="thumbnail">
                 <img src="{{ filmuser.film.urlPoster|image_url_path }}" alt="Vignette du film" />
                 <div class="caption">
+                    <h4 class="text-center">titre :</h4>
+                    <p>Lorem ipsum</p>
                     <h4 class="text-center">{{ filmuser.film.title }}</h4>
                     <p>{{ filmuser.film.synopsis|slice(0, 100) }}</p>
                 </div>

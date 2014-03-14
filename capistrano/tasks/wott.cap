@@ -1,0 +1,8 @@
+namespace :deploy do
+
+  desc 'Force database update'
+  task :database do
+    invoke 'symfony:run', 'doctrine:schema:update', '--force'
+  end
+
+end

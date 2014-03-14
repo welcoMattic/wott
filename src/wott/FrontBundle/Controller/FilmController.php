@@ -28,7 +28,6 @@ class FilmController extends Controller
 
         $filmPeople = $em->getRepository('wottCoreBundle:FilmPeople')->getCrewFilm($film);
 
-
         foreach ($filmPeople as $people) {
             if ($people->getJob() == 'Director') {
                 $director = $people->getPeople()->getName();
@@ -36,10 +35,7 @@ class FilmController extends Controller
             if ($people->getRole()) {
                 array_push($cast, $people->getPeople()->getName());
             }
-            
-
         }
-
 
         return array('film' => $film, 'director' => $director, 'cast' => $cast);
     }
