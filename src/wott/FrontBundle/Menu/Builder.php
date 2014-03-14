@@ -33,16 +33,11 @@ class Builder extends ContainerAware
         $menu->addChild('Trier par')
             ->setAttribute('class', 'navbar-text');
 
-        $menu->addChild('Genres', array('route' => 'homepage'))
+        $menu->addChild('Genres', array('route' => 'homepage'))           
             ->setAttribute('dropdown', true)
             ->setChildrenAttributes(array('class' => 'genres'));
         foreach($genres as $genre)
             $menu['Genres']->addChild($genre->getName(), array('uri' => $genre->getId()));
-
-        $menu->addChild('Décennie', array('route' => 'homepage'))
-            ->setAttribute('dropdown', true);
-        $menu['Décennie']->addChild('1900', array('uri' => '#'));
-        $menu['Décennie']->addChild('2000', array('uri' => '#'));
 
         $menu->addChild('Note', array('route' => 'homepage'));
 

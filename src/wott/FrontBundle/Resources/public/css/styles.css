@@ -1,3 +1,15 @@
+.dispNone{
+    display:none;
+}
+.hide {
+    display: none;
+}
+.checkbox{
+    margin-right: 5%;
+}
+
+
+/*** Header ***/
 header img {
     max-height: 100px;
 }
@@ -11,15 +23,32 @@ header .fb-login-button {
     margin-left: 10px;
     margin-top: 14px;
 }
-
-.hide {
-    display: none;
+#btn-logout {
+    width: 90%;
 }
 
+
+/*** Footer ***/
+footer.well {
+    margin-bottom: 0px;
+}
+
+
+/*** Menu filtres ***/
 #filter nav div div button {
     margin-top: 8px;
 }
+#filter ul.menu_level_1.dropdown-menu{
+    width: 425px;
+}
+#filter ul.menu_level_1.dropdown-menu li{
+    float: left;
+    width: 33.33%;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
 
+
+/*** Vignettes ***/
 .list-group li p .thumbnail{
     width: auto;
     max-height: 250px;
@@ -30,18 +59,6 @@ header .fb-login-button {
     margin-bottom: 5px;
 }
 
-.dispNone{
-    display:none;
-}
-
-
-footer.well {
-    margin-bottom: 0px;
-}
-
-#btn-logout {
-    width: 90%;
-}
 
 /*** Responsive videoplayer (Youtube) ***/
 .videoWrapper {
