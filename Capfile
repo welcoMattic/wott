@@ -8,6 +8,7 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/composer'
 require 'capistrano/symfony'
+require 'capistrano/file-permissions'
 
-# Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
+# Loads custom tasks from `capistrano/tasks' if you have any defined.
 Dir.glob('capistrano/tasks/*.cap').each { |r| import r }

@@ -17,4 +17,11 @@ set :linked_dirs, %w{app/logs web/uploads}
 
 set :keep_releases, 3
 
+set :file_permissions_paths, ["app/logs", "app/cache"]
+set :file_permissions_users, ["www-data"]
+
+before 'deploy:updated', "deploy:set_permissions:acl"
+
 after 'deploy:finishing', 'deploy:cleanup'
+after 'deploy:updated', 'wott:database'
+after 'deploy:updated', 'wott:assets'
