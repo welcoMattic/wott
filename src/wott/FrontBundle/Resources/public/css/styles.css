@@ -4,6 +4,9 @@
 .hide {
     display: none;
 }
+.checkbox{
+    margin-right: 5%;
+}
 
 
 /*** Header ***/
