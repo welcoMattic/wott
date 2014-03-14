@@ -1,7 +1,13 @@
 {% extends 'wottFrontBundle:Default:home_layout.html.twig' %}
 
 {% block main %}
-
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+                    
+                        <div class="col-md-12 flash-notice alert alert-success">
+                            {{ flashMessage }}
+                        </div>
+                    
+                {% endfor %}
     <div class="row" id="movies">
         {% for film in films %}
                 <div class="col-md-3">
