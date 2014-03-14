@@ -39,11 +39,6 @@ class Builder extends ContainerAware
         foreach($genres as $genre)
             $menu['Genres']->addChild($genre->getName(), array('uri' => $genre->getId()));
 
-        $menu->addChild('Décennie', array('route' => 'homepage'))
-            ->setAttribute('dropdown', true);
-        $menu['Décennie']->addChild('1900', array('uri' => '#'));
-        $menu['Décennie']->addChild('2000', array('uri' => '#'));
-
         $menu->addChild('Note', array('route' => 'homepage'));
 
         return $menu;
