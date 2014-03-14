@@ -11,6 +11,8 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
+        $menu->setCurrentUri($this->container->get('request')->getRequestUri());
+
         $menu->addChild('Accueil', array('route' => 'homepage'));
         $menu->addChild('Suggestions', array('route' => 'suggest'));
         $menu->addChild('Contact', array('route' => 'contact'));
@@ -44,6 +46,8 @@ class Builder extends ContainerAware
     public function profileMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+
+        $menu->setCurrentUri($this->container->get('request')->getRequestUri());
 
         $menu->addChild('Ma Watchlist', array('route' => 'profile'));
         $menu->addChild('Films vus', array('route' => 'profile', 'routeParameters' => array('action' => 'seen')));
