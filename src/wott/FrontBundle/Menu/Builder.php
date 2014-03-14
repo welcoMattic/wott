@@ -7,6 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class Builder extends ContainerAware
 {
+
+
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
@@ -22,25 +24,21 @@ class Builder extends ContainerAware
     }
 
     public function filtersMenu(FactoryInterface $factory, array $options)
-    {
+    {   
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $genres= $em->getRepository('wottCoreBundle:Genre')->findAll();
+
         $menu = $factory->createItem('root');
 
         $menu->addChild('Trier par')
             ->setAttribute('class', 'navbar-text');
 
-        $menu->addChild('Genres', array('route' => 'homepage'))
-            ->setAttribute('dropdown', true);
-        $menu['Genres']->addChild('Genre 1', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 2', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 3', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 4', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 5', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 6', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 7', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 8', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 9', array('uri' => '#'));
-        $menu['Genres']->addChild('Genre 10', array('uri' => '#'));
-    
+        $menu->addChild('Genres', array('route' => 'homepage'))           
+            ->setAttribute('dropdown', true)
+            ->setChildrenAttributes(array('class' => 'genres'));
+        foreach($genres as $genre)
+            $menu['Genres']->addChild($genre->getName(), array('uri' => $genre->getId()));
+
         $menu->addChild('Décennie', array('route' => 'homepage'))
             ->setAttribute('dropdown', true);
         $menu['Décennie']->addChild('1900', array('uri' => '#'));

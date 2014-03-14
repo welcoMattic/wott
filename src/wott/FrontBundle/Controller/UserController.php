@@ -80,7 +80,7 @@ class UserController extends Controller
 
     /**
      * @Route("/profile/{action}", name="profile")
-     * @Template("SonataUserBundle:Profile:show.html.twig")
+     * @Template("wottFrontBundle:Profile:show.html.twig")
      */
     public function profileAction($action = "wanted")
     {

@@ -39,12 +39,11 @@ footer.well {
     margin-top: 8px;
 }
 #filter ul.menu_level_1.dropdown-menu{
-    max-height: 195px;
-    width: 190px;
+    width: 425px;
 }
 #filter ul.menu_level_1.dropdown-menu li{
     float: left;
-    width: 50%;
+    width: 33.33%;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
