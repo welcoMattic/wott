@@ -22,7 +22,7 @@
                     </button>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
-                    {{ knp_menu_render('wottFrontBundle:Builder:mainMenu', { 'style': 'navbar' }) }}
+                    {{ knp_menu_render('wottFrontBundle:Builder:mainMenu', { 'style': 'navbar', 'currentClass':'active'}) }}
                     {% if app.user %}
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -30,7 +30,7 @@
                             <ul class="dropdown-menu" aria-labelledby="Mon compte">
                                 <li><a href="{{ path('profile') }}">Voir mon profil</a></li>
                                 <li class="divider"></li>
-                                <li><a href="{{ path('_security_logout') }}" class="btn btn-danger navbar-btn" id="btn-logout">Déconnexion</a></li>
+                                <li><a href="{{ path('_security_logout') }}" class="btn btn-danger navbar-btn center-block" id="btn-logout">Déconnexion</a></li>
                             </ul>
                         </li>
                     </ul>

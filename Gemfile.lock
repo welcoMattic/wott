@@ -1,16 +1,10 @@
-GIT
-  remote: git://github.com/capistrano/capistrano.git
-  revision: ff187476ff2a78afff8c4f188b606e5cd0f1affe
-  branch: master
+GEM
+  remote: https://rubygems.org/
   specs:
     capistrano (3.1.0)
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
-
-GEM
-  remote: https://rubygems.org/
-  specs:
     capistrano-composer (0.0.4)
       capistrano (>= 3.0.0.pre)
     capistrano-file-permissions (0.1.0)
@@ -35,7 +29,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capistrano!
+  capistrano
   capistrano-composer
   capistrano-file-permissions
   capistrano-symfony
