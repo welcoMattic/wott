@@ -76,4 +76,31 @@ class UserController extends Controller
         return array('films' => $films);
     }
 
+    /**
+     * @Route("/profile", name="profile")
+     * @Template()
+     */
+    public function profileAction()
+    {
+        
+    }
+
+    /**
+     * @Route("/filmSeen", name="filmSeen")
+     * @Template()
+     */
+    public function filmSeenAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/filmLike", name="filmLike")
+     * @Template()
+     */
+    public function filmLikeAction()
+    {
+        return array();
+    }
+
 }
