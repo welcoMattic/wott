@@ -75,7 +75,10 @@ class DefaultController extends Controller
             ;
 
             $this->get('mailer')->send($message);
-
+            $this->get('session')->getFlashBag()->add(
+            'notice',
+            'Votre E-mail a correctement été envoyé !'
+        );
             return $this->redirect($this->generateUrl('homepage'));
         }
 
