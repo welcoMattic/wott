@@ -11,13 +11,40 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ film.urlPoster|image_url_path }}" class='img-responsive' alt="Affiche du film A">
+            <img src="{{ film.urlPoster|image_url_path }}" class='img-responsive img-rounded' alt="Affiche du film A">
             <button class="btn btn-default btn-primary center-block">Ajouter à ma watchlist</button>
             <button class="btn btn-default center-block">Liker le film</button>
             <button class="btn btn-default center-block">J'ai vu ce film</button>
         </div>
         <div class="col-md-8">
             <h2>{{ film.title }}</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <blockquote>
+                        <p>Titre original</p> <small><cite title="Original title">{{ film.originalTitle }}</cite></small>
+                        <p>Réalisateur</p> <small><cite title="Director">{{ director }}</cite></small>
+                        <p>Acteurs principaux</p> 
+                            <small><cite title="Actors">Gotham, United Kingdom
+                                {% for actor in cast|slice(0, 3) %}
+                                    {% if loop.last %}
+                                        {{ actor }}
+                                    {% else %}
+                                        {{ actor }},
+                                    {% endif %}
+                                {% endfor %}
+                            </cite></small>
+                        <p>Nationalité(s)</p> <small><cite title="Nationalities">{{ film.nationalities }}</cite></small>
+                    </blockquote>
+                </div>
+                <div class="col-md-6">
+                    <blockquote>
+                        <p>Bruce Wayne</p> <small><cite title="Source Title">Gotham, United Kingdom</cite></small>
+                        <p>Bruce Wayne</p> <small><cite title="Source Title">Gotham, United Kingdom</cite></small>
+                        <p>Bruce Wayne</p> <small><cite title="Source Title">Gotham, United Kingdom</cite></small>
+                        <p>Bruce Wayne</p> <small><cite title="Source Title">Gotham, United Kingdom</cite></small>
+                    </blockquote>
+                </div>
+            </div>
             <ul>
                 <li>Titre original : {{ film.originalTitle }}</li>
                 <li>Film de : {{ director }} </li>
