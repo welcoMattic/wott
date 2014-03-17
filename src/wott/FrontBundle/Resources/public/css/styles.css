@@ -56,16 +56,19 @@ ul.navbar-right .btn-group {
 
 
 /*** Vignettes ***/
+/* LISTE */
 .list-group li p .thumbnail, .list-group-item p a .thumbnail{
     width: auto;
     max-height: 250px;
     text-align: left;
 }
-
 .list-group li p .btn{
     margin-bottom: 5px;
 }
-
+/* GRILLE */
+.thumbnail img{
+    max-height: 565px;
+}
 
 /*** Page Détail d'un film ***/
 blockquote small{
