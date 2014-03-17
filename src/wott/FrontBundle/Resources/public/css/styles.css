@@ -20,7 +20,7 @@ header .fb-login-button {
     margin-top: 8px;
 }
 
-.list-group li p .thumbnail{
+.list-group li p .thumbnail, .list-group-item p a .thumbnail{
     width: auto;
     max-height: 250px;
     text-align: left;
