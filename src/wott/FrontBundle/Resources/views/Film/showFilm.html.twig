@@ -2,18 +2,20 @@
 {% block title %}{{ film.title }}{% endblock %}
 
 {% block content %}
-
-<section id="main" class="container-fluid" role="content">
     <div class="row">
         <div class="col-md-5">
-            <p> <a href="{{ path('homepage') }}">Home</a> > {{ film.title }}</p>
+            <p><a href="{{ path('homepage') }}">Home</a> > {{ film.title }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ film.urlPoster|image_url_path }}" class='img-responsive img-rounded' alt="Affiche du film A">
+            {% if film.urlPoster %}
+                <img src="{{ film.urlPoster|image_url_path}}" class="img-responsive img-rounded" alt="Affiche du film" />
+            {% else %}
+                <img src="{{ asset('bundles/wottfront/images/no-poster.jpg') }}" class="center-block img-responsive img-rounded" alt="Pas de visuel disponible pour ce film" />
+            {% endif %}
             <p>
-                <a href="#" class="action btn btn-default btn-primary center-block" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>
+                <a href="#" class="action btn btn-primary center-block" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>
                 <a href="" class="action btn btn-default center-block" data-id="{{ film.id }}" data-action="Like">Liker le film</a>
                 <a href="#" class="action btn btn-default center-block">J'ai vu ce film</a>
             </p>
@@ -67,6 +69,5 @@
             {% endif %}
          </div>
     </div>
-</section>
 
 {% endblock %}

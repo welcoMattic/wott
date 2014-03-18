@@ -7,6 +7,9 @@
 .checkbox{
     margin-right: 5%;
 }
+a.btn.action{
+    margin: 1% 0;
+}
 
 
 /*** Header ***/
@@ -32,6 +35,8 @@ header .fb-login-button {
     width: 90%;
 }
 
+
+
 /*** Footer ***/
 footer.well {
     margin-bottom: 0px;
@@ -40,6 +45,8 @@ footer.well {
 ul.navbar-right .btn-group {
     margin-right: 6px;
 }
+
+
 
 /*** Menu filtres ***/
 #filter nav div div button {
@@ -53,6 +60,7 @@ ul.navbar-right .btn-group {
     width: 33.33%;
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
+
 
 
 /*** Vignettes ***/
@@ -70,13 +78,17 @@ ul.navbar-right .btn-group {
     max-height: 565px;
 }
 
-/*** Page Détail d'un film ***/
+
+
+/*** DETAIL D'UN FILM ***/
 blockquote small{
     margin-bottom: 15px;
 }
+img.img-rounded.img-responsive{
+    margin-bottom: 5%;
+}
 
-
-/*** Responsive videoplayer (Youtube) ***/
+/* Responsive videoplayer (Youtube) */
 .videoWrapper {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
