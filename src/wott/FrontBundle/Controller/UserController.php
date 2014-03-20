@@ -72,7 +72,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
-        $form = $this->createFormBuilder()
+        $form = $this->createFormBuilder($user)
             ->add('suggestDay', 'choice', array('choices' => array(
                                                                     'Mon' => 'Lundi',
                                                                     'Tue' => 'Mardi',
@@ -90,18 +90,15 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            die();
+            $user->setSuggestDay($form->get('suggestDay')->getData());
+            $em->flush();
 
-            $this->get('session')->getFlashBag()->add(
-            'notice',
-            'Votre E-mail a correctement été envoyé !'
-        );
-            //return $this->redirect($this->generateUrl('homepage'));
+            return array('form' => $form->createView());
         }
 
             
 
-        return array('formSuggest' => $form->createView());
+        return array('form' => $form->createView());
     }
 
     /**
