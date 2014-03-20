@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class Builder extends ContainerAware
 {
 
-
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
@@ -37,11 +36,11 @@ class Builder extends ContainerAware
             ->setAttribute('data-toggle', 'dropdown')
             ->setChildrenAttributes(array('class' => 'genres'));
 
-        foreach($genres as $genre) {
+        foreach ($genres as $genre) {
             $menu['Genres']->addChild($genre->getName(), array('uri' => $genre->getId()))
                             ->setAttribute('data-id', $genre->getId());
         }
-        
+
         return $menu;
     }
 

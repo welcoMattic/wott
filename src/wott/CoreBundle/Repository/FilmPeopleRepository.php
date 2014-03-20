@@ -22,6 +22,7 @@ class FilmPeopleRepository extends EntityRepository
                 ->where('fp.film = :film')
                 ->setParameter('film', $film)
                 ->getQuery();
+
         return $query->getResult();
     }
 

@@ -10,13 +10,10 @@
             <p>Pour recevoir une notification à chaque nouvelle suggestion, cochez les jours où vous souhaitez recevoir une notification.</p>
             <div class="well well-sm clearfix">
                 {{ form_start(form) }}
-                    
                     {{ form_errors(form) }}
-                    
                     <div class="col-md-6">
                         {{ form_row(form.suggestDay, { 'attr': {'placeholder': 'SuggestDay'} }) }}
                     </div>
-                    
                     <div class="col-md-12">
                         {{ form_row(form.Valider, { 'attr': {'class': 'pull-right'} }) }}
                         {{ form_end(form) }}

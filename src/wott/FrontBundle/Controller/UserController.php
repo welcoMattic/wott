@@ -23,7 +23,7 @@ class UserController extends Controller
     public function filmUserAction(Request $request)
     {
         $idFilm = $request->request->get('idFilm');
-        $action = $request->request->get('action');
+        $action = ucfirst($request->request->get('action'));
         $idUser = $this->container->get('security.context')->getToken()->getUser()->getId();
 
         $setter = 'setIs'.$action;
@@ -59,7 +59,7 @@ class UserController extends Controller
 
         $em->flush();
 
-        return array();
+        return new Response();
     }
 
     /**
@@ -95,8 +95,6 @@ class UserController extends Controller
             return array('form' => $form->createView());
         }
 
-            
-
         return array('form' => $form->createView());
     }
 
@@ -120,7 +118,7 @@ class UserController extends Controller
         $filmsUser = $FilmUser->getFilmsUser($user, $action);
 
         return array('films' => $filmsUser);
-        
+
     }
 
     /**
@@ -137,15 +135,12 @@ class UserController extends Controller
         $form = $this->container->get('sonata.user.authentication.form');
         $formHandler = $this->container->get('sonata.user.authentication.form_handler');
 
-
         $process = $formHandler->process($user);
         if ($process) {
             $this->setFlash('sonata_user_success', 'profile.flash.updated');
 
             return new RedirectResponse($this->generateUrl('sonata_user_profile_show'));
         }
-
-
 
         return array('form' => $form->createView());
     }

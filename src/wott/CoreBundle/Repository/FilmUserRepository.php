@@ -30,15 +30,15 @@ class FilmUserRepository extends EntityRepository
 
     public function suggest(User $user)
     {
+        $films = array();
+        $seenFilms = array();
+
         $em = $this->getEntityManager();
         $likedFilmsByUser = $this->getFilmsUser($user, 'like');
         $seenFilmsUser = $this->getFilmsUser($user, 'seen');
         foreach ($seenFilmsUser as $seenFilmUser) {
             $seenFilms[] = $seenFilmUser->getFilm();
         }
-        $films = array();
-        $seenFilms = array();
-
         foreach ($likedFilmsByUser as $likedFilmByUser) {
             foreach ($likedFilmByUser->getFilm()->getGenres() as $genre) {
                 $filmsByLikedGenres = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(10, $genre);
@@ -47,6 +47,14 @@ class FilmUserRepository extends EntityRepository
                         $films[] = $filmsByLikedGenre;
                 }
             }
+        }
+
+        if (count($films) == 0) {
+            $popularFilms=$em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(10);
+            foreach ($popularFilms as $popularFilm) {
+                $films[]=$PopularFilm;
+            }
+
         }
 
         return $films;

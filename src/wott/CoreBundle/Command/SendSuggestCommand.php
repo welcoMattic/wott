@@ -26,19 +26,17 @@ class SendSuggestCommand extends ContainerAwareCommand
 
         $users = $em->getRepository('wottCoreBundle:User')->findAll();
 
-
         foreach ($users as $user) {
             if ($user->getSuggestDay() && in_array($date, $user->getSuggestDay())) {
                 $films = $em->getRepository('wottCoreBundle:FilmUser')->suggest($user);
                 $email= $user->getEmail();
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject('Tonight on TV !')
-                ->setFrom('suggest@wott.fr')
-                ->setTo($email)
-                ->setBody($this->getContainer()->get('templating')->render('wottFrontBundle:Mail:suggest.html.twig', array('films' => $films)))
-                ;
-        
+                    ->setSubject('Tonight on TV !')
+                    ->setFrom('suggest@wott.fr')
+                    ->setTo($email)
+                    ->setBody($this->getContainer()->get('templating')->render('wottFrontBundle:Mail:suggest.html.twig', array('films' => $films)));
+
                 $this->getContainer()->get('mailer')->send($message);
 
                 $output->writeln('mail send to '.$email);
@@ -48,5 +46,3 @@ class SendSuggestCommand extends ContainerAwareCommand
     }
 
 }
-
-    

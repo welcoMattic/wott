@@ -9,10 +9,23 @@
                     </a>
                     <div class="caption">
                         <h2 class="text-center"><a href="{{ path('showFilm', { 'id': film.id }) }}">{{ film.title }}</a></h2>
-                        <p>{{ film.synopsis | slice(0, 100) }}</p>
+                        <p>{{ film.synopsis | slice(0, 100) }}...</p>
                         {% if is_granted('ROLE_USER') %}
-                            <a href="#" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter le film à ma watchlist</a>
-                            <a class="btn center-block btn-default action" href="#" data-id="{{ film.id }}" data-action="Like">Like</a>
+                            {% if attribute(filmsUser, film.id) is defined and attribute(filmsUser, film.id).isWanted == false %}
+                                <a href="#" class="action btn btn-success center-block isWanted hide" data-id="{{ film.id }}" data-action="wanted">{{ icon('plus') }} Ajouter à ma watchlist</a>
+                                <a href="#" class="action btn btn-danger center-block isWanted" data-id="{{ film.id }}" data-action="wanted">{{ icon('minus') }} Retirer de ma watchlist</a>
+                            {% else %}
+                                <a href="#" class="action btn btn-success center-block isWanted" data-id="{{ film.id }}" data-action="wanted">{{ icon('plus') }} Ajouter à ma watchlist</a>
+                                <a href="#" class="action btn btn-danger center-block isWanted hide" data-id="{{ film.id }}" data-action="wanted">{{ icon('minus') }} Retirer de ma watchlist</a>
+                            {% endif %}
+
+                            {% if attribute(filmsUser, film.id) is defined and attribute(filmsUser, film.id).isLike == false %}
+                                <a href="#" class="action btn btn-danger center-block isLike" data-id="{{ film.id }}" data-action="like">{{ icon('thumbs-down') }} Unliker le film</a>
+                                <a href="#" class="action btn btn-info center-block isLike hide" data-id="{{ film.id }}" data-action="like">{{ icon('thumbs-up') }} Liker le film</a>
+                            {% else %}
+                                <a href="#" class="action btn btn-danger center-block isLike hide" data-id="{{ film.id }}" data-action="like">{{ icon('thumbs-down') }} Unliker le film</a>
+                                <a href="#" class="action btn btn-info center-block isLike" data-id="{{ film.id }}" data-action="like">{{ icon('thumbs-up') }} Liker le film</a>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

@@ -10,7 +10,7 @@
                     </p>
                     <div class="col-md-6">
                         <h2 class="list-group-item-header"><a href="{{ path('showFilm', { 'id': film.id }) }}">{{ film.title }}</a></h2>
-                        <p class="list-group-item-text">{{ film.synopsis | slice(0, 500) }}</p>
+                        <p class="list-group-item-text">{{ film.synopsis | slice(0, 500) }}...</p>
                     </div>
                     <p class="col-md-3">
                        <a href="" class="action btn center-block btn-primary" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>

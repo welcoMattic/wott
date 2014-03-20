@@ -6,10 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use wott\CoreBundle\Entity\Film;
-use wott\CoreBundle\Entity\Formulaire;
+use wott\CoreBundle\Entity\FilmUser;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
 
 class DefaultController extends Controller
 {
@@ -22,20 +20,32 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
 
+        if ( $this->container->get('security.context')->isGranted('ROLE_USER') ) {
+            $user = $this->getUser();
+            $fuRepo = $em->getRepository('wottCoreBundle:FilmUser');
+            foreach ($films as $key => $film) {
+                $fu = $fuRepo->findOneBy(array('film'=>$film, 'user'=>$user));
+                if ($fu instanceOf FilmUser) {
+                    $filmsUser[$film->getId()] = $fu;
+                }
+            }
+            return array('films' => $films, 'filmsUser' => $filmsUser);
+        }
         return array('films' => $films);
     }
 
     /**
-     * @Route("/list/{display}/{genre}", defaults={"display" = "", "genre" = null}, name="list")
+     * @Route("/list/{page}/{display}/{genre}", defaults={"page" = 1, "display" = "", "genre" = null}, name="list")
      * @Template()
      */
-    public function listAction($display, $genre)
+    public function listAction($page, $display, $genre)
     {
+        $limit=8*$page;
+        $offset=$limit-8;
+
         $em = $this->getDoctrine()->getManager();
         $genre = $em->getRepository('wottCoreBundle:Genre')->find($genre);
-
-        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8, $genre);
-
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($limit, $genre, $offset);
 
         if ($display === 'grid') {
             $content = $this->render('wottFrontBundle:Default:index_grid.html.twig', array('films' => $films));
@@ -43,16 +53,28 @@ class DefaultController extends Controller
             $content = $this->render('wottFrontBundle:Default:index_list.html.twig', array('films' => $films));
         }
 
-
         return $content;
     }
 
+    /**
+     * @Route("/extend/{page}/{genre}/{display}", name="extend", defaults={"genre" = null})
+     * @Template()
+     */
+    public function extendAction($genre, $page)
+    {
+        $limit = 8 * $page;
+        $offset = $limit - 8;
+
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($limit, $genre, $offset);
+
+        return $film;
+    }
 
     /**
      * @Route("/contact", name="contact")
      * @Template()
      */
-    public function contactAction(Request $request )
+    public function contactAction(Request $request)
     {
         $form = $this->createFormBuilder()
             ->add('Nom', 'text')
@@ -72,7 +94,7 @@ class DefaultController extends Controller
             $message = \Swift_Message::newInstance()
             ->setSubject('Formualaire de contact WOTT !')
             ->setFrom($email)
-            ->setTo('cypher@ftad.fr')
+            ->setTo('gregory.joly.14@gmail.com')
             ->setBody($text)
             ;
 

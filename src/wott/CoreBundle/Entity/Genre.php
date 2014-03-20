@@ -136,4 +136,14 @@ class Genre
     {
         return $this->films;
     }
+
+    /**
+     * Remove films
+     *
+     * @param \wott\CoreBundle\Entity\Film $films
+     */
+    public function removeFilm(\wott\CoreBundle\Entity\Film $films)
+    {
+        $this->films->removeElement($films);
+    }
 }
