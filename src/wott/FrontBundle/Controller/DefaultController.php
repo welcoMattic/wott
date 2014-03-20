@@ -59,6 +59,21 @@ class DefaultController extends Controller
         return $content;
     }
 
+    /**
+     * @Route("/extend/{page}/{genre}/{display}", name="extend", defaults={"genre" = null})
+     * @Template()
+     */
+    public function extendAction($genre, $page)
+    {
+        $limit=8*$page;
+        $offset=$limit-8;
+
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($limit, $genre, $offset);
+
+        return $film;
+
+    }
+
 
     /**
      * @Route("/contact", name="contact")
@@ -84,7 +99,7 @@ class DefaultController extends Controller
             $message = \Swift_Message::newInstance()
             ->setSubject('Formualaire de contact WOTT !')
             ->setFrom($email)
-            ->setTo('cypher@ftad.fr')
+            ->setTo('gregory.joly.14@gmail.com')
             ->setBody($text)
             ;
 
