@@ -31,7 +31,7 @@ $(document).ready(function() {
         $('#movies').remove();
     };
 
-    $('.display-btn, .genres li').click(function(e) {
+    $('.display-btn, .genres li, .pagination').click(function(e) {
         var $this     = $(this)
           , currentId = e.currentTarget.id
           , isGenre   = e.currentTarget.localName == 'li'

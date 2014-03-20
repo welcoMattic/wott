@@ -59,7 +59,6 @@ class User extends BaseUser
         return $this->facebookId;
     }
 
-
     /**
      * @param Array
      */
@@ -83,7 +82,7 @@ class User extends BaseUser
     /**
      * Set suggestDay
      *
-     * @param array $suggestDay
+     * @param  array $suggestDay
      * @return User
      */
     public function setSuggestDay($suggestDay)

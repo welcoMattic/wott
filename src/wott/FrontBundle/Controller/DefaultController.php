@@ -7,10 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use wott\CoreBundle\Entity\Film;
 use wott\CoreBundle\Entity\FilmUser;
-use wott\CoreBundle\Entity\Formulaire;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
 
 class DefaultController extends Controller
 {
@@ -23,12 +20,12 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
 
-        if( $this->container->get('security.context')->isGranted('ROLE_USER') ) {
+        if ( $this->container->get('security.context')->isGranted('ROLE_USER') ) {
             $user = $this->getUser();
             $fuRepo = $em->getRepository('wottCoreBundle:FilmUser');
-            foreach($films as $key => $film) {
+            foreach ($films as $key => $film) {
                 $fu = $fuRepo->findOneBy(array('film'=>$film, 'user'=>$user));
-                if($fu instanceOf FilmUser) {
+                if ($fu instanceOf FilmUser) {
                     $filmsUser[$film->getId()] = $fu;
                 }
             }
@@ -38,15 +35,17 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/list/{display}/{genre}", defaults={"display" = "", "genre" = null}, name="list")
+     * @Route("/list/{page}/{display}/{genre}", defaults={"page" = 1, display" = "", "genre" = null}, name="list")
      * @Template()
      */
-    public function listAction($display, $genre)
+    public function listAction($page, $display, $genre)
     {
+        $limit=8*$page;
+        $offset=$limit-8;
+
         $em = $this->getDoctrine()->getManager();
         $genre = $em->getRepository('wottCoreBundle:Genre')->find($genre);
-
-        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8, $genre);
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($limit, $genre, $offset);
 
 
         if ($display === 'grid') {
@@ -54,7 +53,6 @@ class DefaultController extends Controller
         } elseif ($display === 'list') {
             $content = $this->render('wottFrontBundle:Default:index_list.html.twig', array('films' => $films));
         }
-
 
         return $content;
     }
@@ -65,8 +63,8 @@ class DefaultController extends Controller
      */
     public function extendAction($genre, $page)
     {
-        $limit=8*$page;
-        $offset=$limit-8;
+        $limit = 8 * $page;
+        $offset = $limit - 8;
 
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($limit, $genre, $offset);
 
@@ -74,12 +72,11 @@ class DefaultController extends Controller
 
     }
 
-
     /**
      * @Route("/contact", name="contact")
      * @Template()
      */
-    public function contactAction(Request $request )
+    public function contactAction(Request $request)
     {
         $form = $this->createFormBuilder()
             ->add('Nom', 'text')

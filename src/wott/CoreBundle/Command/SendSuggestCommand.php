@@ -26,7 +26,6 @@ class SendSuggestCommand extends ContainerAwareCommand
 
         $users = $em->getRepository('wottCoreBundle:User')->findAll();
 
-
         foreach ($users as $user) {
             if ($user->getSuggestDay() && in_array($date, $user->getSuggestDay())) {
                 $films = $em->getRepository('wottCoreBundle:FilmUser')->suggest($user);
@@ -47,4 +46,3 @@ class SendSuggestCommand extends ContainerAwareCommand
     }
 
 }
-

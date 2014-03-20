@@ -95,8 +95,6 @@ class UserController extends Controller
             return array('form' => $form->createView());
         }
 
-
-
         return array('form' => $form->createView());
     }
 
@@ -137,15 +135,12 @@ class UserController extends Controller
         $form = $this->container->get('sonata.user.authentication.form');
         $formHandler = $this->container->get('sonata.user.authentication.form_handler');
 
-
         $process = $formHandler->process($user);
         if ($process) {
             $this->setFlash('sonata_user_success', 'profile.flash.updated');
 
             return new RedirectResponse($this->generateUrl('sonata_user_profile_show'));
         }
-
-
 
         return array('form' => $form->createView());
     }

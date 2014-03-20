@@ -12,9 +12,9 @@
     <div class="col-md-8">
         <div class="well well-sm clearfix">
             {{ form_start(form) }}
-                
+
                 {{ form_errors(form) }}
-                
+
                     <div class="col-md-6">
                         {{ form_row(form.Nom, { 'attr': {'placeholder': 'Votre Nom'} }) }}
                         {{ form_row(form.Prenom, { 'attr': {'placeholder': 'Votre Prénom'} }) }}
@@ -23,7 +23,7 @@
                     <div class="col-md-6">
                         {{ form_row(form.Message, { 'attr': {'rows': '9', 'placeholder': 'Votre Message' } }) }}
                     </div>
-                
+
                 <div class="col-md-12">
                     {{ form_row(form.Envoyer, { 'attr': {'class': 'pull-right'} }) }}
             {{ form_end(form) }}

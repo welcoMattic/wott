@@ -36,7 +36,7 @@ class FilmController extends Controller
                 array_push($cast, $people->getPeople()->getName());
             }
         }
-        if( $this->container->get('security.context')->isGranted('ROLE_USER') ) {
+        if ( $this->container->get('security.context')->isGranted('ROLE_USER') ) {
             $user = $this->getUser();
             $fu = $em->getRepository('wottCoreBundle:FilmUser')->findOneBy(array('film'=>$film, 'user'=>$user));
             $filmUser = array(
@@ -44,6 +44,7 @@ class FilmController extends Controller
                 'isLike' => $fu->getIsLike(),
                 'isWanted' => $fu->getIsWanted()
             );
+
             return array('film' => $film, 'director' => $director, 'cast' => $cast, 'filmUser' => $filmUser);
         }
 
