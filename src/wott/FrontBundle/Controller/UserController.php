@@ -102,7 +102,7 @@ class UserController extends Controller
 
     /**
      * @Route("/profile/{action}", name="profile")
-     * @Template("wottFrontBundle:Profile:show.html.twig")
+     * @Template("wottFrontBundle:User:show.html.twig")
      */
     public function profileAction($action = "wanted")
     {

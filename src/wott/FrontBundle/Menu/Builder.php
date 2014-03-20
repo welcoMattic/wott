@@ -16,7 +16,6 @@ class Builder extends ContainerAware
         $menu->setCurrentUri($this->container->get('request')->getRequestUri());
 
         $menu->addChild('Accueil', array('route' => 'homepage'));
-        $menu->addChild('Suggestions', array('route' => 'suggest'));
         $menu->addChild('Contact', array('route' => 'contact'));
         $menu->addChild('Mentions', array('route' => 'mentions'));
 
@@ -55,6 +54,7 @@ class Builder extends ContainerAware
         $menu->addChild('Ma Watchlist', array('route' => 'profile'));
         $menu->addChild('Films vus', array('route' => 'profile', 'routeParameters' => array('action' => 'seen')));
         $menu->addChild('Mes Likes', array('route' => 'profile', 'routeParameters' => array('action' => 'like')));
+        $menu->addChild('Mes suggestions', array('route' => 'suggest'));
         $menu->addChild('Mes informations', array('route' => 'edit-authentication'));
 
         return $menu;

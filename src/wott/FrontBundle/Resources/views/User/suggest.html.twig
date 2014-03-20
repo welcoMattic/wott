@@ -1,29 +1,9 @@
-{% extends 'wottFrontBundle::layout.html.twig' %}
-{% block content %}
+{% extends 'SonataUserBundle:Profile:layout.html.twig' %}
 
-    <div class="row" id="filter">
-        <div class="col-md-12">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="collapse navbar-collapse">
-                    {{ knp_menu_render('wottFrontBundle:Builder:filtersMenu', { 'style': 'navbar' }) }}
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="search" class="form-control" placeholder="Rechercher un film">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default navbar-btn display-btn active" data-display="grid">{{ icon('th') }}</button>
-                                <button type="button" class="btn btn-default navbar-btn display-btn" data-display="list">{{ icon('th-list') }}</button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block title %}Mon profil{% endblock %}
+
+{% block main %}
+
     <div class="row">
         <div class="col-md-8">
             <h3>Notifications pour les suggestions</h3>
