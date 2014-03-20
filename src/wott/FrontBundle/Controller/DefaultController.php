@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("", name="homepage")
      * @Template()
      */
     public function indexAction()
@@ -22,7 +22,14 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
 
-        return array('films' => $films);
+        $paginator  = $this->get('knp_paginator');
+    	$pagination = $paginator->paginate(
+        $films,
+        $this->get('request')->query->get('page', 1)
+    );
+
+
+        return array('films' => $films, 'pagination' => $pagination);
     }
 
     /**
@@ -43,6 +50,21 @@ class DefaultController extends Controller
         }
 
         return $content;
+    }
+
+    /**
+     * @Route("/extend/{page}/{genre}", name="extend", defaults={"genre" = null})
+     * @Template()
+     */
+    public function extendAction($genre, $page)
+    {
+        $limit=8*$page;
+        $offset=$limit-8;
+
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($limit, $genre, $offset);
+
+        return $film;
+        
     }
 
 
@@ -70,7 +92,7 @@ class DefaultController extends Controller
             $message = \Swift_Message::newInstance()
             ->setSubject('Formualaire de contact WOTT !')
             ->setFrom($email)
-            ->setTo('cypher@ftad.fr')
+            ->setTo('gregory.joly.14@gmail.com')
             ->setBody($text)
             ;
 
