@@ -8,6 +8,9 @@ a.btn.action{
     margin: 1% 0;
 }
 
+.progress {
+    display: none;
+}
 
 /*** Header ***/
 header {
