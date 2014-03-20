@@ -58,9 +58,8 @@ class UserController extends Controller
         }
 
         $em->flush();
-        $$getter = $filmUser->$getter();
 
-        return new Response(var_dump($$getter));
+        return array();
     }
 
     /**
