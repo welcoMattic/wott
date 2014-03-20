@@ -20,9 +20,17 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
+        $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(30);
 
-        return array('films' => $films);
+         $paginator  = $this->get('knp_paginator');
+    $pagination = $paginator->paginate(
+        $films,
+        $this->get('request')->query->get('page', 1)/*page number*/,
+        4/*limit per page*/
+    );
+
+
+        return array('films' => $films, 'pagination' => $pagination);
     }
 
     /**
@@ -57,7 +65,7 @@ class DefaultController extends Controller
             ->add('Prenom', 'text')
             ->add('Email', 'email')
             ->add('Message', 'textarea')
-            ->add('save', 'submit')
+            ->add('Envoyer', 'submit')
             ->getForm();
 
         $form->handleRequest($request);
@@ -70,7 +78,7 @@ class DefaultController extends Controller
             $message = \Swift_Message::newInstance()
             ->setSubject('Formualaire de contact WOTT !')
             ->setFrom($email)
-            ->setTo('suggest@wott.fr')
+            ->setTo('gregory.joly.14@gmail.com')
             ->setBody($text)
             ;
 
