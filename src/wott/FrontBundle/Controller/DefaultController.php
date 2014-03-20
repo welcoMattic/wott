@@ -29,9 +29,9 @@ class DefaultController extends Controller
                     $filmsUser[$film->getId()] = $fu;
                 }
             }
+            return array('films' => $films, 'filmsUser' => $filmsUser);
         }
-
-        return array('films' => $films, 'filmsUser' => $filmsUser);
+        return array('films' => $films);
     }
 
     /**
