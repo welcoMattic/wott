@@ -35,7 +35,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/list/{page}/{display}/{genre}", defaults={"page" = 1, display" = "", "genre" = null}, name="list")
+     * @Route("/list/{page}/{display}/{genre}", defaults={"page" = 1, "display" = "", "genre" = null}, name="list")
      * @Template()
      */
     public function listAction($page, $display, $genre)
