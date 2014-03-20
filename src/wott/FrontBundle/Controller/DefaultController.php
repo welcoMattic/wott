@@ -36,11 +36,13 @@ class DefaultController extends Controller
 
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8, $genre);
 
+
         if ($display === 'grid') {
             $content = $this->render('wottFrontBundle:Default:index_grid.html.twig', array('films' => $films));
         } elseif ($display === 'list') {
             $content = $this->render('wottFrontBundle:Default:index_list.html.twig', array('films' => $films));
         }
+
 
         return $content;
     }
