@@ -57,7 +57,7 @@ class Builder extends ContainerAware
         $menu->addChild('Ma Watchlist', array('route' => 'profile'));
         $menu->addChild('Films vus', array('route' => 'profile', 'routeParameters' => array('action' => 'seen')));
         $menu->addChild('Mes Likes', array('route' => 'profile', 'routeParameters' => array('action' => 'like')));
-        $menu->addChild('Mes suggestions', array('route' => 'suggest'));
+        $menu->addChild('Suggestions', array('route' => 'suggest'));
         if(!$user->getFacebookId())
         $menu->addChild('Mes informations', array('route' => 'edit-authentication'));
 

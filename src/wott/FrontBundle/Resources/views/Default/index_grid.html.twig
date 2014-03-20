@@ -5,7 +5,7 @@
             <div class="col-md-3">
                 <div class="thumbnail">
                     <a href="{{ path('showFilm', { 'id': film.id }) }}">
-                        <img src="{{ film.urlPoster|image_url_path}}" alt="Vignette du film" />
+                        <img class="img-rounded" src="{{ film.urlPoster|image_url_path}}" alt="Vignette du film" />
                     </a>
                     <div class="caption">
                         <h2 class="text-center"><a href="{{ path('showFilm', { 'id': film.id }) }}">{{ film.title }}</a></h2>
