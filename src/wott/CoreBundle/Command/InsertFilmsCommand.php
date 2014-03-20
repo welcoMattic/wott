@@ -68,7 +68,7 @@ class InsertFilmsCommand extends ContainerAwareCommand
                         $f->setUrlPoster(!empty($images['posters']) ? $images['posters'][0]['file_path'] : '');
 
                         $f->setNationalities(array_reduce($film['production_countries'], function ($current, $next) {
-                                                return ($current != '') ? $current . ',' . $next['name'] : $next['name'];
+                                                return ($current != '') ? $current . ', ' . $next['name'] : $next['name'];
                                             }));
 
                         if (!empty($film['trailers']['youtube'])) {
