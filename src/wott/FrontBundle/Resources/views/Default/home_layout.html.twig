@@ -49,16 +49,17 @@ $(document).ready(function() {
     $('.display-btn, .genres li').click(function(e) {
         var $this     = $(this)
           , currentId = e.currentTarget.id
+          , isGenre   = e.currentTarget.localName == 'li'
           , isDisplay = currentId == 'list-btn' || currentId == 'grid-btn'
           , display   = isDisplay ? $this.data('display') : $('.display-btn.active').data('display')
-          , idGenre   = $('.genres li.active').data('id');
+          , idGenre   = isGenre ? $this.data('id') : $('.genres li.active').data('id');
 
         $.ajax({
             type       : 'POST',
             url        : '{{ path("list") }}/' + display + '/' + idGenre,
             beforeSend : beforeSend
         }).done(function (response) {
-            $('li.dropdown').dropdown();
+            // if(!isDisplay) $('li.dropdown').dropdown('toggle');
             $('.progress').hide();
             $('#filter').after(response);
             if(isDisplay) $('.display-btn').removeClass('active');
