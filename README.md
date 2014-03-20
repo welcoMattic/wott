@@ -21,7 +21,7 @@ Create a vhost named : wott.dev
 
 - Clone the repo
 
-```git clone https://github.com/welcoMattic/wott```
+```git clone https://github.com/welcoMattic/wott && cd wott```
 
 ####Composer
 
