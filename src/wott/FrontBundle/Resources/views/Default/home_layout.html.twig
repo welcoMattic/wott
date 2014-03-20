@@ -31,20 +31,6 @@ $(document).ready(function() {
         $('#movies').remove();
     };
 
-    // Like watch and seen actions
-    $('.action').click(function() {
-        var idFilm = $(this).data('id')
-          , action = $(this).data('action');
-        $.ajax({
-            type: 'POST',
-            url: "{{ path('filmUser') }}",
-            data: {'idFilm' : idFilm, 'action' : action }
-        }).done(function(response) {
-            console.log(response);
-        });
-        return false;
-    });
-
 
     $('.display-btn, .genres li').click(function(e) {
         var $this     = $(this)
