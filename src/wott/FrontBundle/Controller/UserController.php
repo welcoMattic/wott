@@ -77,7 +77,7 @@ class UserController extends Controller
                                                                     'Mon' => 'Lundi',
                                                                     'Tue' => 'Mardi',
                                                                     'Wed' => 'Mercredi',
-                                                                    'Thi' => 'Jeudi',
+                                                                    'Thu' => 'Jeudi',
                                                                     'Fri' => 'Vendredi',
                                                                     'Sat' => 'Samedi',
                                                                     'Sun' => 'Dimanche'),
