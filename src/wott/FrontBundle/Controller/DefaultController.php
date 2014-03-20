@@ -21,6 +21,7 @@ class DefaultController extends Controller
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
 
         if ( $this->container->get('security.context')->isGranted('ROLE_USER') ) {
+            $filmsUser = array();
             $user = $this->getUser();
             $fuRepo = $em->getRepository('wottCoreBundle:FilmUser');
             foreach ($films as $key => $film) {
