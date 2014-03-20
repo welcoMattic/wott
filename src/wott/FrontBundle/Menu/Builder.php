@@ -47,6 +47,10 @@ class Builder extends ContainerAware
 
     public function profileMenu(FactoryInterface $factory, array $options)
     {
+        $em = $this->container->get('doctrine.orm.entity_manager');
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+
         $menu = $factory->createItem('root');
 
         $menu->setCurrentUri($this->container->get('request')->getRequestUri());
@@ -55,7 +59,9 @@ class Builder extends ContainerAware
         $menu->addChild('Films vus', array('route' => 'profile', 'routeParameters' => array('action' => 'seen')));
         $menu->addChild('Mes Likes', array('route' => 'profile', 'routeParameters' => array('action' => 'like')));
         $menu->addChild('Mes suggestions', array('route' => 'suggest'));
+        if(!$user->getFacebookId())
         $menu->addChild('Mes informations', array('route' => 'edit-authentication'));
+
 
         return $menu;
     }
