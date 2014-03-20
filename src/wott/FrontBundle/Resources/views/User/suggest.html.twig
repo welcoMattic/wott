@@ -24,65 +24,16 @@
             </div>
         </div>
     </div>
-
-    <div class="progress progress-striped active hide">
-        <div class="progress-bar" style="width: 100%"></div>
+        <div class="row">
+        <div class="col-md-7">
+            <h3>Notifications pour les suggestions</h3>
+            <p>Pour recevoir une notification à chaque nouvelle suggestion, cochez les jours où vous souhaitez recevoir une notification.</p>
+            <div class="well">
+                <form class="form-inline">
+                    {{ form_widget(formSuggest) }}
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div class="row" id="movies">
-        {% for film in films %}
-            {{ film.title }} <br>
-        {% endfor %}
-    </div>
-{% endblock %}
-
-{% block javascript %}
-{{ parent() }}
-<script>
-$(document).ready(function(){
-
-    $('.action').click(function(){
-
-        idFilm=$(this).data('id');
-        action=$(this).data('action')
-
-        $.ajax({
-
-           type: "POST",
-           url: "{{ path('filmUser') }}",
-           data: {"idFilm" : idFilm, "action" : action }
-         }).done(function (response) {
-            console.log(response);
-        });
-
-        return false;
-
-    });
-
-    $('.display-btn').click(function(){
-        var $this = $(this);
-        display = $(this).data('display');
-
-        $.ajax({
-           type: "POST",
-           url: "{{ path('list') }}/"+display,
-           beforeSend:function(){
-                $('#movies').remove();
-                $('.progress').toggleClass('hide');
-            }
-         }).done(function (response) {
-            $('#filter').after(response);
-            $('.display-btn').removeClass('active');
-            $this.toggleClass('active');
-            $('.progress').toggleClass('hide');
-        });
-
-        return false;
-
-    });
-
-
-})
-</script>
 
 {% endblock %}

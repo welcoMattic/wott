@@ -57,20 +57,20 @@ class DefaultController extends Controller
             ->add('Prenom', 'text')
             ->add('Email', 'email')
             ->add('Message', 'textarea')
-            ->add('save', 'submit')
+            ->add('Envoyer', 'submit')
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            var_dump($form->getData());
+            die();
 
             $email = $form->get('Email')->getData();
             $text = $form->get('Message')->getData();
             $message = \Swift_Message::newInstance()
             ->setSubject('Formualaire de contact WOTT !')
             ->setFrom($email)
-            ->setTo('suggest@wott.fr')
+            ->setTo('cypher@ftad.fr')
             ->setBody($text)
             ;
 
@@ -79,14 +79,12 @@ class DefaultController extends Controller
             'notice',
             'Votre E-mail a correctement été envoyé !'
         );
-            return $this->redirect($this->generateUrl('homepage'));
+            //return $this->redirect($this->generateUrl('homepage'));
         }
 
         return array(
             'form' => $form->createView(),
         );
-    
-        return array();
     }
 
     /**
