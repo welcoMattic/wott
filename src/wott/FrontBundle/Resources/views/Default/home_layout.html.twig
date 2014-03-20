@@ -1,22 +1,15 @@
 {% extends 'wottFrontBundle::layout.html.twig' %}
 {% block content %}
-    <!-- menu filtres-->
     <div class="row" id="filter">
         <div class="col-md-12">
             <div class="navbar navbar-default" role="navigation">
                 <div class="collapse navbar-collapse">
                     {{ knp_menu_render('wottFrontBundle:Builder:filtersMenu', { 'style': 'navbar' }) }}
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="search" class="form-control" placeholder="Rechercher un film">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default navbar-btn display-btn active" data-display="grid">{{ icon('th') }}</button>
-                                <button type="button" class="btn btn-default navbar-btn display-btn" data-display="list">{{ icon('th-list') }}</button>
+                                <button type="button" id="grid-btn" class="btn btn-default navbar-btn display-btn active" data-display="grid">{{ icon('th') }}</button>
+                                <button type="button" id="list-btn" class="btn btn-default navbar-btn display-btn" data-display="list">{{ icon('th-list') }}</button>
                             </div>
                         </li>
                     </ul>
@@ -24,7 +17,6 @@
             </div>
         </div>
     </div>
-    <!--fin <filtres--></filtres-->
 
     {% block main %}{% endblock %}
 {% endblock %}
@@ -32,83 +24,51 @@
 {% block javascript %}
 {{ parent() }}
 <script>
-$(document).ready(function(){
+$(document).ready(function() {
 
-    $('.action').click(function(){
+    var beforeSend = function() {
+        $('.progress').show();
+        $('#movies').remove();
+    };
 
-        idFilm=$(this).data('id');
-        action=$(this).data('action')
+    // Like watch and seen actions
+    $('.action').click(function() {
+        var idFilm = $(this).data('id')
+          , action = $(this).data('action');
+        $.ajax({
+            type: 'POST',
+            url: "{{ path('filmUser') }}",
+            data: {'idFilm' : idFilm, 'action' : action }
+        }).done(function(response) {
+            console.log(response);
+        });
+        return false;
+    });
+
+
+    $('.display-btn, .genres li').click(function(e) {
+        var $this     = $(this)
+          , currentId = e.currentTarget.id
+          , isDisplay = currentId == 'list-btn' || currentId == 'grid-btn'
+          , display   = isDisplay ? $this.data('display') : $('.display-btn.active').data('display')
+          , idGenre   = $('.genres li.active').data('id');
 
         $.ajax({
-
-           type: "POST",
-           url: "{{ path('filmUser') }}",
-           data: {"idFilm" : idFilm, "action" : action }
-         }).done(function (response) {
-            console.log(response);
-        });
-
-        return false;
-
-    });
-
-
-    $('.genres li').click(function(){
-
-
-        var $this = $(this);
-        idGenre = $this.children('a').attr('href');
-        display = $('.display-btn.active').data('display')
-
-        ajax = $.ajax({
-           type: "POST",
-           url: "{{ path('list') }}/"+display+"/"+idGenre,
-           beforeSend:function(){
-                $('#movies').remove();
-                $('.progress').toggleClass('active');
-            }
-         }).done(function (response) {
-            console.log(response);
+            type       : 'POST',
+            url        : '{{ path("list") }}/' + display + '/' + idGenre,
+            beforeSend : beforeSend
+        }).done(function (response) {
+            $('li.dropdown').dropdown();
+            $('.progress').hide();
             $('#filter').after(response);
-            $('.progress').toggleClass('active');
-            $('.genre li').removeClass('active');
-            $this.toggleClass('active');
+            if(isDisplay) $('.display-btn').removeClass('active');
+            else $('.genres li').removeClass('active');
+            $this.addClass('active');
         });
-
-
         return false;
-
     });
 
-
-    $('.display-btn').click(function(){
-
-
-        var $this = $(this);
-        idGenre = $('.genres li.active').children('a').attr('href');
-        display = $(this).data('display');
-
-        ajax = $.ajax({
-           type: "POST",
-           url: "{{ path('list') }}/"+display+"/"+idGenre,
-           beforeSend:function(){
-                $('#movies').remove();
-                $('.progress').toggleClass('active');
-            }
-         }).done(function (response) {
-            $('#filter').after(response);
-            $('.display-btn').removeClass('active');
-            $this.toggleClass('active');
-            $('.progress').toggleClass('active');
-        });
-
-
-        return false;
-
-    });
-
-
-})
+});
 </script>
 
 {% endblock %}

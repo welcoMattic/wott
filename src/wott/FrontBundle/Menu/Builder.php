@@ -24,20 +24,24 @@ class Builder extends ContainerAware
     }
 
     public function filtersMenu(FactoryInterface $factory, array $options)
-    {   
+    {
         $em = $this->container->get('doctrine.orm.entity_manager');
-        $genres= $em->getRepository('wottCoreBundle:Genre')->findAll();
+        $genres = $em->getRepository('wottCoreBundle:Genre')->findAll();
 
         $menu = $factory->createItem('root');
 
         $menu->addChild('Trier par')
             ->setAttribute('class', 'navbar-text');
 
-        $menu->addChild('Genres', array('route' => 'homepage'))           
+        $menu->addChild('Genres', array('route' => 'homepage'))
             ->setAttribute('dropdown', true)
+            ->setAttribute('data-toggle', 'dropdown')
             ->setChildrenAttributes(array('class' => 'genres'));
-        foreach($genres as $genre)
-            $menu['Genres']->addChild($genre->getName(), array('uri' => $genre->getId()));
+
+        foreach($genres as $genre) {
+            $menu['Genres']->addChild($genre->getName(), array('uri' => $genre->getId()))
+                            ->setAttribute('data-id', $genre->getId());
+        }
 
         $menu->addChild('Note', array('route' => 'homepage'));
 
