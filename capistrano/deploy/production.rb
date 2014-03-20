@@ -1,5 +1,5 @@
 set :stage, :production
-set :branch, 'dev/mathieu'
+set :branch, 'dev/maxime'
 set :deploy_to, '/var/www/wott'
 
 role :app, %w{welcomattic@195.154.12.162}
