@@ -2,46 +2,64 @@
 {% block title %}{{ film.title }}{% endblock %}
 
 {% block content %}
-
-<section id="main" class="container-fluid" role="content">
     <div class="row">
         <div class="col-md-5">
-            <p> <a href="{{ path('homepage') }}">Home</a> > {{ film.title }}</p>
+            <p><a href="{{ path('homepage') }}">Home</a> > {{ film.title }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ film.urlPoster|image_url_path }}" class='img-responsive' alt="Affiche du film A">
-            <button class="btn btn-default btn-primary center-block">Ajouter à ma watchlist</button>
-            <button class="btn btn-default center-block">Liker le film</button>
-            <button class="btn btn-default center-block">J'ai vu ce film</button>
+            {% if film.urlPoster %}
+                <img src="{{ film.urlPoster|image_url_path}}" class="img-responsive img-rounded" alt="Affiche du film" />
+            {% else %}
+                <img src="{{ asset('bundles/wottfront/images/no-poster.jpg') }}" class="center-block img-responsive img-rounded" alt="Pas de visuel disponible pour ce film" />
+            {% endif %}
+            <p>
+                <a href="#" class="action btn btn-primary center-block" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>
+                <a href="" class="action btn btn-default center-block" data-id="{{ film.id }}" data-action="Like">Liker le film</a>
+                <a href="#" class="action btn btn-default center-block">J'ai vu ce film</a>
+            </p>
         </div>
         <div class="col-md-8">
             <h2>{{ film.title }}</h2>
-            <ul>
-                <li>Titre original : {{ film.originalTitle }}</li>
-                <li>Film de : {{ director }} </li>
-                <li>Acteurs princpaux : {% for actor in cast|slice(0, 3) %}
-                                            {% if loop.last %}
-                                                {{ actor }}
-                                            {% else %}
-                                                {{ actor }},
-                                            {% endif %}
-                                        {% endfor %}</li>
-                <li>Nationalité(s) : {{ film.nationalities }}</li>
-                <li>Genres : {% for genre in film.genres %}
-                                {% if loop.last %}
-                                    {{ genre.name }}
-                                {% else %}
-                                    {{ genre.name }},
-                                {% endif %}
-                            {% endfor %}</li>
-                <li>Temps : {{ film.runtime }}</li>
-                <li>Année de sortie cinéma : {{ film.releaseDate|date("d/m/Y") }}</li>
-                <li>Note : {{ film.popularity }}</li>
-            </ul>
+            <div class="row">
+                <div class="col-md-6">
+                    <blockquote>
+                        <p>Titre original</p> <small><cite title="Original title">{{ film.originalTitle }}</cite></small>
+                        <p>Réalisateur</p> <small><cite title="Director">{{ director }}</cite></small>
+                        <p>Acteurs principaux</p> 
+                            <small><cite title="Actors">
+                                {% for actor in cast|slice(0, 3) %}
+                                    {% if loop.last %}
+                                        {{ actor }}
+                                    {% else %}
+                                        {{ actor }},
+                                    {% endif %}
+                                {% endfor %}
+                            </cite></small>
+                        <p>Nationalité(s)</p> <small><cite title="Nationalities">{{ film.nationalities }}</cite></small>
+                    </blockquote>
+                </div>
+                <div class="col-md-6">
+                    <blockquote>
+                        <p>Genre(s)</p> 
+                            <small><cite title="Genres">
+                                {% for genre in film.genres %}
+                                    {% if loop.last %}
+                                        {{ genre.name }}
+                                    {% else %}
+                                        {{ genre.name }},
+                                    {% endif %}
+                                {% endfor %}
+                            </cite></small>
+                        <p>Durée</p> <small><cite title="Runtime">{{ film.runtime }} min</cite></small>
+                        <p>Date de sortie au cinéma</p> <small><cite title="Release date">{{ film.releaseDate|date("d/m/Y") }}</cite></small>
+                        <p>Note du film</p> <small><cite title="Note">{{ film.popularity|number_format }} /100</cite></small>
+                    </blockquote>
+                </div>
+            </div>
             <h3>Synopsis</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at sem adipiscing, adipiscing tellus et, sodales tortor. Suspendisse malesuada risus ac diam consectetur, ac sagittis nisl placerat. Sed consequat at leo sit amet bibendum. Donec vel nisi sollicitudin, ornare odio ullamcorper, pulvinar quam.
+                <p>{{ film.synopsis }}
             </p>
             {% if film.urlTrailer %}
             <h3>Trailer</h3>
@@ -51,6 +69,5 @@
             {% endif %}
          </div>
     </div>
-</section>
 
 {% endblock %}

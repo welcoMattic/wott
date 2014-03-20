@@ -7,6 +7,9 @@
 .checkbox{
     margin-right: 5%;
 }
+a.btn.action{
+    margin: 1% 0;
+}
 
 
 /*** Header ***/
@@ -32,6 +35,8 @@ header .fb-login-button {
     width: 90%;
 }
 
+
+
 /*** Footer ***/
 footer.well {
     margin-bottom: 0px;
@@ -40,6 +45,8 @@ footer.well {
 ul.navbar-right .btn-group {
     margin-right: 6px;
 }
+
+
 
 /*** Menu filtres ***/
 #filter nav div div button {
@@ -55,24 +62,39 @@ ul.navbar-right .btn-group {
 }
 
 
+
 /*** Vignettes ***/
-.list-group li p .thumbnail{
+/* LISTE */
+.list-group li p .thumbnail, .list-group-item p a .thumbnail{
     width: auto;
     max-height: 250px;
     text-align: left;
 }
-
 .list-group li p .btn{
     margin-bottom: 5px;
 }
+/* GRILLE */
+.thumbnail img{
+    max-height: 565px;
+}
 
 
-/*** Responsive videoplayer (Youtube) ***/
+
+/*** DETAIL D'UN FILM ***/
+blockquote small{
+    margin-bottom: 15px;
+}
+img.img-rounded.img-responsive{
+    margin-bottom: 5%;
+}
+
+/* Responsive videoplayer (Youtube) */
 .videoWrapper {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
+    margin-bottom: 70px;
 }
 .videoWrapper iframe {
     position: absolute;
