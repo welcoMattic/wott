@@ -47,7 +47,6 @@ class DefaultController extends Controller
         $genre = $em->getRepository('wottCoreBundle:Genre')->find($genre);
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($limit, $genre, $offset);
 
-
         if ($display === 'grid') {
             $content = $this->render('wottFrontBundle:Default:index_grid.html.twig', array('films' => $films));
         } elseif ($display === 'list') {
@@ -69,7 +68,6 @@ class DefaultController extends Controller
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity($limit, $genre, $offset);
 
         return $film;
-
     }
 
     /**
