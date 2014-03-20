@@ -16,9 +16,29 @@
             {% endif %}
             {% if is_granted('ROLE_USER') %}
                 <p>
-                    <a href="#" class="action btn btn-primary center-block" data-anim="la-anim-10" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>
-                    <a href="#" class="action btn btn-default center-block" data-anim="la-anim-10" data-id="{{ film.id }}" data-action="Like">Liker le film</a>
-                    <a href="#" class="action btn btn-default center-block" data-anim="la-anim-10" data-id="{{ film.id }}" data-action="Seen">J'ai vu ce film</a>
+                    {% if filmUser.isSeen == false %}
+                        <a href="#" class="action btn btn-default isSeen" data-anim="la-anim-10" data-id="{{ film.id }}" data-action="seen">{{ icon('eye-open') }} Marquer comme vu</a>
+                        <h3 class="isSeen hide"><span class="label label-success">{{ icon('ok') }} J'ai vu ce film</span></h3>
+                    {% else %}
+                        <a href="#" class="action btn btn-default isSeen hide" data-anim="la-anim-10" data-id="{{ film.id }}" data-action="seen">{{ icon('eye-open') }} Marquer comme vu</a>
+                        <h3 class="isSeen"><span class="label label-success">{{ icon('ok') }} J'ai vu ce film</span></h3>
+                    {% endif %}
+
+                    {% if filmUser.isWanted == false %}
+                        <a href="#" class="action btn btn-success isWanted" data-id="{{ film.id }}" data-action="wanted">{{ icon('plus') }} Ajouter à ma watchlist</a>
+                        <a href="#" class="action btn btn-danger isWanted hide" data-id="{{ film.id }}" data-action="wanted">{{ icon('minus') }} Retirer de ma watchlist</a>
+                    {% else %}
+                        <a href="#" class="action btn btn-success isWanted hide" data-id="{{ film.id }}" data-action="wanted">{{ icon('plus') }} Ajouter à ma watchlist</a>
+                        <a href="#" class="action btn btn-danger isWanted" data-id="{{ film.id }}" data-action="wanted">{{ icon('minus') }} Retirer de ma watchlist</a>
+                    {% endif %}
+
+                    {% if filmUser.isLike == false %}
+                        <a href="#" class="action btn btn-danger isLike" data-id="{{ film.id }}" data-action="like">{{ icon('thumbs-down') }} Unliker le film</a>
+                        <a href="#" class="action btn btn-info isLike hide" data-id="{{ film.id }}" data-action="like">{{ icon('thumbs-up') }} Liker le film</a>
+                    {% else %}
+                        <a href="#" class="action btn btn-danger isLike hide" data-id="{{ film.id }}" data-action="like">{{ icon('thumbs-down') }} Unliker le film</a>
+                        <a href="#" class="action btn btn-info isLike" data-id="{{ film.id }}" data-action="like">{{ icon('thumbs-up') }} Liker le film</a>
+                    {% endif %}
                 </p>
             {% endif %}
         </div>

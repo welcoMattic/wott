@@ -47,6 +47,12 @@
                                 <li><a href="{{ path('_security_logout') }}" class="btn btn-danger navbar-btn center-block" id="btn-logout">Déconnexion</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <div class="rounds">
+                                <div class="round1"></div>
+                                <div class="round2"></div>
+                            </div>
+                        </li>
                     </ul>
                     {% else %}
                     <ul class="nav navbar-nav navbar-right">
@@ -90,23 +96,28 @@
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
 
     <script type="text/javascript" > // Script for FOSFacebookBundle
+        String.prototype.capitalize = function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
          $(document).ready(function() {
             // Like, watch and seen actions
             $('.action').click(function() {
                 var $this = $(this)
                   , idFilm = $this.data('id')
-                  , action = $this.data('action');
+                  , action = $this.data('action')
+                  , loader = $('.rounds');
 
                 $.ajax({
                     type: 'POST',
                     url: "{{ path('filmUser') }}",
                     data: {'idFilm' : idFilm, 'action' : action },
                     beforeSend: function() {
-                        $('.rounds').show();
+                        loader.show();
                     }
                 }).done(function() {
-                    $('.rounds').hide();
-                    console.log($this);
+                    console.log(loader);
+                    loader.hide();
+                    $('.is' + action.capitalize()).toggleClass('hide');
                 });
                 return false;
             });
