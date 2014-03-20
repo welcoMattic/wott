@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use wott\CoreBundle\Entity\Film;
+use wott\CoreBundle\Entity\FilmUser;
 use wott\CoreBundle\Entity\Formulaire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,18 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8);
 
-        return array('films' => $films);
+        if( $this->container->get('security.context')->isGranted('ROLE_USER') ) {
+            $user = $this->getUser();
+            $fuRepo = $em->getRepository('wottCoreBundle:FilmUser');
+            foreach($films as $key => $film) {
+                $fu = $fuRepo->findOneBy(array('film'=>$film, 'user'=>$user));
+                if($fu instanceOf FilmUser) {
+                    $filmsUser[$film->getId()] = $fu;
+                }
+            }
+        }
+
+        return array('films' => $films, 'filmsUser' => $filmsUser);
     }
 
     /**

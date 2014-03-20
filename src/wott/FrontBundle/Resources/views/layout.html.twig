@@ -116,7 +116,7 @@
                     }
                 }).done(function() {
                     loader.hide();
-                    $('.is' + action.capitalize()).toggleClass('hide');
+                    $('.is' + action.capitalize(), $this.parent()).toggleClass('hide');
                 });
                 return false;
             });

@@ -24,7 +24,6 @@ class FilmController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $film = $em->getRepository('wottCoreBundle:Film')->find($id);
-        $user = $this->getUser();
         $people = $em->getRepository('wottCoreBundle:People');
 
         $filmPeople = $em->getRepository('wottCoreBundle:FilmPeople')->getCrewFilm($film);
@@ -37,15 +36,18 @@ class FilmController extends Controller
                 array_push($cast, $people->getPeople()->getName());
             }
         }
+        if( $this->container->get('security.context')->isGranted('ROLE_USER') ) {
+            $user = $this->getUser();
+            $fu = $em->getRepository('wottCoreBundle:FilmUser')->findOneBy(array('film'=>$film, 'user'=>$user));
+            $filmUser = array(
+                'isSeen' => $fu->getIsSeen(),
+                'isLike' => $fu->getIsLike(),
+                'isWanted' => $fu->getIsWanted()
+            );
+            return array('film' => $film, 'director' => $director, 'cast' => $cast, 'filmUser' => $filmUser);
+        }
 
-        $fu = $em->getRepository('wottCoreBundle:FilmUser')->findOneBy(array('film'=>$film, 'user'=>$user));
-        $filmUser = array(
-            'isSeen' => $fu->getIsSeen(),
-            'isLike' => $fu->getIsLike(),
-            'isWanted' => $fu->getIsWanted()
-        );
-
-        return array('film' => $film, 'director' => $director, 'cast' => $cast, 'filmUser' => $filmUser);
+        return array('film' => $film, 'director' => $director, 'cast' => $cast);
     }
 
 }

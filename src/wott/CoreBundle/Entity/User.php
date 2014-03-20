@@ -96,7 +96,7 @@ class User extends BaseUser
     /**
      * Get suggestDay
      *
-     * @return array 
+     * @return array
      */
     public function getSuggestDay()
     {

@@ -285,4 +285,27 @@ class People
     {
         return $this->filmPeople;
     }
+
+    /**
+     * Add filmPeople
+     *
+     * @param \wott\CoreBundle\Entity\FilmPeople $filmPeople
+     * @return People
+     */
+    public function addFilmPerson(\wott\CoreBundle\Entity\FilmPeople $filmPeople)
+    {
+        $this->filmPeople[] = $filmPeople;
+
+        return $this;
+    }
+
+    /**
+     * Remove filmPeople
+     *
+     * @param \wott\CoreBundle\Entity\FilmPeople $filmPeople
+     */
+    public function removeFilmPerson(\wott\CoreBundle\Entity\FilmPeople $filmPeople)
+    {
+        $this->filmPeople->removeElement($filmPeople);
+    }
 }
