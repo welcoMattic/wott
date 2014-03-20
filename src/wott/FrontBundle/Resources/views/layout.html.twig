@@ -55,6 +55,12 @@
                             {{ facebook_initialize({'xfbml': true, 'culture': 'fr_FR', 'fbAsyncInit': 'onFbInit();'}) }}
                         </li>
                         <li><a href="{{ path('fos_user_security_login') }}">Connexion / Inscription sans Facebook</a></li>
+                        <li>
+                            <div class="rounds">
+                                <div class="round1"></div>
+                                <div class="round2"></div>
+                            </div>
+                        </li>
                     </ul>
                     {% endif %}
                 </div>
@@ -94,9 +100,13 @@
                 $.ajax({
                     type: 'POST',
                     url: "{{ path('filmUser') }}",
-                    data: {'idFilm' : idFilm, 'action' : action }
-                }).done(function(response) {
-                    console.log(response);
+                    data: {'idFilm' : idFilm, 'action' : action },
+                    beforeSend: function() {
+                        $('.rounds').show();
+                    }
+                }).done(function() {
+                    $('.rounds').hide();
+                    console.log($this);
                 });
                 return false;
             });

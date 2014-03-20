@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("", name="homepage")
+     * @Route("/", name="homepage")
      * @Template()
      */
     public function indexAction()
@@ -25,8 +25,9 @@ class DefaultController extends Controller
         $paginator  = $this->get('knp_paginator');
     	$pagination = $paginator->paginate(
         $films,
-        $this->get('request')->query->get('page', 1)
-    );
+        $this->get('request')->query->get('page', 1),
+        4
+    	);
 
 
         return array('films' => $films, 'pagination' => $pagination);
@@ -53,7 +54,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/extend/{page}/{genre}", name="extend", defaults={"genre" = null})
+     * @Route("/extend/{page}/{genre}/{display}", name="extend", defaults={"genre" = null})
      * @Template()
      */
     public function extendAction($genre, $page)

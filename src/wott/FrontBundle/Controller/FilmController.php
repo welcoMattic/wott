@@ -19,7 +19,7 @@ class FilmController extends Controller
      */
     public function showFilmAction($id)
     {
-        $cast= array();
+        $cast = array();
         $director = 'inconnu';
 
         $em = $this->getDoctrine()->getManager();

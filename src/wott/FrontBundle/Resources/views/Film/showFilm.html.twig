@@ -14,13 +14,13 @@
             {% else %}
                 <img src="{{ asset('bundles/wottfront/images/no-poster.jpg') }}" class="center-block img-responsive img-rounded" alt="Pas de visuel disponible pour ce film" />
             {% endif %}
-            <p>
-                <a href="#" class="action btn btn-primary center-block" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>
-
-                <a href="#" class="action btn btn-default center-block" data-id="{{ film.id }}" data-action="Like">Liker le film</a>
-
-                <a href="#" class="action btn btn-default center-block" data-id="{{ film.id }}" data-action="Seen">J'ai vu ce film</a>
-            </p>
+            {% if is_granted('ROLE_USER') %}
+                <p>
+                    <a href="#" class="action btn btn-primary center-block" data-anim="la-anim-10" data-id="{{ film.id }}" data-action="Wanted">Ajouter à ma watchlist</a>
+                    <a href="#" class="action btn btn-default center-block" data-anim="la-anim-10" data-id="{{ film.id }}" data-action="Like">Liker le film</a>
+                    <a href="#" class="action btn btn-default center-block" data-anim="la-anim-10" data-id="{{ film.id }}" data-action="Seen">J'ai vu ce film</a>
+                </p>
+            {% endif %}
         </div>
         <div class="col-md-8">
             <h2>{{ film.title }}</h2>
@@ -29,7 +29,7 @@
                     <blockquote>
                         <p>Titre original</p> <small><cite title="Original title">{{ film.originalTitle }}</cite></small>
                         <p>Réalisateur</p> <small><cite title="Director">{{ director }}</cite></small>
-                        <p>Acteurs principaux</p> 
+                        <p>Acteurs principaux</p>
                             <small><cite title="Actors">
                                 {% for actor in cast|slice(0, 3) %}
                                     {% if loop.last %}
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-6">
                     <blockquote>
-                        <p>Genre(s)</p> 
+                        <p>Genre(s)</p>
                             <small><cite title="Genres">
                                 {% for genre in film.genres %}
                                     {% if loop.last %}
@@ -65,7 +65,7 @@
             </p>
             {% if film.urlTrailer %}
             <h3>Trailer</h3>
-                <div class="videoWrapper">  
+                <div class="videoWrapper">
                     <iframe width="605" height="395" src="//www.youtube.com/embed/{{ film.urlTrailer }}" allowfullscreen=""></iframe>
                 </div>
             {% endif %}
