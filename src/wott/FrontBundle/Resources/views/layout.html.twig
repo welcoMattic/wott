@@ -6,6 +6,20 @@
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('bundles/wottfront/css/styles.css') }}" rel="stylesheet" media="screen">
     {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+    <script type="text/javascript">
+        function goLogIn(){
+            window.location = "{{ path('_security_check') }}";
+        }
+
+        function onFbInit() {
+            if (typeof(FB) != 'undefined' && FB != null ) {
+                FB.Event.subscribe('auth.statusChange', function(response) {
+                    if (response.session || response.authResponse) setTimeout(goLogIn, 50);
+                    else window.location = "{{ path('_security_logout') }}";
+                });
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -42,19 +56,6 @@
                         </li>
                         <li><a href="{{ path('fos_user_security_login') }}">Connexion / Inscription sans Facebook</a></li>
                     </ul>
-                    <script type="text/javascript" > // Script for FOSFacebookBundle
-                        function goLogIn(){
-                            window.location = "{{ path('_security_check') }}";
-                        }
-                        function onFbInit() {
-                            if (typeof(FB) != 'undefined' && FB != null ) {
-                                FB.Event.subscribe('auth.statusChange', function(response) {
-                                    if (response.session || response.authResponse) setTimeout(goLogIn, 50);
-                                    else window.location = "{{ path('_security_logout') }}";
-                                });
-                            }
-                        }
-                    </script>
                     {% endif %}
                 </div>
             </div>
@@ -81,6 +82,26 @@
     {% block javascript %}
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
+
+    <script type="text/javascript" > // Script for FOSFacebookBundle
+         $(document).ready(function() {
+            // Like, watch and seen actions
+            $('.action').click(function() {
+                var $this = $(this)
+                  , idFilm = $this.data('id')
+                  , action = $this.data('action');
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ path('filmUser') }}",
+                    data: {'idFilm' : idFilm, 'action' : action }
+                }).done(function(response) {
+                    console.log(response);
+                });
+                return false;
+            });
+        });
+    </script>
     {% endblock %}
 
 </body>

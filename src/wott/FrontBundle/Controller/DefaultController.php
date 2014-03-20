@@ -71,7 +71,7 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            var_dump($form->getData());
+            die();
 
             $email = $form->get('Email')->getData();
             $text = $form->get('Message')->getData();
@@ -87,14 +87,12 @@ class DefaultController extends Controller
             'notice',
             'Votre E-mail a correctement été envoyé !'
         );
-            return $this->redirect($this->generateUrl('homepage'));
+            //return $this->redirect($this->generateUrl('homepage'));
         }
 
         return array(
             'form' => $form->createView(),
         );
-    
-        return array();
     }
 
     /**

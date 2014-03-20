@@ -27,41 +27,7 @@
             <p>Pour recevoir une notification à chaque nouvelle suggestion, cochez les jours où vous souhaitez recevoir une notification.</p>
             <div class="well">
                 <form class="form-inline">
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="monday"> Lundi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="tuesday"> Mardi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="wednesday"> Mercredi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="thursday"> Jeudi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="friday"> Vendredi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="saturday"> Samedi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="sunday"> Dimanche
-                        </label>
-                    </div>
+                    {{ form_widget(formSuggest) }}
                 </form>
             </div>
         </div>
