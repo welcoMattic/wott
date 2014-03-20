@@ -38,9 +38,10 @@ $(document).ready(function() {
           , isDisplay = currentId == 'list-btn' || currentId == 'grid-btn'
           , display   = isDisplay ? $this.data('display') : $('.display-btn.active').data('display')
           , idGenre   = isGenre ? $this.data('id') : $('.genres li.active').data('id')
-          , page      = $this.data('page');
-          , url       = '{{ path("list") }}/' + display + '/' + idGenre;
+          , page      = $this.data('page')
+          , url       = '{{ path("list") }}/' + display;
 
+        url += idGenre ? '/' + idGenre : '';
         url += page ? '/' + page : '';
 
         $.ajax({
