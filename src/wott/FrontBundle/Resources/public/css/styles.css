@@ -1,13 +1,20 @@
-.dispNone{
-    display:none;
-}
 .hide {
     display: none;
 }
 .checkbox{
     margin-right: 5%;
 }
+a.btn.action{
+    margin: 1% 0;
+}
 
+.progress {
+    display: none;
+}
+
+#movies > div {
+    min-height: 760px;
+}
 
 /*** Header ***/
 header {
@@ -32,6 +39,8 @@ header .fb-login-button {
     width: 90%;
 }
 
+
+
 /*** Footer ***/
 footer.well {
     margin-bottom: 0px;
@@ -40,6 +49,8 @@ footer.well {
 ul.navbar-right .btn-group {
     margin-right: 6px;
 }
+
+
 
 /*** Menu filtres ***/
 #filter nav div div button {
@@ -55,24 +66,39 @@ ul.navbar-right .btn-group {
 }
 
 
+
 /*** Vignettes ***/
-.list-group li p .thumbnail{
+/* LISTE */
+.list-group li p .thumbnail, .list-group-item p a .thumbnail{
     width: auto;
     max-height: 250px;
     text-align: left;
 }
-
 .list-group li p .btn{
     margin-bottom: 5px;
 }
+/* GRILLE */
+.thumbnail img{
+    max-height: 565px;
+}
 
 
-/*** Responsive videoplayer (Youtube) ***/
+
+/*** DETAIL D'UN FILM ***/
+blockquote small{
+    margin-bottom: 15px;
+}
+img.img-rounded.img-responsive{
+    margin-bottom: 5%;
+}
+
+/* Responsive videoplayer (Youtube) */
 .videoWrapper {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
+    margin-bottom: 70px;
 }
 .videoWrapper iframe {
     position: absolute;
@@ -81,4 +107,48 @@ ul.navbar-right .btn-group {
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spinOff {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(-360deg); }
+}
+
+.rounds {
+    height: 35px;
+    margin-right: -150px;
+    margin-top: 6px;
+    display: none;
+}
+
+.round1, .round2 {
+    background-color: rgba(0,0,0,0);
+    border: 2px solid rgba(0,183,229,0.9);
+    opacity: .5;
+    margin: 0 auto;
+}
+
+.round1 {
+    border-radius: 35px;
+    box-shadow: 0 0 35px #2187e7;
+    box-shadow: inset 0 0 15px #2187e7;
+    border-right: 2px solid rgba(0,0,0,0);
+    width: 35px;
+    height: 35px;
+    -webkit-animation:spin 1.2s infinite linear;
+}
+
+.round2 {
+    border-radius: 35px;
+    box-shadow: 0 0 35px #2187e7;
+    border-left: 2px solid rgba(0,0,0,0);
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: -35px;
+    -webkit-animation:spinOff 1s infinite linear;
 }

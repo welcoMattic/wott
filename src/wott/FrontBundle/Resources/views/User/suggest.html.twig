@@ -1,88 +1,25 @@
-{% extends 'wottFrontBundle::layout.html.twig' %}
-{% block content %}
+{% extends 'SonataUserBundle:Profile:layout.html.twig' %}
 
-    <div class="row" id="filter">
-        <div class="col-md-12">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="collapse navbar-collapse">
-                    {{ knp_menu_render('wottFrontBundle:Builder:filtersMenu', { 'style': 'navbar' }) }}
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="search" class="form-control" placeholder="Rechercher un film">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default navbar-btn display-btn active" data-display="grid">{{ icon('th') }}</button>
-                                <button type="button" class="btn btn-default navbar-btn display-btn" data-display="list">{{ icon('th-list') }}</button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+{% block title %}Mon profil{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Notifications pour les suggestions</h3>
+            <p>Pour recevoir une notification à chaque nouvelle suggestion, cochez les jours où vous souhaitez recevoir une notification.</p>
+            <div class="well well-sm clearfix">
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="col-md-6">
+                        {{ form_row(form.suggestDay, { 'attr': {'placeholder': 'SuggestDay'} }) }}
+                    </div>
+                    <div class="col-md-12">
+                        {{ form_row(form.Valider, { 'attr': {'class': 'pull-right'} }) }}
+                        {{ form_end(form) }}
+                    </div>
             </div>
         </div>
     </div>
-
-    <div class="progress progress-striped active hide">
-        <div class="progress-bar" style="width: 100%"></div>
-    </div>
-
-    <div class="row" id="movies">
-        {% for film in films %}
-            {{ film.title }} <br>
-        {% endfor %}
-    </div>
-{% endblock %}
-
-{% block javascript %}
-{{ parent() }}
-<script>
-$(document).ready(function(){
-
-    $('.action').click(function(){
-
-        idFilm=$(this).data('id');
-        action=$(this).data('action')
-
-        $.ajax({
-
-           type: "POST",
-           url: "{{ path('filmUser') }}",
-           data: {"idFilm" : idFilm, "action" : action }
-         }).done(function (response) {
-            console.log(response);
-        });
-
-        return false;
-
-    });
-
-    $('.display-btn').click(function(){
-        var $this = $(this);
-        display = $(this).data('display');
-
-        $.ajax({
-           type: "POST",
-           url: "{{ path('list') }}/"+display,
-           beforeSend:function(){
-                $('#movies').remove();
-                $('.progress').toggleClass('hide');
-            }
-         }).done(function (response) {
-            $('#filter').after(response);
-            $('.display-btn').removeClass('active');
-            $this.toggleClass('active');
-            $('.progress').toggleClass('hide');
-        });
-
-        return false;
-
-    });
-
-
-})
-</script>
 
 {% endblock %}

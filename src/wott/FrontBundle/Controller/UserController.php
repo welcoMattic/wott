@@ -23,7 +23,7 @@ class UserController extends Controller
     public function filmUserAction(Request $request)
     {
         $idFilm = $request->request->get('idFilm');
-        $action = $request->request->get('action');
+        $action = ucfirst($request->request->get('action'));
         $idUser = $this->container->get('security.context')->getToken()->getUser()->getId();
 
         $setter = 'setIs'.$action;
@@ -58,29 +58,49 @@ class UserController extends Controller
         }
 
         $em->flush();
-        $$getter = $filmUser->$getter();
 
-        return new Response(var_dump($$getter));
+        return new Response();
     }
 
     /**
      * @Route("/suggest", name="suggest")
      * @Template()
      */
-    public function suggestAction()
+    public function suggestAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $FilmUser = $em->getRepository('wottCoreBundle:FilmUser');
 
-        $films = $FilmUser->suggest($user);
+        $form = $this->createFormBuilder($user)
+            ->add('suggestDay', 'choice', array('choices' => array(
+                                                                    'Mon' => 'Lundi',
+                                                                    'Tue' => 'Mardi',
+                                                                    'Wed' => 'Mercredi',
+                                                                    'Thu' => 'Jeudi',
+                                                                    'Fri' => 'Vendredi',
+                                                                    'Sat' => 'Samedi',
+                                                                    'Sun' => 'Dimanche'),
+                                                            'expanded' => true,
+                                                            "multiple" => true,
+                                                            'required' => false))
+            ->add('Valider', 'submit')
+            ->getForm();
 
-        return array('films' => $films);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $user->setSuggestDay($form->get('suggestDay')->getData());
+            $em->flush();
+
+            return array('form' => $form->createView());
+        }
+
+        return array('form' => $form->createView());
     }
 
     /**
      * @Route("/profile/{action}", name="profile")
-     * @Template("wottFrontBundle:Profile:show.html.twig")
+     * @Template("wottFrontBundle:User:show.html.twig")
      */
     public function profileAction($action = "wanted")
     {
@@ -98,7 +118,31 @@ class UserController extends Controller
         $filmsUser = $FilmUser->getFilmsUser($user, $action);
 
         return array('films' => $filmsUser);
-        
+
+    }
+
+    /**
+     * @Route("/edit-authentication", name="edit-authentication")
+     * @Template("wottFrontBundle:User:edit_authentication.html.twig")
+     */
+    public function editAuthenticationAction(Request $request)
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        $form = $this->container->get('sonata.user.authentication.form');
+        $formHandler = $this->container->get('sonata.user.authentication.form_handler');
+
+        $process = $formHandler->process($user);
+        if ($process) {
+            $this->setFlash('sonata_user_success', 'profile.flash.updated');
+
+            return new RedirectResponse($this->generateUrl('sonata_user_profile_show'));
+        }
+
+        return array('form' => $form->createView());
     }
 
 }

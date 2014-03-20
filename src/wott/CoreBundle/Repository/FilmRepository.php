@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class FilmRepository extends EntityRepository
 {
 
-    public function getFilmsByPopularity($limit, $genre = null)
+    public function getFilmsByPopularity($limit, $genre = null, $offset = null)
     {
         $qb = $this->createQueryBuilder('f');
 
@@ -22,15 +22,16 @@ class FilmRepository extends EntityRepository
                       ->setParameter('genre', $genre)
                       ->orderBy('f.popularity', 'DESC')
                       ->setMaxResults($limit)
+                      ->setFirstResult($offset)
                       ->getQuery();
         } else {
           $query = $qb->orderBy('f.popularity', 'DESC')
                       ->setMaxResults($limit)
+                      ->setFirstResult($offset)
                       ->getQuery();
         }
 
         return $query->getResult();
     }
-
 
 }

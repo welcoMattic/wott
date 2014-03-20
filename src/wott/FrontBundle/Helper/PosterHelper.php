@@ -9,6 +9,6 @@ class PosterHelper extends ImageHelper
     {
         $config = $this->getImageConfiguration();
 
-        return $path === '' ? "{{ asset('bundles/wottfront/images/noposter.png') }}" : $config['base_url'] . $size . $path;
+        return $path === '' ? '/bundles/wottfront/images/no-poster.jpg' : $config['base_url'] . $size . $path;
     }
  }

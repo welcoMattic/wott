@@ -4,17 +4,37 @@
 
 {% block main %}
     <div class="row">
-    hiughreuighreuighreugi
     {% for filmuser in films %}
-        <div class="col-md-3">
-            <div class="thumbnail">
-                <img src="{{ filmuser.film.urlPoster|image_url_path }}" alt="Vignette du film" />
-                <div class="caption">
-                    <h4 class="text-center">{{ filmuser.film.title }}</h4>
-                    <p>{{ filmuser.film.synopsis|slice(0, 100) }}</p>
-                </div>
+        <li class="list-group-item row-fluid col-md-12">
+            <p class="col-md-2 col-md-offset-1">
+                <a href="{{ path('showFilm', { 'id': filmuser.film.id }) }}">
+                    <img class="thumbnail img-responsive" src="{{ filmuser.film.urlPoster|image_url_path}}" alt="Vignette du film" />
+                </a>
+            </p>
+            <div class="col-md-6">
+                <h3 class="list-group-item-header"><a href="{{ path('showFilm', { 'id': filmuser.film.id }) }}">{{ filmuser.film.title }}</a></h3>
+                <p class="list-group-item-text">{{ filmuser.film.synopsis | slice(0, 500) }}...</p>
             </div>
-        </div>
+            <p class="col-md-3">
+                {% if filmuser.isWanted == false %}
+                    <a href="#" class="action btn btn-success center-block isWanted" data-id="{{ filmuser.film.id }}" data-action="wanted">{{ icon('plus') }} Ajouter à ma watchlist</a>
+                    <a href="#" class="action btn btn-danger center-block isWanted hide" data-id="{{ filmuser.film.id }}" data-action="wanted">{{ icon('minus') }} Retirer de ma watchlist</a>
+                {% else %}
+                    <a href="#" class="action btn btn-success center-block isWanted hide" data-id="{{ filmuser.film.id }}" data-action="wanted">{{ icon('plus') }} Ajouter à ma watchlist</a>
+                    <a href="#" class="action btn btn-danger center-block isWanted" data-id="{{ filmuser.film.id }}" data-action="wanted">{{ icon('minus') }} Retirer de ma watchlist</a>
+                {% endif %}
+
+                {% if filmuser.isLike == false %}
+                    <a href="#" class="action btn btn-danger center-block isLike hide" data-id="{{ filmuser.film.id }}" data-action="like">{{ icon('thumbs-down') }} Unliker le film</a>
+                    <a href="#" class="action btn btn-info center-block isLike" data-id="{{ filmuser.film.id }}" data-action="like">{{ icon('thumbs-up') }} Liker le film</a>
+                {% else %}
+                    <a href="#" class="action btn btn-danger center-block isLike" data-id="{{ filmuser.film.id }}" data-action="like">{{ icon('thumbs-down') }} Unliker le film</a>
+                    <a href="#" class="action btn btn-info center-block isLike hide" data-id="{{ filmuser.film.id }}" data-action="like">{{ icon('thumbs-up') }} Liker le film</a>
+                {% endif %}
+                {# <a href="" class="action btn center-block btn-primary" data-id="{{ filmuser.film.id }}" data-action="Wanted">Retirer de ma watchlist</a>
+                <a class="btn center-block btn-default" href="" class="action" data-id="{{ filmuser.film.id }}" data-action="Like">Like</a> #}
+            </p>
+        </li>
     {% endfor %}
     </div>
 {% endblock %}

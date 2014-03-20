@@ -1,13 +1,13 @@
 {% extends "SonataUserBundle:Profile:layout.html.twig" %}
 
-{% block title %}Mes informations{% endblock %}
+{% block title %}Mon profil{% endblock %}
 
 {% block main %}
     <div class="row">
         <div class="col-md-6">
             <h3>{{ 'title_user_edit_authentication'|trans({}, 'SonataUserBundle') }}</h3>
-            <div class="well clearfix">                
-                <form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST" class="form-horizontal">
+            <div class="well clearfix">
+                <form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST">
                     {{ form_widget(form) }}
 
                     <button type="submit" name="submit" class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
@@ -18,51 +18,6 @@
             <h3>{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h3>
             <div class="well clearfix">
                 {% render url("sonata_user_change_password") %}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-7">
-            <h3>Notifications pour les suggestions</h3>
-            <p>Pour recevoir une notification à chaque nouvelle suggestion, cochez les jours où vous souhaitez recevoir une notification.</p>
-            <div class="well">
-                <form class="form-inline">
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="monday"> Lundi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="tuesday"> Mardi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="wednesday"> Mercredi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="thursday"> Jeudi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="friday"> Vendredi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="saturday"> Samedi
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" name="sunday"> Dimanche
-                        </label>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
