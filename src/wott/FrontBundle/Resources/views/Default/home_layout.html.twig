@@ -59,7 +59,6 @@ $(document).ready(function() {
             url        : '{{ path("list") }}/' + display + '/' + idGenre,
             beforeSend : beforeSend
         }).done(function (response) {
-            // if(!isDisplay) $('li.dropdown').dropdown('toggle');
             $('.progress').hide();
             $('#filter').after(response);
             if(isDisplay) $('.display-btn').removeClass('active');
