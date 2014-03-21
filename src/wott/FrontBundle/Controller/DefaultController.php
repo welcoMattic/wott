@@ -43,7 +43,7 @@ class DefaultController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $genre = $em->getRepository('wottCoreBundle:Genre')->find($genre);
+        $genre = $genre ? $em->getRepository('wottCoreBundle:Genre')->find($genre) : null;
         $films = $em->getRepository('wottCoreBundle:Film')->getFilmsByPopularity(8, $genre);
 
         if ($display === 'grid') {
